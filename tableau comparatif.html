@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau Comparatif Dynamique</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+
+<header>
+    <nav>
+        <div class="navbar">
+          <i class='bx bx-menu'></i>
+          <div class="logo"><a href="index.html">GINOSKO</a></div>
+          <div class="nav-links">
+            <div class="sidebar-logo">
+              <span class="logo-name">GINOSKO</span>
+              <i class='bx bx-x' ></i>
+            </div>
+            <ul class="links">
+              <li><a href="index.html">ACCUEIL</a></li>
+              <li>
+                <a href="#">RESSOURCES</a>
+                <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+                <ul class="htmlCss-sub-menu sub-menu">
+                  <li><a href="liste dénomination.html">Liste des dénominations en France</a></li>
+                  <li><a href="tableau comparatif.html">Tableaux comparatifs des dénominations</a></li>
+                  <li><a href="Dénomination chrétienne-12.html">Organigramme et fiches doctrinales</a></li>
+                  <li class="more">
+                    <span><a href="#">Pour aller plus loin</a>
+                    <i class='bx bxs-chevron-right arrow more-arrow'></i>
+                  </span>
+                    <ul class="more-sub-menu sub-menu">
+                      <li><a href="#">Chiffres clés</a></li>
+                      <li><a href="#">Quizz: en quoi croient-ils ?</a></li>
+                      <li><a href="#">Personnalités et croyances</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">QUESTIONNAIRES</a>
+                <i class='bx bxs-chevron-down js-arrow arrow '></i>
+                <ul class="js-sub-menu sub-menu">
+                  <li><a href="KIF.html">Questionnaire KYF</a></li>
+                  <li><a href="#">Questionnaire Fin des Temps</a></li>
+                  <li><a href="#">Questionnaire Salut</a></li>
+                  <li><a href="#">Quizz bibliques</a></li>
+                  <li><a href="#">Arbre des Religions</a></li>
+                </ul>
+              </li>
+              <li><a href="about.html">A PROPOS</a></li>
+              <li><a href="#">CONTACTEZ-NOUS</a></li>
+            </ul>
+          </div>
+          <div class="search-box">
+            <i class='bx bx-search'></i>
+            <div class="input-box">
+              <input type="text" placeholder="Search...">
+            </div>
+          </div>
+        </div>
+      </nav>  
+</header>
+
+
+<body>
+
+    <h1>Tableau Comparatif Dynamique</h1>
+
+    <!-- Filtre par thématique -->
+    <div class="filters">
+      <label for="theme-filter">Filtrer par thématique :</label>
+      <select id="theme-filter">
+        <option value="all">Toutes les thématiques</option>
+        <option value="doctrine">Doctrine</option>
+        <option value="sacrements">Sacrements</option>
+        <option value="pratiques">Pratiques</option>
+      </select>
+    </div>
+  
+    <!-- Filtres pour les dénominations -->
+    <h3>Choisissez les dénominations à comparer :</h3>
+    <div id="denomination-filters">
+      <label><input type="checkbox" value="Amish" checked> Amish</label>
+      <label><input type="checkbox" value="Catholic" checked> Catholic</label>
+      <label><input type="checkbox" value="Baptist" checked> Baptist</label>
+      <label><input type="checkbox" value="Orthodoxe" checked> Orthodoxe</label>
+
+      <!-- Ajouter d'autres cases à cocher selon tes besoins -->
+    </div>
+  
+    <!-- Tableau comparatif -->
+    <table id="comparison-table">
+      <thead>
+        <tr>
+          <th>Thématique</th>
+          <th class="Amish">Amish</th>
+          <th class="Catholic">Catholic</th>
+          <th class="Baptist">Baptist</th>
+          <th class="Orthodoxe">Orthodoxe</th>
+
+          <!-- Ajouter d'autres dénominations si nécessaire -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="doctrine">
+          <td>Doctrine</td>
+          <td class="Amish">Doctrine Amish</td>
+          <td class="Catholic">Doctrine Catholic</td>
+          <td class="Baptist">Doctrine Baptist</td>
+          <td class="Orthodoxe">Doctrine Orthodoxe</td>
+
+        </tr>
+        <tr class="sacrements">
+          <td>Sacrements</td>
+          <td class="Amish">Sacrements Amish</td>
+          <td class="Catholic">Sacrements Catholic</td>
+          <td class="Baptist">Sacrements Baptist</td>
+          <td class="Orthodoxe">Sacrements Orthodoxe</td>
+        </tr>
+        <tr class="pratiques">
+          <td>Pratiques</td>
+          <td class="Amish">Pratiques Amish</td>
+          <td class="Catholic">Pratiques Catholic</td>
+          <td class="Baptist">Pratiques Baptist</td>
+          <td class="Orthodoxe">Pratiques Orthodoxe</td>
+        </tr>
+        <!-- Ajouter d'autres lignes selon les thématiques -->
+      </tbody>
+    </table>
+
+    <footer class="footer">
+
+      <div>
+          <h3>
+          <img src="" alt="#">Ginosko
+          </h3>
+          <p>Le site qui vous aide à y voir plus clair sur les dénominations chrétiennes et à identifier précisément vos sensibilités théologiques.</p>
+      <div class="réseaux-sociaux">
+          <a href="">Twitter</a>
+          <a href="">Instagram</a>
+          <a href="">Facebook</a>
+      </div>
+
+  </div>
+  <ul>
+      <li> <a href="">Contactez-nous</a></li>
+      <li> <a href="">Partenaires</a></li>
+      <li> <a href="">A propos de nous</a></li>
+      <li> <a href="">Mentions légales</a></li>
+  </ul>
+  <p>&copy; 2024 Ginosko - Tous droits réservés</p>
+</footer>
+  
+    <script src="script.js"></script>
+</body>
+</html>

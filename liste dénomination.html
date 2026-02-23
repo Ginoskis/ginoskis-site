@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liste des dénominations en France</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="navbar">
+              <i class='bx bx-menu'></i>
+              <div class="logo"><a href="index.html">GINOSKO</a></div>
+              <div class="nav-links">
+                <div class="sidebar-logo">
+                  <span class="logo-name">GINOSKO</span>
+                  <i class='bx bx-x' ></i>
+                </div>
+                <ul class="links">
+                  <li><a href="index.html">ACCUEIL</a></li>
+                  <li>
+                    <a href="#">RESSOURCES</a>
+                    <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+                    <ul class="htmlCss-sub-menu sub-menu">
+                      <li><a href="liste dénomination.html">Liste des dénominations en France</a></li>
+                      <li><a href="tableau comparatif.html">Tableaux comparatifs des dénominations</a></li>
+                      <li><a href="Dénomination chrétienne-12.html">Organigramme et fiches doctrinales</a></li>
+                      <li class="more">
+                        <span><a href="#">Pour aller plus loin</a>
+                        <i class='bx bxs-chevron-right arrow more-arrow'></i>
+                      </span>
+                        <ul class="more-sub-menu sub-menu">
+                          <li><a href="#">Chiffres clés</a></li>
+                          <li><a href="#">Quizz: en quoi croient-ils ?</a></li>
+                          <li><a href="#">Personnalités et croyances</a></li>
+                          <li><a href="#">Arbre des Religions</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">QUESTIONNAIRES</a>
+                    <i class='bx bxs-chevron-down js-arrow arrow '></i>
+                    <ul class="js-sub-menu sub-menu">
+                      <li><a href="KIF.html">Questionnaire KYF</a></li>
+                      <li><a href="#">Questionnaire Fin des Temps</a></li>
+                      <li><a href="#">Questionnaire Salut</a></li>
+                      <li><a href="#">Quizz bibliques</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="about.html">A PROPOS</a></li>
+                  <li><a href="#">CONTACTEZ-NOUS</a></li>
+                </ul>
+              </div>
+              <div class="search-box">
+                <i class='bx bx-search'></i>
+                <div class="input-box">
+                  <input type="text" placeholder="Search...">
+                </div>
+              </div>
+            </div>
+          </nav>  
+    </header>
+
+  <h1>Liste des dénominations chrétiennes en France</h1>
+
+    <!-- Menu de sélection pour choisir le sous-groupe -->
+    <div class="filters">
+        <label for="denomination-group">Filtrer par groupe :</label>
+        <select id="denomination-group">
+            <option value="all">Tous</option>
+            <option value="catholic">Catholiques</option>
+            <option value="orthodox">Orthodoxes</option>
+            <option value="protestant-historique">Protestants historiques</option>
+            <option value="protestant-evangelique">Protestants évangéliques</option>
+        </select>
+    </div>
+    <!-- Tableau des dénominations -->
+     <!-- Tableau des dénominations -->
+     <table id="denominations-table" border="1">
+      <thead>
+          <tr>
+              <th>Dénomination</th>
+              <th>Nombre d'églises</th>
+              <th>Nombre de fidèles</th>
+              <th>Date d'implantation en France</th>
+              <th>Lien vers le site officiel</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- Catholiques -->
+          <tr class="catholic">
+              <td>Catholicisme romain</td>
+              <td>45 000</td>
+              <td>28 000 000</td>
+              <td>2e siècle</td>
+              <td><a href="https://eglise.catholique.fr" target="_blank">Site officiel</a></td>
+          </tr>
+          <tr class="catholic">
+              <td>Église grecque-catholique ukrainienne</td>
+              <td>10</td>
+              <td>30 000</td>
+              <td>19e siècle</td>
+              <td><a href="https://ugcc.fr" target="_blank">Site officiel</a></td>
+          </tr>
+
+          <!-- Orthodoxes -->
+          <tr class="orthodox">
+              <td>Église orthodoxe grecque</td>
+              <td>50</td>
+              <td>300 000</td>
+              <td>19e siècle</td>
+              <td><a href="https://orthodoxie.com" target="_blank">Site officiel</a></td>
+          </tr>
+          <tr class="orthodox">
+              <td>Église orthodoxe russe</td>
+              <td>30</td>
+              <td>100 000</td>
+              <td>19e siècle</td>
+              <td><a href="https://orthodoxie.com" target="_blank">Site officiel</a></td>
+          </tr>
+          <tr class="orthodox">
+              <td>Église orthodoxe roumaine</td>
+              <td>30</td>
+              <td>50 000</td>
+              <td>20e siècle</td>
+              <td><a href="https://orthodoxie.com" target="_blank">Site officiel</a></td>
+          </tr>
+          <tr class="orthodox">
+              <td>Église orthodoxe serbe</td>
+              <td>10</td>
+              <td>30 000</td>
+              <td>20e siècle</td>
+              <td><a href="https://orthodoxie.com" target="_blank">Site officiel</a></td>
+          </tr>
+
+          <!-- Protestants historiques -->
+          <tr class="protestant-historique">
+              <td>Luthéranisme</td>
+              <td>200</td>
+              <td>150 000</td>
+              <td>16e siècle</td>
+              <td><a href="https://eglise-lutherienne.fr" target="_blank">Site officiel</a></td>
+          </tr>
+          <tr class="protestant-historique">
+              <td>Anglicanisme</td>
+              <td>150</td>
+              <td>120 000</td>
+              <td>17e siècle</td>
+              <td><a href="https://eglise-anglicane.fr" target="_blank">Site officiel</a></td>
+          </tr>
+          <tr class="protestant-historique">
+              <td>Calvinisme (Église réformée)</td>
+              <td>300</td>
+              <td>300 000</td>
+              <td>16e siècle</td>
+              <td><a href="https://www.eglise-protestante-unie.fr" target="_blank">Site officiel</a></td>
+          </tr>
+          <tr class="protestant-historique">
+              <td>Méthodisme</td>
+              <td>50</td>
+              <td>10 000</td>
+              <td>18e siècle</td>
+              <td><a href="https://eglise-methodiste.fr" target="_blank">Site officiel</a></td>
+          </tr>
+          <tr class="protestant-historique">
+              <td>Adventisme du septième jour</td>
+              <td>120</td>
+              <td>14 000</td>
+              <td>19e siècle</td>
+              <td><a href="https://adventiste.org" target="_blank">Site officiel</a></td>
+          </tr>
+
+          <!-- Protestants évangéliques -->
+          <tr class="protestant-evangelique">
+              <td>Protestantisme évangélique</td>
+              <td>2 500</td>
+              <td>600 000</td>
+              <td>19e siècle</td>
+              <td><a href="https://federationprotestante.org" target="_blank">Site officiel</a></td>
+          </tr>
+          <tr class="protestant-evangelique">
+              <td>Baptisme</td>
+              <td>1 000</td>
+              <td>300 000</td>
+              <td>19e siècle</td>
+              <td><a href="https://baptiste-france.org" target="_blank">Site officiel</a></td>
+          </tr>
+          <tr class="protestant-evangelique">
+              <td>Pentecôtisme</td>
+              <td>500</td>
+              <td>200 000</td>
+              <td>20e siècle</td>
+              <td><a href="https://federationprotestante.org" target="_blank">Site officiel</a></td>
+          </tr>
+          <tr class="protestant-evangelique">
+              <td>Mennonitisme</td>
+              <td>50</td>
+              <td>3 000</td>
+              <td>19e siècle</td>
+              <td><a href="https://mennonites.org" target="_blank">Site officiel</a></td>
+          </tr>
+      </tbody>
+  </table>
+
+  <footer class="footer">
+
+    <div>
+        <h3>
+        <img src="" alt="#">Ginosko
+        </h3>
+        <p>Le site qui vous aide à y voir plus clair sur les dénominations chrétiennes et à identifier précisément vos sensibilités théologiques.</p>
+    <div class="réseaux-sociaux">
+        <a href="">Twitter</a>
+        <a href="">Instagram</a>
+        <a href="">Facebook</a>
+    </div>
+
+</div>
+<ul>
+    <li> <a href="">Contactez-nous</a></li>
+    <li> <a href="">Partenaires</a></li>
+    <li> <a href="">A propos de nous</a></li>
+    <li> <a href="">Mentions légales</a></li>
+</ul>
+<p>&copy; 2024 Ginosko - Tous droits réservés</p>
+</footer>
+
+  <script src="listeDenom.js"></script>
+
+</body>
+</html>

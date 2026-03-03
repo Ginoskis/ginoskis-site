@@ -5,14 +5,22 @@
 /* 1. MISE À JOUR DES POLICES (À mettre tout en haut du fichier) */
 @import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Roboto:wght@300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
+{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-header{
-    margin-bottom: 100px;
+/* 2. MISE À JOUR DU HEADER (Remplace ton ancien bloc header) */
+header {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image ciel ginoskis.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 400px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
 }
 
 body{
@@ -616,4 +624,5 @@ button:hover {
       height: 25px;  /* Ajuste la hauteur */
   }
 }
+
 

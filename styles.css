@@ -623,6 +623,39 @@ button:hover {
       width: 80px;  /* Ajuste la taille des rectangles */
       height: 25px;  /* Ajuste la hauteur */
   }
+
+/* 3. NOUVELLE IDENTITÉ VISUELLE (À ajouter à la toute fin du fichier) */
+
+/* Application de la police antique au logo et aux titres importants */
+.navbar .logo a, 
+.sidebar-logo .logo-name, 
+.titres, 
+h1, 
+h3 {
+    font-family: 'Caesar Dressing', cursive !important;
+    letter-spacing: 1px;
 }
+
+/* Texte par défaut en Roboto pour plus de modernité */
+body {
+    font-family: 'Roboto', sans-serif !important;
+    background-color: #f9fbfb;
+}
+
+/* Ajustement de la barre de navigation pour faire tenir les 5 onglets */
+nav .navbar .links li a {
+    font-size: 14px; /* Un peu plus petit pour éviter le chevauchement */
+    font-weight: 700;
+    padding: 0 10px;
+}
+
+/* On s'assure que la barre de navigation reste visible sur l'image */
+nav {
+    background: #3E8DA8; /* On garde ton bleu actuel pour la barre fixe */
+}
+
+  
+}
+
 
 

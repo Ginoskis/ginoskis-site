@@ -1,29 +1,17 @@
-// Gestion du menu mobile (Hamburger)
-let menuOpenBtn = document.querySelector(".navbar .bx-menu");
-let menuCloseBtn = document.querySelector(".nav-links .bx-x");
-let navLinksContainer = document.querySelector(".nav-links");
+/* ==========================================================================
+   GESTION DES MENUS DÉROULANTS
+   ========================================================================== */
 
-if (menuOpenBtn) {
-    menuOpenBtn.addEventListener("click", () => {
-        navLinksContainer.style.left = "0";
-    });
-}
-
-if (menuCloseBtn) {
-    menuCloseBtn.addEventListener("click", () => {
-        navLinksContainer.style.left = "-100%";
-    });
-}
-
-// Gestion des sous-menus au clic sur la flèche
 let allArrows = document.querySelectorAll(".arrow");
 
 allArrows.forEach(arrow => {
     arrow.addEventListener("click", (e) => {
-        e.preventDefault(); // Empêche de suivre un lien vide
+        e.preventDefault();
+        e.stopPropagation(); // Empêche le clic de se propager au document
+        
         let li = e.target.closest("li");
         
-        // Ferme les autres menus ouverts
+        // Ferme les autres menus
         document.querySelectorAll(".links li").forEach(item => {
             if (item !== li) item.classList.remove("showMenu");
         });
@@ -31,3 +19,17 @@ allArrows.forEach(arrow => {
         li.classList.toggle("showMenu");
     });
 });
+
+/* FERMETURE AU CLIC À L'EXTÉRIEUR */
+document.addEventListener("click", (e) => {
+    // Si le clic n'est pas à l'intérieur de la navigation
+    if (!e.target.closest(".links")) {
+        document.querySelectorAll(".links li").forEach(li => {
+            li.classList.remove("showMenu");
+        });
+    }
+});
+
+/* GESTION MOBILE (Optionnel si tu réactives le hamburger plus tard) */
+let navLinksContainer = document.querySelector(".nav-links");
+// ... le reste de tes fonctions (tableaux, etc.) ...

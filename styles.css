@@ -1,36 +1,11 @@
-/* ==========================================================================
-   1. POLICES ET COULEURS INSTAGRAM
-   ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
-    background-color: #f5f5dc; /* Fond Beige Instagram */
-    color: #37352f; /* Texte Anthracite Instagram */
-}
-
-/* Police Antique : Logo et Titre Hero */
-.logo a, .hero .titres {
-    font-family: 'Caesar Dressing', cursive !important;
-}
-
-/* ==========================================================================
-   2. NAVIGATION (NAVBAR BEIGE)
-   ========================================================================== */
+/* --- BARRE DE NAVIGATION (NAVBAR BEIGE) --- */
 nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 70px;
-    background: #f5f5dc; /* Couleur dominante Beige */
+    background: #f5f5dc; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     z-index: 1000;
 }
@@ -41,16 +16,22 @@ nav .navbar {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Aligne le logo à gauche et le menu à droite */
+    justify-content: space-between;
     margin: auto;
     padding: 0 30px;
 }
 
-/* Logo en Anthracite */
+/* SOLUTION AU PROBLÈME : Masquer les icônes mobiles sur PC */
+.navbar .bx-menu, 
+.nav-links .sidebar-logo {
+    display: none !important; 
+}
+
 .navbar .logo a {
     font-size: 35px;
     color: #37352f; 
     text-decoration: none;
+    font-family: 'Caesar Dressing', cursive !important;
 }
 
 nav .navbar .links {
@@ -63,19 +44,17 @@ nav .navbar .links li {
     padding: 0 15px;
 }
 
-/* Titres des onglets en Anthracite */
 nav .navbar .links li a {
     text-decoration: none;
     color: #37352f; 
     font-size: 14px;
     font-weight: 600;
-    text-transform: uppercase;
 }
 
-/* Sous-menus (Dropdown) */
+/* Sous-menus Dropdown */
 nav .navbar .links li .sub-menu {
     position: absolute;
-    top: 55px;
+    top: 50px;
     left: 0;
     background: #f5f5dc; 
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
@@ -83,7 +62,7 @@ nav .navbar .links li .sub-menu {
     min-width: 240px;
     list-style: none;
     padding: 10px 0;
-    border-top: 3px solid #3e8da8; /* Accent bleu Ginoskis */
+    border-top: 3px solid #3e8da8;
 }
 
 nav .navbar .links li.showMenu .sub-menu {
@@ -94,39 +73,43 @@ nav .navbar .links li.showMenu .sub-menu {
     color: #37352f !important;
     padding: 10px 20px;
     display: block;
-    font-size: 13px;
-    text-transform: none;
 }
 
-/* Flèche en Bleu pour ressortir */
 .arrow { 
     cursor: pointer; 
     color: #3e8da8; 
     margin-left: 5px; 
-    transition: transform 0.3s ease;
-}
-nav .navbar .links li.showMenu .arrow { transform: rotate(180deg); }
-
-/* Désactivation des éléments mobiles/recherche sur PC */
-.bx-menu, .sidebar-logo { display: none; }
-
-/* ==========================================================================
-   3. HEADER / HERO
-   ========================================================================== */
-header {
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('image ciel ginoskis.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 480px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-top: 70px;
 }
 
-.hero .titres { 
-    color: #ffffff; /* On garde le blanc ici pour la lisibilité sur l'image */
-    font-size: 4.5rem; 
-    text-shadow: 2px 2px 15px rgba(0,0,0,0.4); 
+/* RESPONSIVE : On réactive le hamburger UNIQUEMENT sous 800px */
+@media (max-width: 800px) {
+    .navbar .bx-menu {
+        display: block !important;
+        color: #37352f;
+        font-size: 30px;
+        cursor: pointer;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100%;
+        width: 280px;
+        background: #f5f5dc;
+        padding: 20px;
+        transition: all 0.4s ease;
+        z-index: 2000;
+    }
+
+    .nav-links .sidebar-logo {
+        display: flex !important; /* On le réaffiche ici */
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    nav .navbar .links {
+        display: block;
+    }
 }

@@ -1,13 +1,10 @@
-/* ==========================================================================
-   GESTION DES MENUS DÉROULANTS
-   ========================================================================== */
-
+// Sélection de toutes les flèches
 let allArrows = document.querySelectorAll(".arrow");
 
 allArrows.forEach(arrow => {
     arrow.addEventListener("click", (e) => {
         e.preventDefault();
-        e.stopPropagation(); // Empêche le clic de se propager au document
+        e.stopPropagation(); // Évite de fermer immédiatement le menu qu'on vient d'ouvrir
         
         let li = e.target.closest("li");
         
@@ -20,16 +17,12 @@ allArrows.forEach(arrow => {
     });
 });
 
-/* FERMETURE AU CLIC À L'EXTÉRIEUR */
+// FERMETURE INTELLIGENTE : clic n'importe où ailleurs
 document.addEventListener("click", (e) => {
-    // Si le clic n'est pas à l'intérieur de la navigation
+    // Si le clic n'est pas sur un élément du menu, on ferme tout
     if (!e.target.closest(".links")) {
         document.querySelectorAll(".links li").forEach(li => {
             li.classList.remove("showMenu");
         });
     }
 });
-
-/* GESTION MOBILE (Optionnel si tu réactives le hamburger plus tard) */
-let navLinksContainer = document.querySelector(".nav-links");
-// ... le reste de tes fonctions (tableaux, etc.) ...

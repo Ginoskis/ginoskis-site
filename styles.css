@@ -13,16 +13,16 @@ body {
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
     background-color: #f5f5dc; /* Fond Beige Instagram */
-    color: #37352f;
+    color: #37352f; /* Texte Anthracite Instagram */
 }
 
-/* Police Antique : Logo et Titre Principal */
+/* Police Antique : Logo et Titre Hero */
 .logo a, .hero .titres {
     font-family: 'Caesar Dressing', cursive !important;
 }
 
 /* ==========================================================================
-   2. NAVIGATION (NAVBAR) - ÉDITION FINALE
+   2. NAVIGATION (NAVBAR BEIGE)
    ========================================================================== */
 nav {
     position: fixed;
@@ -30,7 +30,7 @@ nav {
     left: 0;
     width: 100%;
     height: 70px;
-    background: #f5f5dc; /* Barre de navigation Beige */
+    background: #f5f5dc; /* Couleur dominante Beige */
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     z-index: 1000;
 }
@@ -41,7 +41,7 @@ nav .navbar {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* Aligne le logo à gauche et le menu à droite */
     margin: auto;
     padding: 0 30px;
 }
@@ -63,26 +63,27 @@ nav .navbar .links li {
     padding: 0 15px;
 }
 
-/* Liens du menu en Anthracite */
+/* Titres des onglets en Anthracite */
 nav .navbar .links li a {
     text-decoration: none;
     color: #37352f; 
     font-size: 14px;
     font-weight: 600;
+    text-transform: uppercase;
 }
 
 /* Sous-menus (Dropdown) */
 nav .navbar .links li .sub-menu {
     position: absolute;
-    top: 50px;
+    top: 55px;
     left: 0;
-    background: #f5f5dc; /* Beige */
+    background: #f5f5dc; 
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     display: none;
     min-width: 240px;
     list-style: none;
     padding: 10px 0;
-    border-top: 3px solid #3e8da8; /* Rappel du Bleu en accent */
+    border-top: 3px solid #3e8da8; /* Accent bleu Ginoskis */
 }
 
 nav .navbar .links li.showMenu .sub-menu {
@@ -97,20 +98,17 @@ nav .navbar .links li.showMenu .sub-menu {
     text-transform: none;
 }
 
-/* Flèche en Bleu Ginoskis pour la mise en évidence */
+/* Flèche en Bleu pour ressortir */
 .arrow { 
     cursor: pointer; 
     color: #3e8da8; 
     margin-left: 5px; 
-    font-size: 18px;
     transition: transform 0.3s ease;
 }
 nav .navbar .links li.showMenu .arrow { transform: rotate(180deg); }
 
-/* SUPPRESSION DÉFINITIVE DE LA RECHERCHE ET DU HAMBURGER PC */
-.search-box, .navbar .bx-menu, .nav-links .sidebar-logo {
-    display: none !important;
-}
+/* Désactivation des éléments mobiles/recherche sur PC */
+.bx-menu, .sidebar-logo { display: none; }
 
 /* ==========================================================================
    3. HEADER / HERO
@@ -124,11 +122,11 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 70px; /* Pour ne pas être sous la nav beige */
+    margin-top: 70px;
 }
 
 .hero .titres { 
-    color: #ffffff; /* Le titre principal reste blanc pour briller sur le ciel */
+    color: #ffffff; /* On garde le blanc ici pour la lisibilité sur l'image */
     font-size: 4.5rem; 
     text-shadow: 2px 2px 15px rgba(0,0,0,0.4); 
 }

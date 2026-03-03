@@ -12,28 +12,17 @@
 body {
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
-    background-color: #f5f5dc; /* Couleur dominante Instagram */
-    color: #37352f; /* Couleur des textes */
+    background-color: #f5f5dc; /* Fond Beige Instagram */
+    color: #37352f;
 }
 
-/* Police Antique : Logo et Grands Titres */
+/* Police Antique : Logo et Titre Principal */
 .logo a, .hero .titres {
     font-family: 'Caesar Dressing', cursive !important;
-    color: #ffffff; /* Blanc sur le bleu/image pour le contraste */
-}
-
-h1, h2, h3, .titres-section {
-    color: #37352f; /* Titres Instagram */
-    font-family: 'Caesar Dressing', cursive;
-}
-
-/* Éléments mis en évidence */
-.highlight, b, strong {
-    color: #3e8da8;
 }
 
 /* ==========================================================================
-   2. NAVIGATION (NAVBAR)
+   2. NAVIGATION (NAVBAR) - ÉDITION FINALE
    ========================================================================== */
 nav {
     position: fixed;
@@ -41,7 +30,8 @@ nav {
     left: 0;
     width: 100%;
     height: 70px;
-    background: #3e8da8; /* Bleu Ginoskis */
+    background: #f5f5dc; /* Barre de navigation Beige */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     z-index: 1000;
 }
 
@@ -56,19 +46,10 @@ nav .navbar {
     padding: 0 30px;
 }
 
-/* Masquer le menu hamburger sur PC */
-.navbar .bx-menu {
-    display: none;
-}
-
-/* Masquer le logo de la sidebar sur PC */
-.nav-links .sidebar-logo {
-    display: none;
-}
-
+/* Logo en Anthracite */
 .navbar .logo a {
     font-size: 35px;
-    color: #fff;
+    color: #37352f; 
     text-decoration: none;
 }
 
@@ -82,24 +63,26 @@ nav .navbar .links li {
     padding: 0 15px;
 }
 
+/* Liens du menu en Anthracite */
 nav .navbar .links li a {
     text-decoration: none;
-    color: #fff;
+    color: #37352f; 
     font-size: 14px;
     font-weight: 600;
 }
 
-/* Sous-menus */
+/* Sous-menus (Dropdown) */
 nav .navbar .links li .sub-menu {
     position: absolute;
-    top: 55px;
+    top: 50px;
     left: 0;
-    background: #3e8da8;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background: #f5f5dc; /* Beige */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     display: none;
-    min-width: 220px;
+    min-width: 240px;
     list-style: none;
     padding: 10px 0;
+    border-top: 3px solid #3e8da8; /* Rappel du Bleu en accent */
 }
 
 nav .navbar .links li.showMenu .sub-menu {
@@ -107,69 +90,45 @@ nav .navbar .links li.showMenu .sub-menu {
 }
 
 .navbar .links li .sub-menu a {
+    color: #37352f !important;
     padding: 10px 20px;
     display: block;
     font-size: 13px;
     text-transform: none;
 }
 
-/* Flèche */
-.arrow { cursor: pointer; color: #fff; margin-left: 5px; }
+/* Flèche en Bleu Ginoskis pour la mise en évidence */
+.arrow { 
+    cursor: pointer; 
+    color: #3e8da8; 
+    margin-left: 5px; 
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
 nav .navbar .links li.showMenu .arrow { transform: rotate(180deg); }
+
+/* SUPPRESSION DÉFINITIVE DE LA RECHERCHE ET DU HAMBURGER PC */
+.search-box, .navbar .bx-menu, .nav-links .sidebar-logo {
+    display: none !important;
+}
 
 /* ==========================================================================
    3. HEADER / HERO
    ========================================================================== */
 header {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image ciel ginoskis.jpg');
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('image ciel ginoskis.jpg');
     background-size: cover;
     background-position: center;
-    height: 450px;
+    height: 480px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin-top: 70px; /* Pour ne pas être sous la nav beige */
 }
 
-.hero .titres { font-size: 4rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-
-/* ==========================================================================
-   4. RESPONSIVE (MOBILE)
-   ========================================================================== */
-@media (max-width: 800px) {
-    .navbar .bx-menu {
-        display: block; /* Apparaît sur mobile */
-        color: #fff;
-        font-size: 30px;
-        cursor: pointer;
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        height: 100%;
-        width: 280px;
-        background: #3e8da8;
-        padding: 20px;
-        transition: all 0.4s ease;
-    }
-
-    .nav-links .sidebar-logo {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: #fff;
-        margin-bottom: 20px;
-    }
-
-    .nav-links .sidebar-logo .logo-name { font-size: 25px; }
-
-    nav .navbar .links {
-        display: block;
-    }
-
-    nav .navbar .links li {
-        padding: 15px 0;
-    }
+.hero .titres { 
+    color: #ffffff; /* Le titre principal reste blanc pour briller sur le ciel */
+    font-size: 4.5rem; 
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.4); 
 }

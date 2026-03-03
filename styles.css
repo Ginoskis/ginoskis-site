@@ -17,14 +17,14 @@ body {
     color: #333;
 }
 
-/* Application de la police antique aux titres */
-.logo a, .logo-name, .titres, h1, h2, h3 {
+/* Police Antique : Uniquement Logo et Titres Hero */
+.logo a, .logo-name, .hero .titres {
     font-family: 'Caesar Dressing', cursive !important;
     letter-spacing: 1px;
 }
 
 /* ==========================================================================
-   2. BARRE DE NAVIGATION (NAVBAR) - VERSION CORRIGÉE
+   2. BARRE DE NAVIGATION (NAVBAR) 
    ========================================================================== */
 nav {
     position: fixed;
@@ -41,7 +41,7 @@ nav {
 
 nav .navbar {
     height: 100%;
-    max-width: 1300px; /* Élargi pour les 5 onglets */
+    max-width: 1300px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -50,120 +50,106 @@ nav .navbar {
     padding: 0 30px;
 }
 
+/* Style spécifique du Logo pour correspondre à l'image */
 .navbar .logo a {
-    font-size: 30px;
+    font-size: 35px;
     color: #fff;
     text-decoration: none;
-    font-weight: 600;
+    text-transform: uppercase;
 }
 
 nav .navbar .nav-links {
     height: 100%;
-    line-height: 70px;
 }
 
 nav .navbar .links {
     display: flex;
     list-style: none;
+    height: 100%;
 }
 
 nav .navbar .links li {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 0 12px;
+    padding: 0 15px;
+    height: 100%;
 }
 
 nav .navbar .links li a {
     text-decoration: none;
-    white-space: nowrap; /* Empêche le texte de s'empiler */
+    white-space: nowrap;
     color: #fff;
     font-size: 14px;
     font-weight: 600;
-    text-transform: uppercase;
+    /* On garde Poppins ou Roboto pour le menu pour la lisibilité */
+    font-family: 'Poppins', sans-serif; 
 }
 
-/* Sous-menus */
+/* --- GESTION DYNAMIQUE DES SOUS-MENUS --- */
 nav .navbar .links li .sub-menu {
     position: absolute;
-    top: 70px;
+    top: 70px; /* Aligné sur le bas de la nav */
     left: 0;
     line-height: 40px;
     background: #3E8DA8;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 4px 4px;
-    display: none;
     z-index: 2;
     list-style: none;
+    min-width: 220px;
+    
+    /* État caché par défaut */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    transform: translateY(10px);
 }
 
+/* Apparition au survol du parent (li) */
 nav .navbar .links li:hover .sub-menu {
-    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px);
 }
 
 .navbar .links li .sub-menu li {
-    padding: 0 22px;
+    width: 100%;
+    padding: 5px 20px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: block;
+    height: auto;
 }
 
 .navbar .links li .sub-menu a {
-    font-size: 14px;
+    font-size: 13px;
     text-transform: none;
+    display: block;
 }
 
-/* Barre de recherche */
-.navbar .search-box {
-    position: relative;
-    height: 40px;
-    width: 40px;
-}
-
-.navbar .search-box i {
-    line-height: 40px;
-    text-align: center;
-    font-size: 22px;
-    color: #fff;
-    cursor: pointer;
-}
-
-.navbar .search-box .input-box {
-    position: absolute;
-    right: 0;
-    top: 70px;
-    height: 60px;
-    width: 300px;
-    background: #3E8DA8;
-    border-radius: 6px;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s ease;
-    padding: 10px;
-}
-
-.navbar.showInput .search-box .input-box {
-    opacity: 1;
-    pointer-events: auto;
+/* Masquer l'espace recherche */
+.search-box {
+    display: none !important;
 }
 
 /* ==========================================================================
-   3. HEADER ET HERO SECTION (IMAGE CIEL)
+   3. HEADER ET HERO SECTION
    ========================================================================== */
 header {
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('image ciel ginoskis.jpg');
     background-size: cover;
     background-position: center;
-    height: 450px; 
+    height: 500px; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 0;
 }
 
 .hero .titres {
     color: #ffffff;
-    font-size: 3.5rem;
+    font-size: 4rem;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
     margin-bottom: 10px;
 }
@@ -173,35 +159,22 @@ header {
     font-size: 1.2rem;
     font-weight: 300;
     text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-    max-width: 800px;
+    max-width: 850px;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* ==========================================================================
-   4. OUTILS SPÉCIFIQUES (TABLEAUX, QUIZZ, ARBRES) - CONSERVÉS
+   4. OUTILS (TABLEAUX, QUIZZ, ARBRES) - RÉGLAGES DE BASE
    ========================================================================== */
-
-/* Tableaux */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin: 20px 0;
     background: #fff;
 }
+th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+th { background-color: #3E8DA8; color: white; }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: center;
-}
-
-th {
-    background-color: #3E8DA8;
-    color: white;
-}
-
-tr:nth-child(even) { background-color: #f2f2f2; }
-
-/* Questionnaires */
 .container {
     background-color: #fff;
     padding: 20px;
@@ -210,45 +183,4 @@ tr:nth-child(even) { background-color: #f2f2f2; }
     width: 350px;
     margin: 40px auto;
     text-align: center;
-}
-
-/* Arbre Généalogique / Treeview */
-.genealogy-body {
-    white-space: nowrap;
-    overflow-x: auto;
-    padding: 50px;
-    background: #fff;
-}
-
-.genealogy-tree ul {
-    padding-top: 20px; 
-    display: flex;
-}
-
-.genealogy-tree li {
-    float: left; text-align: center;
-    list-style-type: none;
-    position: relative;
-    padding: 20px 5px;
-}
-
-/* ==========================================================================
-   5. RESPONSIVE (MOBILE)
-   ========================================================================== */
-@media (max-width: 800px) {
-    .navbar .bx-menu { display: block; color: #fff; font-size: 25px; }
-    
-    nav .navbar .nav-links {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        max-width: 270px;
-        width: 100%;
-        background: #3E8DA8;
-        transition: all 0.5s ease;
-    }
-    
-    nav .navbar .links { display: block; margin-top: 40px; }
-    
-    .hero .titres { font-size: 2.2rem; }
 }

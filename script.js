@@ -1,29 +1,22 @@
 /* ==========================================================================
-   1. GESTION DE LA NAVIGATION (SOUS-MENUS & CLIC EXTÉRIEUR)
+   1. GESTION DE LA NAVIGATION (MENU & CLIC EXTÉRIEUR)
    ========================================================================== */
-
 document.addEventListener("DOMContentLoaded", () => {
+    // Gestion du clic sur les flèches pour mobile/tablette
     const allArrows = document.querySelectorAll(".arrow");
-
-    // Gestion du clic sur les chevrons (Mobile et Desktop)
     allArrows.forEach(arrow => {
         arrow.addEventListener("click", (e) => {
             e.preventDefault();
-            e.stopPropagation(); // Empêche la fermeture immédiate via le listener du document
-            
+            e.stopPropagation();
             let parentLi = arrow.closest("li");
-            
-            // Ferme les autres menus ouverts
             document.querySelectorAll(".links li").forEach(li => {
                 if (li !== parentLi) li.classList.remove("showMenu");
             });
-
-            // Bascule le menu actuel
             parentLi.classList.toggle("showMenu");
         });
     });
 
-    // FERMETURE INTELLIGENTE : Si on clique n'importe où en dehors du menu
+    // Fermeture si on clique ailleurs
     document.addEventListener("click", (e) => {
         if (!e.target.closest(".links")) {
             document.querySelectorAll(".links li").forEach(li => {
@@ -31,52 +24,65 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     });
+
+    /* ==========================================================================
+       2. FILTRAGE POUR "liste-denominations.html" (Menu Déroulant)
+       ========================================================================== */
+    const groupSelect = document.getElementById('denomination-group');
+    if (groupSelect) {
+        groupSelect.addEventListener('change', function() {
+            const selectedGroup = this.value;
+            const rows = document.querySelectorAll('#denominations-table tbody tr');
+
+            rows.forEach(row => {
+                if (selectedGroup === 'all' || row.classList.contains(selectedGroup)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    /* ==========================================================================
+       3. FILTRAGE POUR "comparatif.html" (Cases à cocher)
+       ========================================================================== */
+    const denomFilters = document.querySelectorAll('#denomination-filters input[type="checkbox"]');
+    if (denomFilters.length > 0) {
+        denomFilters.forEach(checkbox => {
+            checkbox.addEventListener('change', filterDenominations);
+        });
+    }
+
+    const themeFilter = document.getElementById('theme-filter');
+    if (themeFilter) {
+        themeFilter.addEventListener('change', filterThemes);
+    }
 });
 
-/* ==========================================================================
-   2. FONCTIONS DE FILTRAGE (TABLEAUX COMPARATIFS)
-   ========================================================================== */
-
+// Fonctions globales pour le comparatif
 function filterDenominations() {
     const checkedBoxes = document.querySelectorAll('#denomination-filters input[type="checkbox"]:checked');
-    const selectedDenominations = Array.from(checkedBoxes).map(cb => cb.value);
-    const table = document.getElementById('comparison-table');
-    
-    if (!table) return;
+    const selectedDenoms = Array.from(checkedBoxes).map(cb => cb.value);
+    const ths = document.querySelectorAll('#comparison-table th');
 
-    const ths = table.querySelectorAll('th');
     ths.forEach((th, index) => {
         if (index === 0) return; // Ignore la colonne thématique
-        
         const denomClass = th.classList[0];
-        const show = selectedDenominations.includes(denomClass);
+        const show = selectedDenoms.includes(denomClass);
         
-        table.querySelectorAll(`tr td:nth-child(${index + 1}), tr th:nth-child(${index + 1})`).forEach(cell => {
+        document.querySelectorAll(`#comparison-table th:nth-child(${index + 1}), #comparison-table td:nth-child(${index + 1})`).forEach(cell => {
             cell.style.display = show ? '' : 'none';
         });
     });
 }
 
 function filterThemes() {
-    const filter = document.getElementById('theme-filter');
-    if (!filter) return;
-    
-    const theme = filter.value;
+    const selectedTheme = document.getElementById('theme-filter').value;
     const rows = document.querySelectorAll('#comparison-table tbody tr');
 
     rows.forEach(row => {
-        const rowTheme = row.classList[0];
-        row.style.display = (theme === 'all' || rowTheme === theme) ? '' : 'none';
+        const themeClass = row.classList[0];
+        row.style.display = (selectedTheme === 'all' || themeClass === selectedTheme) ? '' : 'none';
     });
-}
-
-// Initialisation des écouteurs de tableaux si présents sur la page
-const denomContainer = document.getElementById('denomination-filters');
-if (denomContainer) {
-    denomContainer.addEventListener('change', filterDenominations);
-}
-
-const themeSelect = document.getElementById('theme-filter');
-if (themeSelect) {
-    themeSelect.addEventListener('change', filterThemes);
 }

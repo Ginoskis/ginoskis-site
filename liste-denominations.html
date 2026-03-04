@@ -62,14 +62,14 @@
         </nav>
         <section class="hero">
             <h1 class="titres">Dénominations en France</h1>
-            <h2 class="subtitle">Chiffres clés et présence des différents courants.</h2>
+            <h2 class="subtitle">Chiffres clés et présence des différents courants chrétiens sur le territoire.</h2>
         </section>
     </header>
 
     <main style="padding: 40px 20px; max-width: 1200px; margin: auto;">
-        <div style="margin-bottom: 20px;">
-            <label for="denomination-group">Filtrer par groupe :</label>
-            <select id="denomination-group">
+        <div style="margin-bottom: 25px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+            <label for="denomination-group" style="font-weight: 600;">Filtrer par groupe confessionnel :</label>
+            <select id="denomination-group" style="margin-left: 10px;">
                 <option value="all">Toutes les dénominations</option>
                 <option value="catholique">Catholique</option>
                 <option value="protestant-historique">Protestant historique</option>
@@ -78,34 +78,51 @@
             </select>
         </div>
 
-        <table id="denominations-table">
-            <thead>
-                <tr>
-                    <th>Dénomination</th>
-                    <th>Églises / Paroisses</th>
-                    <th>Fidèles (estimé)</th>
-                    <th>Implantation</th>
-                    <th>Lien</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="catholique">
-                    <td>Église Catholique</td>
-                    <td>12 000</td>
-                    <td>35M</td>
-                    <td>2e s.</td>
-                    <td><a href="#">Site</a></td>
-                </tr>
-                <tr class="protestant-evangelique">
-                    <td>Assemblées de Dieu</td>
-                    <td>800</td>
-                    <td>400 000</td>
-                    <td>20e s.</td>
-                    <td><a href="#">Site</a></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-container">
+            <table id="denominations-table">
+                <thead>
+                    <tr>
+                        <th>Dénomination</th>
+                        <th>Églises / Paroisses</th>
+                        <th>Fidèles (estimé)</th>
+                        <th>Implantation</th>
+                        <th>Lien</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="catholique">
+                        <td>Église Catholique</td>
+                        <td>12 000</td>
+                        <td>35 000 000</td>
+                        <td>2e siècle</td>
+                        <td><a href="https://eglise.catholique.fr" target="_blank">Site officiel</a></td>
+                    </tr>
+                    <tr class="protestant-historique">
+                        <td>Église Protestante Unie de France</td>
+                        <td>450</td>
+                        <td>250 000</td>
+                        <td>16e siècle</td>
+                        <td><a href="https://epudf.org" target="_blank">Site officiel</a></td>
+                    </tr>
+                    <tr class="protestant-evangelique">
+                        <td>Assemblées de Dieu (AD)</td>
+                        <td>800</td>
+                        <td>400 000</td>
+                        <td>20e siècle</td>
+                        <td><a href="https://addfrance.fr" target="_blank">Site officiel</a></td>
+                    </tr>
+                    <tr class="protestant-evangelique">
+                        <td>Mennonitisme</td>
+                        <td>50</td>
+                        <td>3 000</td>
+                        <td>19e siècle</td>
+                        <td><a href="https://mennonites.org" target="_blank">Site officiel</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>

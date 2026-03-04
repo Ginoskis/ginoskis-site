@@ -12,8 +12,8 @@
 body {
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
-    background-color: #f5f5dc; /* Beige dominant */
-    color: #37352f; /* Anthracite texte */
+    background-color: #f5f5dc; /* Beige dominant Instagram */
+    color: #37352f; /* Anthracite texte Instagram */
 }
 
 /* Police Antique pour le Logo et les Titres Hero */
@@ -46,7 +46,7 @@ nav .navbar {
     padding: 0 30px;
 }
 
-/* Logo */
+/* Logo Anthracite */
 .navbar .logo a {
     font-size: 35px;
     color: #37352f; 
@@ -62,7 +62,7 @@ nav .navbar .links {
 nav .navbar .links li {
     position: relative;
     padding: 0 15px;
-    height: 70px; /* Aligné sur la nav */
+    height: 70px; 
     display: flex;
     align-items: center;
 }
@@ -82,7 +82,7 @@ nav .navbar .links li a {
     color: #3e8da8; /* Bleu Ginoskis */
     margin-left: 5px; 
     font-size: 18px;
-    transition: transform 0.4s ease; /* Animation fluide de rotation */
+    transition: transform 0.4s ease; 
 }
 
 /* Rotation au survol du parent li */
@@ -97,7 +97,7 @@ nav .navbar .links li .sub-menu {
     left: 0;
     background: #f5f5dc; 
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-    display: none; /* Masqué par défaut */
+    display: none; 
     min-width: 250px;
     list-style: none;
     padding: 10px 0;
@@ -110,12 +110,6 @@ nav .navbar .links li.showMenu .sub-menu {
     display: block;
 }
 
-/* Style des liens dans le sous-menu */
-.navbar .links li .sub-menu li {
-    height: auto;
-    padding: 0;
-}
-
 .navbar .links li .sub-menu a {
     color: #37352f !important;
     padding: 12px 20px;
@@ -126,15 +120,70 @@ nav .navbar .links li.showMenu .sub-menu {
     transition: all 0.3s ease;
 }
 
-/* HOVER BLEU : Les sous-onglets passent en bleu au survol */
+/* HOVER BLEU : Sous-onglets */
 .navbar .links li .sub-menu a:hover {
     background-color: rgba(62, 141, 168, 0.05);
     color: #3e8da8 !important;
-    padding-left: 25px; /* Petit effet de glissement */
+    padding-left: 25px; 
 }
 
 /* ==========================================================================
-   3. HEADER / HERO
+   3. TABLEAUX GINOSKIS (DÉFINITIF & QUADRILLÉ)
+   ========================================================================== */
+.table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse !important; /* Force la fusion des bordures pour le quadrillage */
+    background-color: #ffffff;
+    font-size: 0.95rem;
+    border: 1px solid #dee2e6 !important; /* Bordure extérieure */
+    margin-bottom: 20px;
+}
+
+/* En-tête bleu Ginoskis */
+table th {
+    background-color: #3e8da8 !important; 
+    color: #ffffff !important;
+    padding: 15px !important;
+    text-align: center !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: 1px solid #ffffff !important; /* Quadrillage blanc dans l'en-tête */
+}
+
+/* Cellules du corps */
+table td {
+    padding: 12px 15px !important;
+    border: 1px solid #dee2e6 !important; /* Quadrillage gris clair visible */
+    color: #37352f;
+    vertical-align: middle;
+    text-align: left;
+}
+
+/* Lignes alternées */
+table tbody tr:nth-child(even) {
+    background-color: #fcfcf5; 
+}
+
+/* Hover sur les lignes du tableau */
+table tbody tr:hover {
+    background-color: #f0f7f9;
+}
+
+/* Style de la première colonne (Souvent thématiques ou noms) */
+table td:first-child {
+    font-weight: 600;
+    background-color: #f8f9fa;
+}
+
+/* ==========================================================================
+   4. HEADER / HERO
    ========================================================================== */
 header {
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('image ciel ginoskis.jpg');
@@ -154,9 +203,17 @@ header {
     text-shadow: 2px 2px 15px rgba(0,0,0,0.4); 
 }
 
+.hero .subtitle {
+    color: #ffffff;
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 10px auto;
+}
+
 /* ==========================================================================
-   4. RESPONSIVE & NETTOYAGE
+   5. RESPONSIVE & MOBILE
    ========================================================================== */
+/* Masquer les icônes inutiles sur PC */
 .search-box, .navbar .bx-menu, .nav-links .sidebar-logo {
     display: none !important;
 }
@@ -166,6 +223,48 @@ header {
         display: block !important;
         color: #37352f;
         font-size: 30px;
+        cursor: pointer;
     }
-    /* Styles mobile supplémentaires à ajouter ici si besoin */
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100%;
+        width: 280px;
+        background: #f5f5dc;
+        padding: 20px;
+        transition: all 0.4s ease;
+        z-index: 2000;
+        display: block;
+    }
+
+    .nav-links .sidebar-logo {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        color: #37352f;
+    }
+
+    nav .navbar .links {
+        display: block;
+    }
+
+    nav .navbar .links li {
+        display: block;
+        height: auto;
+        padding: 15px 0;
+    }
+
+    nav .navbar .links li .sub-menu {
+        position: static;
+        box-shadow: none;
+        display: none;
+        padding-left: 20px;
+    }
+
+    nav .navbar .links li.showMenu .sub-menu {
+        display: block;
+    }
 }

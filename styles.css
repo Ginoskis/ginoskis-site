@@ -12,7 +12,7 @@
 body {
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
-    background-color: #f5f5dc; /* Beige Instagram */
+    background-color: #f5f5dc; 
     color: #37352f;
 }
 
@@ -72,23 +72,13 @@ nav .navbar .links li a {
     text-transform: uppercase;
 }
 
-.arrow { 
-    color: #3e8da8; 
-    margin-left: 5px; 
-    font-size: 18px;
-    transition: 0.4s; 
-}
-
-nav .navbar .links li:hover .arrow { transform: rotate(180deg); }
-
 .sub-menu {
     position: absolute;
     top: 70px;
     left: 0;
     background: #f5f5dc; 
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     display: none; 
-    min-width: 250px;
+    min-width: 220px;
     list-style: none;
     padding: 10px 0;
     border-top: 3px solid #3e8da8;
@@ -98,41 +88,37 @@ nav .navbar .links li:hover .sub-menu { display: block; }
 
 .sub-menu a {
     color: #37352f !important;
-    padding: 12px 20px;
+    padding: 10px 20px;
     display: block;
     font-size: 13px;
     text-decoration: none;
 }
 
-.sub-menu a:hover {
-    background-color: rgba(62, 141, 168, 0.05);
-    color: #3e8da8 !important;
-}
-
 /* ==========================================================================
-   3. HEADER / HERO (CENTRAGE SUR IMAGE CIEL)
+   3. HEADER / HERO (LOGIQUE DE CENTRAGE COMMUNE)
    ========================================================================== */
 .main-header {
+    /* CORRECTION DU NOM DE L'IMAGE ICI */
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('image ciel ginoskis.jpg');
     background-size: cover;
     background-position: center;
-    height: 500px;
-    margin-top: 70px;
+    height: 500px; 
+    margin-top: 70px; 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centre verticalement */
-    align-items: center;     /* Centre horizontalement */
+    justify-content: center; 
+    align-items: center;     
+    text-align: center;
 }
 
 .hero-container {
-    text-align: center;
     padding: 0 20px;
 }
 
 .titres { 
     color: #ffffff; 
     font-size: 4.5rem; 
-    text-shadow: 2px 2px 15px rgba(0,0,0,0.4); 
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.4);
     margin-bottom: 10px;
 }
 
@@ -148,12 +134,9 @@ nav .navbar .links li:hover .sub-menu { display: block; }
     font-weight: bold;
 }
 
-.hero-btn-wrapper {
-    margin-top: 35px;
-}
-
 .btn-hero-final {
     display: inline-block;
+    margin-top: 30px;
     padding: 12px 35px;
     border: 2px solid #ffffff;
     color: #ffffff;
@@ -169,34 +152,21 @@ nav .navbar .links li:hover .sub-menu { display: block; }
 }
 
 /* ==========================================================================
-   4. TABLEAUX (QUADRILLAGE GINOSKIS)
+   4. TABLEAUX
    ========================================================================== */
 table {
     width: 100%;
-    border-collapse: collapse !important;
+    border-collapse: collapse;
     background-color: #ffffff;
-    border: 1px solid #dee2e6 !important;
+    margin: 20px 0;
+}
+
+table th, table td {
+    border: 1px solid #dee2e6;
+    padding: 12px;
 }
 
 table th {
-    background-color: #3e8da8 !important; 
-    color: #ffffff !important;
-    padding: 15px !important;
-    border: 1px solid #ffffff !important;
-}
-
-table td {
-    padding: 12px 15px !important;
-    border: 1px solid #dee2e6 !important;
-}
-
-/* ==========================================================================
-   5. RESPONSIVE MOBILE
-   ========================================================================== */
-.navbar .bx-menu, .nav-links .sidebar-logo { display: none; }
-
-@media (max-width: 800px) {
-    .titres { font-size: 2.8rem; }
-    .navbar .bx-menu { display: block; font-size: 30px; cursor: pointer; }
-    /* La sidebar mobile utilise les styles existants dans ton script.js */
+    background-color: #3e8da8;
+    color: white;
 }

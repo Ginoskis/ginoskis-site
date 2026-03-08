@@ -4,26 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau Comparatif | Ginoskis</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <header>
+    <header class="main-header">
         <nav>
             <div class="navbar">
                 <i class='bx bx-menu'></i>
-                <div class="logo"><a href="index.html">Ginoskis</a></div>
+                
+                <div class="logo">
+                    <a href="index.html">Ginoskis</a>
+                </div>
+                
                 <div class="nav-links">
+                    <div class="sidebar-logo">
+                        <span class="logo-name">Ginoskis</span>
+                        <i class='bx bx-x'></i>
+                    </div>
+                    
                     <ul class="links">
                         <li><a href="index.html">ACCUEIL</a></li>
+                        
                         <li>
-                            <a href="#">VOTRE FOI</a>
+                            <a href="votre-foi-main.html">VOTRE FOI</a>
                             <i class='bx bxs-chevron-down arrow'></i>
                             <ul class="sub-menu">
                                 <li><a href="kyf-hub.html">Nos questionnaires KYF</a></li>
-                                <li><a href="quizz-bibliques.html">Quizz bibliques</a></li>
+                                <li><a href="profil-apprenant.html">Votre profil apprenant</a></li>
+                                <li><a href="trouver-eglise.html">Trouver une église</a></li>
+                                <li><a href="edification.html">Édification personnelle</a></li>
                             </ul>
                         </li>
+
                         <li>
                             <a href="#">CHRÉTIENS EN FRANCE</a>
                             <i class='bx bxs-chevron-down arrow'></i>
@@ -34,10 +50,12 @@
                                 <li><a href="interviews.html">Interviews "A la source"</a></li>
                             </ul>
                         </li>
+
                         <li>
                             <a href="#">RESSOURCES</a>
                             <i class='bx bxs-chevron-down arrow'></i>
                             <ul class="sub-menu">
+                                <li><a href="quizz-bibliques.html">Quizz bibliques</a></li>
                                 <li><a href="quizz-autres.html">En quoi croient-ils ?</a></li>
                                 <li><a href="personnalites.html">Personnalités & Croyances</a></li>
                                 <li><a href="monde.html">Le christianisme dans le monde</a></li>
@@ -45,6 +63,7 @@
                                 <li><a href="peres-eglise.html">Les Pères de l'Église</a></li>
                             </ul>
                         </li>
+
                         <li>
                             <a href="#">À PROPOS & CONTACT</a>
                             <i class='bx bxs-chevron-down arrow'></i>
@@ -60,26 +79,27 @@
                 </div>
             </div>
         </nav>
-        <section class="hero">
+
+        <div class="hero-container">
             <h1 class="titres">Tableau Comparatif</h1>
             <h2 class="subtitle">Analysez les différences doctrinales et pratiques entre les grandes familles chrétiennes.</h2>
-        </section>
+        </div>
     </header>
 
     <main style="padding: 40px 20px; max-width: 1300px; margin: auto;">
         
-        <div id="denomination-filters" style="background:#fff; padding:25px; border-radius:8px; margin-bottom:20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-            <h3 style="color:#3e8da8; margin-bottom:15px; font-size: 1.1rem;">Sélectionnez les dénominations :</h3>
+        <div id="denomination-filters" style="background:#fff; padding:25px; border-radius:8px; margin-bottom:20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+            <h3 style="color:#3e8da8; margin-bottom:15px; font-size: 1.1rem; font-family: 'Poppins', sans-serif;">Sélectionnez les dénominations :</h3>
             <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
-                <label><input type="checkbox" value="Amish" checked> Amish</label>
-                <label><input type="checkbox" value="Catholic" checked> Catholique</label>
-                <label><input type="checkbox" value="Baptist" checked> Baptiste</label>
-                <label><input type="checkbox" value="Orthodoxe" checked> Orthodoxe</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="Amish" checked> Amish</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="Catholic" checked> Catholique</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="Baptist" checked> Baptiste</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="Orthodoxe" checked> Orthodoxe</label>
             </div>
             
             <div style="border-top: 1px solid #eee; padding-top: 15px;">
                 <label for="theme-filter" style="font-weight: 600;">Filtrer par thématique :</label>
-                <select id="theme-filter" style="margin-left:10px;">
+                <select id="theme-filter" style="margin-left:10px; padding: 5px; border-radius: 4px; border: 1px solid #ccc;">
                     <option value="all">Toutes les thématiques</option>
                     <option value="doctrine">Doctrine & Théologie</option>
                     <option value="sacrements">Sacrements & Rites</option>
@@ -88,8 +108,7 @@
             </div>
         </div>
 
-        <div class="table-container">
-            
+        <div class="table-container" style="overflow-x: auto;">
             <table id="comparison-table">
                 <thead>
                     <tr>
@@ -102,21 +121,21 @@
                 </thead>
                 <tbody>
                     <tr class="doctrine">
-                        <td>Salut</td>
+                        <td style="font-weight: 600; color: #3e8da8;">Salut</td>
                         <td class="Amish">Foi et obéissance communautaire.</td>
                         <td class="Catholic">Foi et œuvres (Sacrements).</td>
                         <td class="Baptist">Par la foi seule (Sola Fide).</td>
                         <td class="Orthodoxe">Processus de Théose.</td>
                     </tr>
                     <tr class="sacrements">
-                        <td>Baptême</td>
+                        <td style="font-weight: 600; color: #3e8da8;">Baptême</td>
                         <td class="Amish">Baptême des adultes.</td>
                         <td class="Catholic">Baptême des enfants.</td>
                         <td class="Baptist">Baptême des croyants (immersion).</td>
                         <td class="Orthodoxe">Baptême des enfants (triple immersion).</td>
                     </tr>
                     <tr class="pratiques">
-                        <td>Culte</td>
+                        <td style="font-weight: 600; color: #3e8da8;">Culte</td>
                         <td class="Amish">Dans les maisons, simplicité extrême.</td>
                         <td class="Catholic">Messe liturgique, églises décorées.</td>
                         <td class="Baptist">Prédication centrale, musique moderne ou hymnes.</td>
@@ -128,5 +147,5 @@
     </main>
 
     <script src="script.js"></script>
-</body>
+    </body>
 </html>

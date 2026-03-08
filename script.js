@@ -1,76 +1,40 @@
-/* ==========================================================================
-   1. GESTION DE LA NAVIGATION (MENU, SIDEBAR & CLIC EXTÉRIEUR)
-   ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
     
-    // Éléments pour la Sidebar Mobile
+    /* --- NAVIGATION MOBILE --- */
     const navLinks = document.querySelector(".nav-links");
     const menuOpenBtn = document.querySelector(".navbar .bx-menu");
     const menuCloseBtn = document.querySelector(".nav-links .bx-x");
 
-    // Ouverture de la sidebar
     if (menuOpenBtn) {
-        menuOpenBtn.onclick = function() {
-            navLinks.style.left = "0";
-        }
+        menuOpenBtn.onclick = () => { navLinks.style.left = "0"; }
     }
-
-    // Fermeture de la sidebar
     if (menuCloseBtn) {
-        menuCloseBtn.onclick = function() {
-            navLinks.style.left = "-100%";
-        }
+        menuCloseBtn.onclick = () => { navLinks.style.left = "-100%"; }
     }
 
-    // Gestion du clic sur les flèches (Sous-menus mobile)
+    // Gestion des flèches sous-menus mobile
     const allArrows = document.querySelectorAll(".arrow");
     allArrows.forEach(arrow => {
         arrow.addEventListener("click", (e) => {
             e.preventDefault();
-            e.stopPropagation();
             let parentLi = arrow.closest("li");
-            
-            // Ferme les autres sous-menus ouverts
-            document.querySelectorAll(".links li").forEach(li => {
-                if (li !== parentLi) li.classList.remove("showMenu");
-            });
-            
-            // Bascule l'affichage du sous-menu actuel
             parentLi.classList.toggle("showMenu");
         });
     });
 
-    // Fermeture des sous-menus si on clique ailleurs sur la page
-    document.addEventListener("click", (e) => {
-        if (!e.target.closest(".links")) {
-            document.querySelectorAll(".links li").forEach(li => {
-                li.classList.remove("showMenu");
-            });
-        }
-    });
-
-    /* ==========================================================================
-       2. FILTRAGE POUR "liste-denominations.html" (Menu Déroulant)
-       ========================================================================== */
+    /* --- FILTRAGE "liste-denominations.html" --- */
     const groupSelect = document.getElementById('denomination-group');
     if (groupSelect) {
         groupSelect.addEventListener('change', function() {
             const selectedGroup = this.value;
             const rows = document.querySelectorAll('#denominations-table tbody tr');
-
             rows.forEach(row => {
-                if (selectedGroup === 'all' || row.classList.contains(selectedGroup)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
+                row.style.display = (selectedGroup === 'all' || row.classList.contains(selectedGroup)) ? '' : 'none';
             });
         });
     }
 
-    /* ==========================================================================
-       3. FILTRAGE POUR "comparatif.html" (Cases à cocher & Thèmes)
-       ========================================================================== */
+    /* --- FILTRAGE "comparatif.html" --- */
     const denomFilters = document.querySelectorAll('#denomination-filters input[type="checkbox"]');
     if (denomFilters.length > 0) {
         denomFilters.forEach(checkbox => {
@@ -84,43 +48,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-/* ==========================================================================
-   4. FONCTIONS GLOBALES (POUR LE COMPARATIF)
-   ========================================================================== */
-
-/**
- * Filtre les colonnes des dénominations dans le tableau comparatif
- */
+// Fonctions Globales pour le comparatif
 function filterDenominations() {
     const checkedBoxes = document.querySelectorAll('#denomination-filters input[type="checkbox"]:checked');
     const selectedDenoms = Array.from(checkedBoxes).map(cb => cb.value);
     const ths = document.querySelectorAll('#comparison-table th');
 
     ths.forEach((th, index) => {
-        if (index === 0) return; // On ignore toujours la première colonne (Thématiques)
-        
-        const denomClass = th.classList[0]; // Récupère la classe de la dénomination
+        if (index === 0) return; 
+        const denomClass = th.classList[0];
         const show = selectedDenoms.includes(denomClass);
         
-        // Sélectionne l'en-tête et toutes les cellules de la colonne correspondante (index + 1)
-        const columnCells = document.querySelectorAll(`#comparison-table th:nth-child(${index + 1}), #comparison-table td:nth-child(${index + 1})`);
-        
-        columnCells.forEach(cell => {
+        document.querySelectorAll(`#comparison-table th:nth-child(${index + 1}), #comparison-table td:nth-child(${index + 1})`).forEach(cell => {
             cell.style.display = show ? '' : 'none';
         });
     });
 }
 
-/**
- * Filtre les lignes thématiques dans le tableau comparatif
- */
 function filterThemes() {
-    const themeSelector = document.getElementById('theme-filter');
-    if (!themeSelector) return;
-
-    const selectedTheme = themeSelector.value;
+    const selectedTheme = document.getElementById('theme-filter').value;
     const rows = document.querySelectorAll('#comparison-table tbody tr');
-
     rows.forEach(row => {
         const themeClass = row.classList[0];
         row.style.display = (selectedTheme === 'all' || themeClass === selectedTheme) ? '' : 'none';

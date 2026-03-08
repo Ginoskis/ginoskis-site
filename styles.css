@@ -1,172 +1,251 @@
-/* ==========================================================================
-   1. POLICES ET RÉGLAGES DE BASE
-   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap');
 
+/* --- CONFIGURATION GÉNÉRALE --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
-    background-color: #f5f5dc; 
-    color: #37352f;
+    background-color: #f4f7f6;
+    color: #333;
 }
 
-.logo a, .titres {
-    font-family: 'Caesar Dressing', cursive !important;
+/* --- HEADER & NAVIGATION --- */
+.main-header {
+    background: linear-gradient(135deg, #3e8da8 0%, #2c667a 100%);
+    min-height: 300px;
+    color: white;
+    position: relative;
 }
 
-/* ==========================================================================
-   2. NAVIGATION
-   ========================================================================== */
 nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 70px;
-    background: #f5f5dc; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    z-index: 1000;
+    background: #3e8da8;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    z-index: 999;
 }
 
 nav .navbar {
     height: 100%;
-    max-width: 1300px;
+    max-width: 1250px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: auto;
-    padding: 0 30px;
+    padding: 0 50px;
 }
 
 .navbar .logo a {
-    font-size: 35px;
-    color: #37352f; 
+    font-family: 'Caesar Dressing', cursive;
+    font-size: 30px;
+    color: #fff;
     text-decoration: none;
+    font-weight: 600;
 }
 
-nav .navbar .links {
+/* --- NAVIGATION LINKS (DESKTOP) --- */
+nav .nav-links {
+    line-height: 70px;
+    height: 100%;
+}
+
+nav .nav-links .links {
     display: flex;
-    list-style: none;
 }
 
-nav .navbar .links li {
+nav .nav-links .links li {
     position: relative;
-    padding: 0 15px;
-    height: 70px; 
     display: flex;
     align-items: center;
+    list-style: none;
+    padding: 0 14px;
 }
 
-nav .navbar .links li a {
+nav .nav-links .links li a {
+    height: 100%;
     text-decoration: none;
-    color: #37352f; 
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
+    white-space: nowrap;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
 }
 
-.sub-menu {
+/* --- ANIMATION DES CHEVRONS --- */
+.nav-links .links li .arrow {
+    height: 100%;
+    width: 22px;
+    line-height: 70px;
+    text-align: center;
+    display: inline-block;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Fluidité de la rotation */
+}
+
+/* Rotation au survol (Desktop) */
+.nav-links .links li:hover .arrow {
+    transform: rotate(180deg);
+}
+
+/* --- SOUS-MENUS & CENTRAGE --- */
+.nav-links .links li .sub-menu {
     position: absolute;
     top: 70px;
     left: 0;
-    background: #f5f5dc; 
-    display: none; 
+    line-height: 40px;
+    background: #3e8da8;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 8px 8px;
+    display: none;
+    z-index: 2;
     min-width: 220px;
-    list-style: none;
-    padding: 10px 0;
-    border-top: 3px solid #3e8da8;
 }
 
-nav .navbar .links li:hover .sub-menu { display: block; }
-
-.sub-menu a {
-    color: #37352f !important;
-    padding: 10px 20px;
+.nav-links .links li:hover .sub-menu {
     display: block;
-    font-size: 13px;
-    text-decoration: none;
 }
 
-/* ==========================================================================
-   3. HEADER / HERO (LOGIQUE DE CENTRAGE COMMUNE)
-   ========================================================================== */
-.main-header {
-    /* CORRECTION DU NOM DE L'IMAGE ICI */
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('image ciel ginoskis.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 500px; 
-    margin-top: 70px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;     
-    text-align: center;
+.nav-links .links li .sub-menu li {
+    padding: 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
+.nav-links .links li .sub-menu li a {
+    width: 100%;
+    display: block;
+    padding: 10px 15px;
+    text-align: center; /* Centre les textes comme "Diagramme" ou "FAQ" */
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    white-space: normal; /* Autorise le retour à la ligne si texte long */
+}
+
+.nav-links .links li .sub-menu li:hover {
+    background-color: #347a91;
+}
+
+/* --- ICONES MENU (MOBILE UNIQUEMENT) --- */
+.navbar .bx-menu {
+    display: none; /* CACHÉ SUR DESKTOP (Règle le problème des 3 barres) */
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.nav-links .sidebar-logo {
+    display: none; /* CACHÉ SUR DESKTOP */
+}
+
+/* --- HERO SECTION --- */
 .hero-container {
-    padding: 0 20px;
+    padding-top: 120px;
+    text-align: center;
+    padding-bottom: 60px;
+    color: white;
 }
 
-.titres { 
-    color: #ffffff; 
-    font-size: 4.5rem; 
-    text-shadow: 2px 2px 15px rgba(0,0,0,0.4);
+.titres {
+    font-family: 'Caesar Dressing', cursive;
+    font-size: 3.5rem;
     margin-bottom: 10px;
 }
 
 .subtitle {
-    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.2rem;
-    max-width: 800px;
-    margin: 0 auto;
+    font-weight: 300;
+    max-width: 850px;
+    margin: auto;
+    padding: 0 20px;
+    opacity: 0.95;
 }
 
-.subtitle span {
-    color: #3e8da8;
-    font-weight: bold;
-}
+/* --- RESPONSIVE (MOBILE) --- */
+@media (max-width: 920px) {
+    nav .navbar {
+        padding: 0 20px;
+    }
 
-.btn-hero-final {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 12px 35px;
-    border: 2px solid #ffffff;
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: 0.3s;
-}
+    nav .navbar .bx-menu {
+        display: block; /* APPARAIT SUR MOBILE */
+    }
 
-.btn-hero-final:hover {
-    background: #ffffff;
-    color: #3e8da8;
-}
+    nav .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        display: block;
+        max-width: 280px;
+        width: 100%;
+        background: #3e8da8;
+        line-height: 50px;
+        padding: 20px;
+        box-shadow: 5px 0 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.5s ease;
+        z-index: 1000;
+        height: 100vh;
+    }
 
-/* ==========================================================================
-   4. TABLEAUX
-   ========================================================================== */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #ffffff;
-    margin: 20px 0;
-}
+    /* Correction Ginoskis X */
+    .nav-links .sidebar-logo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
 
-table th, table td {
-    border: 1px solid #dee2e6;
-    padding: 12px;
-}
+    .sidebar-logo .logo-name {
+        font-family: 'Caesar Dressing', cursive;
+        font-size: 25px;
+        color: #fff;
+    }
 
-table th {
-    background-color: #3e8da8;
-    color: white;
+    .sidebar-logo i {
+        font-size: 28px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    nav .nav-links .links {
+        display: block;
+        margin-top: 10px;
+    }
+
+    nav .nav-links .links li {
+        display: block;
+        padding: 0;
+    }
+
+    nav .nav-links .links li a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-links .links li .sub-menu {
+        position: relative;
+        top: 0;
+        background: #347a91;
+        box-shadow: none;
+        display: none; /* Masqué par défaut sur mobile */
+    }
+
+    /* Classe activée par le clic en JS */
+    .nav-links .links li.show1 .sub-menu {
+        display: block;
+    }
+
+    .nav-links .links li.show1 .arrow {
+        transform: rotate(180deg);
+    }
 }

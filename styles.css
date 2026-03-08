@@ -113,7 +113,7 @@ nav .navbar .links li:hover .sub-menu { display: block; }
    3. HEADER / HERO (CENTRAGE SUR IMAGE CIEL)
    ========================================================================== */
 .main-header {
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('Capture d’écran 2026-03-08 à 20.41.52.jpg');
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('image ciel ginoskis.jpg');
     background-size: cover;
     background-position: center;
     height: 500px;

@@ -44,6 +44,20 @@
             margin-bottom: 20px;
         }
 
+        .profil-card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #37352f;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .profil-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
         .tag-container {
             display: flex;
             flex-wrap: wrap;
@@ -69,7 +83,7 @@
         }
 
         .selected::after {
-            content: "\ea52";
+            content: "\ea52"; /* Code Boxicons pour le check */
             font-family: 'boxicons';
             position: absolute;
             top: 15px;
@@ -156,45 +170,73 @@
     </header>
 
     <main style="padding: 60px 20px; max-width: 1200px; margin: auto;">
+        
+        <div style="text-align: center; margin-bottom: 20px;">
+            <p style="font-size: 1.1rem; color: #37352f; max-width: 800px; margin: auto;">
+                Choisissez le profil qui vous ressemble aujourd'hui. Ce choix n'est pas définitif, il nous aide simplement à mieux vous servir.
+            </p>
+        </div>
+
         <div class="profil-container">
-            <div class="profil-card" onclick="this.classList.toggle('selected')">
+            
+            <div class="profil-card" onclick="selectProfil(this)">
                 <div>
                     <i class='bx bx-seedling profil-icon'></i>
                     <h3>Néophyte</h3>
-                    <p>"Je découvre la foi et je veux mieux comprendre les églises. Je dévore ma bible et je participe activement."</p>
+                    <p>"Je découvre la foi et je veux mieux comprendre les différentes églises. Je dévore ma bible et je participe activement à la vie communautaire, porté par un zèle de découverte."</p>
                 </div>
                 <div class="tag-container">
                     <span class="badge">Vidéos simples</span>
                     <span class="badge">Bases bibliques</span>
+                    <span class="badge">Lexique</span>
                 </div>
             </div>
 
-            <div class="profil-card" onclick="this.classList.toggle('selected')">
+            <div class="profil-card" onclick="selectProfil(this)">
                 <div>
                     <i class='bx bx-search-alt profil-icon'></i>
-                    <h3>Curieux</h3>
-                    <p>"En quête de réponses avec un planning chargé. J'aime les formats courts et l'esprit critique."</p>
+                    <h3>Curieux / Manque de temps</h3>
+                    <p>"En quête de réponses mais avec un emploi du temps chargé. J'aime les formats courts et j'exerce mon esprit critique tout en consolidant mes bases théologiques."</p>
                 </div>
                 <div class="tag-container">
                     <span class="badge">Formats courts</span>
+                    <span class="badge">Esprit critique</span>
                     <span class="badge">Synthèses</span>
                 </div>
             </div>
 
-            <div class="profil-card" onclick="this.classList.toggle('selected')">
+            <div class="profil-card" onclick="selectProfil(this)">
                 <div>
                     <i class='bx bx-book-reader profil-icon'></i>
                     <h3>Passionné</h3>
-                    <p>"J'aime confronter les points de vue et approfondir les nuances doctrinales complexes."</p>
+                    <p>"Les longs débats, les livres de théologie et les prédications denses sont mon quotidien. J'aime confronter les points de vue et approfondir les nuances doctrinales."</p>
                 </div>
                 <div class="tag-container">
+                    <span class="badge">Débats longs</span>
+                    <span class="badge">Sources académiques</span>
                     <span class="badge">Analyses</span>
-                    <span class="badge">Sources</span>
                 </div>
             </div>
+
+        </div>
+
+        <div style="margin-top: 60px; text-align: center; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+            <h3 style="color: #3e8da8; margin-bottom: 15px;">Comment Ginoskis utilise ce profil ?</h3>
+            <p style="max-width: 750px; margin: auto; line-height: 1.7;">
+                Une fois votre profil choisi, un petit indicateur visuel apparaîtra sur nos articles, vidéos et quizz. 
+                Cela vous permettra de savoir d'un coup d'œil si la ressource correspond à votre "appétit" du moment.
+            </p>
         </div>
     </main>
 
+    <script>
+        function selectProfil(element) {
+            document.querySelectorAll('.profil-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

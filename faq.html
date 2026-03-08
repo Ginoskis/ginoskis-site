@@ -4,25 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ | Ginoskis</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <header>
+    <header class="main-header">
         <nav>
             <div class="navbar">
                 <i class='bx bx-menu'></i>
-                <div class="logo"><a href="index.html">Ginoskis</a></div>
+                
+                <div class="logo">
+                    <a href="index.html">Ginoskis</a>
+                </div>
+                
                 <div class="nav-links">
+                    <div class="sidebar-logo">
+                        <span class="logo-name">Ginoskis</span>
+                        <i class='bx bx-x'></i>
+                    </div>
+                    
                     <ul class="links">
                         <li><a href="index.html">ACCUEIL</a></li>
-                        <li><a href="#">VOTRE FOI</a><i class='bx bxs-chevron-down arrow'></i>
+                        
+                        <li>
+                            <a href="votre-foi-main.html">VOTRE FOI</a>
+                            <i class='bx bxs-chevron-down arrow'></i>
                             <ul class="sub-menu">
                                 <li><a href="kyf-hub.html">Nos questionnaires KYF</a></li>
-                                <li><a href="quizz-bibliques.html">Quizz bibliques</a></li>
+                                <li><a href="profil-apprenant.html">Votre profil apprenant</a></li>
+                                <li><a href="trouver-eglise.html">Trouver une église</a></li>
+                                <li><a href="edification.html">Édification personnelle</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">CHRÉTIENS EN FRANCE</a><i class='bx bxs-chevron-down arrow'></i>
+
+                        <li>
+                            <a href="#">CHRÉTIENS EN FRANCE</a>
+                            <i class='bx bxs-chevron-down arrow'></i>
                             <ul class="sub-menu">
                                 <li><a href="liste-denominations.html">Liste & Chiffres clés</a></li>
                                 <li><a href="comparatif.html">Tableaux comparatifs</a></li>
@@ -30,8 +50,12 @@
                                 <li><a href="interviews.html">Interviews "A la source"</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">RESSOURCES</a><i class='bx bxs-chevron-down arrow'></i>
+
+                        <li>
+                            <a href="#">RESSOURCES</a>
+                            <i class='bx bxs-chevron-down arrow'></i>
                             <ul class="sub-menu">
+                                <li><a href="quizz-bibliques.html">Quizz bibliques</a></li>
                                 <li><a href="quizz-autres.html">En quoi croient-ils ?</a></li>
                                 <li><a href="personnalites.html">Personnalités & Croyances</a></li>
                                 <li><a href="monde.html">Le christianisme dans le monde</a></li>
@@ -39,7 +63,10 @@
                                 <li><a href="peres-eglise.html">Les Pères de l'Église</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">À PROPOS & CONTACT</a><i class='bx bxs-chevron-down arrow'></i>
+
+                        <li>
+                            <a href="#">À PROPOS & CONTACT</a>
+                            <i class='bx bxs-chevron-down arrow'></i>
                             <ul class="sub-menu">
                                 <li><a href="histoire.html">Notre histoire</a></li>
                                 <li><a href="independance.html">Déclaration d'indépendance</a></li>
@@ -52,24 +79,26 @@
                 </div>
             </div>
         </nav>
-        <section class="hero">
+
+        <div class="hero-container">
             <h1 class="titres">Questions Fréquentes</h1>
             <h2 class="subtitle">Toutes les réponses sur le fonctionnement de nos tests et nos sources.</h2>
-        </section>
+        </div>
     </header>
 
-    <main style="padding: 40px 20px; max-width: 1000px; margin: auto;">
-        <div class="container" style="background: white; padding: 30px;">
+    <main style="padding: 60px 20px; max-width: 1000px; margin: auto;">
+        <div class="container" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
             <details style="padding: 15px; border-bottom: 1px solid #eee;">
-                <summary style="font-weight: 600; cursor: pointer;">D'où proviennent vos données ?</summary>
-                <p style="margin-top: 10px;">Nous utilisons des sources primaires (confessions de foi officielles) et des travaux d'historiens et de sociologues des religions.</p>
+                <summary style="font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; color: #333;">D'où proviennent vos données ?</summary>
+                <p style="margin-top: 10px; color: #555; line-height: 1.6;">Nous utilisons des sources primaires (confessions de foi officielles) et des travaux d'historiens et de sociologues des religions.</p>
             </details>
             <details style="padding: 15px; border-bottom: 1px solid #eee;">
-                <summary style="font-weight: 600; cursor: pointer;">Êtes-vous rattachés à une église particulière ?</summary>
-                <p style="margin-top: 10px;">Non, Ginoskis est un projet indépendant visant l'objectivité documentaire.</p>
+                <summary style="font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; color: #333;">Êtes-vous rattachés à une église particulière ?</summary>
+                <p style="margin-top: 10px; color: #555; line-height: 1.6;">Non, Ginoskis est un projet indépendant visant l'objectivité documentaire.</p>
             </details>
         </div>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>

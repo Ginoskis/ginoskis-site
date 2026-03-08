@@ -1,4 +1,29 @@
-/* --- BARRE DE NAVIGATION (NAVBAR BEIGE) --- */
+/* ==========================================================================
+   1. POLICES ET RÉGLAGES DE BASE (CHARTE INSTAGRAM)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5dc; /* Beige dominant */
+    color: #37352f; /* Anthracite texte */
+}
+
+/* Police Antique pour le Logo et les Titres Hero */
+.logo a, .hero .titres {
+    font-family: 'Caesar Dressing', cursive !important;
+}
+
+/* ==========================================================================
+   2. NAVIGATION (NAVBAR BEIGE)
+   ========================================================================== */
 nav {
     position: fixed;
     top: 0;
@@ -21,19 +46,14 @@ nav .navbar {
     padding: 0 30px;
 }
 
-/* SOLUTION AU PROBLÈME : Masquer les icônes mobiles sur PC */
-.navbar .bx-menu, 
-.nav-links .sidebar-logo {
-    display: none !important; 
-}
-
+/* Logo */
 .navbar .logo a {
     font-size: 35px;
     color: #37352f; 
     text-decoration: none;
-    font-family: 'Caesar Dressing', cursive !important;
 }
 
+/* Liens principaux */
 nav .navbar .links {
     display: flex;
     list-style: none;
@@ -42,6 +62,9 @@ nav .navbar .links {
 nav .navbar .links li {
     position: relative;
     padding: 0 15px;
+    height: 70px; /* Aligné sur la nav */
+    display: flex;
+    align-items: center;
 }
 
 nav .navbar .links li a {
@@ -49,67 +72,100 @@ nav .navbar .links li a {
     color: #37352f; 
     font-size: 14px;
     font-weight: 600;
+    text-transform: uppercase;
+    transition: color 0.3s;
 }
 
-/* Sous-menus Dropdown */
+/* --- INTERACTION CHEVRON (Arrow) --- */
+.arrow { 
+    cursor: pointer; 
+    color: #3e8da8; /* Bleu Ginoskis */
+    margin-left: 5px; 
+    font-size: 18px;
+    transition: transform 0.4s ease; /* Animation fluide de rotation */
+}
+
+/* Rotation au survol du parent li */
+nav .navbar .links li:hover .arrow {
+    transform: rotate(180deg);
+}
+
+/* --- SOUS-MENUS (Dropdown) --- */
 nav .navbar .links li .sub-menu {
     position: absolute;
-    top: 50px;
+    top: 70px;
     left: 0;
     background: #f5f5dc; 
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-    display: none;
-    min-width: 240px;
+    display: none; /* Masqué par défaut */
+    min-width: 250px;
     list-style: none;
     padding: 10px 0;
     border-top: 3px solid #3e8da8;
 }
 
+/* Affichage au survol sur PC */
+nav .navbar .links li:hover .sub-menu,
 nav .navbar .links li.showMenu .sub-menu {
     display: block;
 }
 
+/* Style des liens dans le sous-menu */
+.navbar .links li .sub-menu li {
+    height: auto;
+    padding: 0;
+}
+
 .navbar .links li .sub-menu a {
     color: #37352f !important;
-    padding: 10px 20px;
+    padding: 12px 20px;
     display: block;
+    font-size: 13px;
+    text-transform: none;
+    width: 100%;
+    transition: all 0.3s ease;
 }
 
-.arrow { 
-    cursor: pointer; 
-    color: #3e8da8; 
-    margin-left: 5px; 
+/* HOVER BLEU : Les sous-onglets passent en bleu au survol */
+.navbar .links li .sub-menu a:hover {
+    background-color: rgba(62, 141, 168, 0.05);
+    color: #3e8da8 !important;
+    padding-left: 25px; /* Petit effet de glissement */
 }
 
-/* RESPONSIVE : On réactive le hamburger UNIQUEMENT sous 800px */
+/* ==========================================================================
+   3. HEADER / HERO
+   ========================================================================== */
+header {
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('image ciel ginoskis.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.hero .titres { 
+    color: #ffffff; 
+    font-size: 4.5rem; 
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.4); 
+}
+
+/* ==========================================================================
+   4. RESPONSIVE & NETTOYAGE
+   ========================================================================== */
+.search-box, .navbar .bx-menu, .nav-links .sidebar-logo {
+    display: none !important;
+}
+
 @media (max-width: 800px) {
     .navbar .bx-menu {
         display: block !important;
         color: #37352f;
         font-size: 30px;
-        cursor: pointer;
     }
-    
-    .nav-links {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        height: 100%;
-        width: 280px;
-        background: #f5f5dc;
-        padding: 20px;
-        transition: all 0.4s ease;
-        z-index: 2000;
-    }
-
-    .nav-links .sidebar-logo {
-        display: flex !important; /* On le réaffiche ici */
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-    
-    nav .navbar .links {
-        display: block;
-    }
+    /* Styles mobile supplémentaires à ajouter ici si besoin */
 }

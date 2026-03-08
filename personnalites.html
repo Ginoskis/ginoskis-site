@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personnalités & Croyances | Ginoskis</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <header>
+    <header class="main-header">
         <nav>
             <div class="navbar">
                 <i class='bx bx-menu'></i>
@@ -27,11 +30,13 @@
                         <li><a href="index.html">ACCUEIL</a></li>
                         
                         <li>
-                            <a href="#">VOTRE FOI</a>
+                            <a href="votre-foi-main.html">VOTRE FOI</a>
                             <i class='bx bxs-chevron-down arrow'></i>
                             <ul class="sub-menu">
                                 <li><a href="kyf-hub.html">Nos questionnaires KYF</a></li>
-                                <li><a href="quizz-bibliques.html">Quizz bibliques</a></li>
+                                <li><a href="profil-apprenant.html">Votre profil apprenant</a></li>
+                                <li><a href="trouver-eglise.html">Trouver une église</a></li>
+                                <li><a href="edification.html">Édification personnelle</a></li>
                             </ul>
                         </li>
 
@@ -50,6 +55,7 @@
                             <a href="#">RESSOURCES</a>
                             <i class='bx bxs-chevron-down arrow'></i>
                             <ul class="sub-menu">
+                                <li><a href="quizz-bibliques.html">Quizz bibliques</a></li>
                                 <li><a href="quizz-autres.html">En quoi croient-ils ?</a></li>
                                 <li><a href="personnalites.html">Personnalités & Croyances</a></li>
                                 <li><a href="monde.html">Le christianisme dans le monde</a></li>
@@ -71,30 +77,54 @@
                         </li>
                     </ul>
                 </div>
-                </div>
+            </div>
         </nav>
-        <section class="hero">
+
+        <div class="hero-container">
             <h1 class="titres">Grandes Figures</h1>
             <h2 class="subtitle">Découvrez le parcours spirituel et la dénomination des personnalités qui ont marqué le monde chrétien.</h2>
-        </section>
+        </div>
     </header>
 
-    <main style="padding: 40px 20px; max-width: 1200px; margin: auto;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-            <div class="container" style="background: white; text-align: center; padding: 20px;">
-                <div style="width: 100px; height: 100px; background: #eee; border-radius: 50%; margin: 0 auto 15px;"></div>
-                <h3>C.S. Lewis</h3>
-                <p style="color: #3e8da8; font-weight: bold;">Anglicanisme</p>
-                <p style="font-size: 0.9rem;">Écrivain et apologète célèbre pour "Les Chroniques de Narnia".</p>
+    <main style="padding: 60px 20px; max-width: 1200px; margin: auto;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+            
+            <div class="container" style="background: white; text-align: center; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s;">
+                <div style="width: 120px; height: 120px; background: #f0f7f9; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                    <i class='bx bx-user' style="font-size: 50px; color: #3e8da8;"></i>
+                </div>
+                <h3 style="font-family: 'Poppins', sans-serif; margin-bottom: 5px;">C.S. Lewis</h3>
+                <p style="color: #3e8da8; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 15px;">Anglicanisme</p>
+                <p style="font-size: 0.95rem; color: #555; line-height: 1.5;">Écrivain et apologète célèbre, passé de l'athéisme à la foi, auteur des "Chroniques de Narnia".</p>
             </div>
-            <div class="container" style="background: white; text-align: center; padding: 20px;">
-                <div style="width: 100px; height: 100px; background: #eee; border-radius: 50%; margin: 0 auto 15px;"></div>
-                <h3>Martin Luther King</h3>
-                <p style="color: #3e8da8; font-weight: bold;">Baptisme</p>
-                <p style="font-size: 0.9rem;">Pasteur et leader des droits civiques aux États-Unis.</p>
+
+            <div class="container" style="background: white; text-align: center; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s;">
+                <div style="width: 120px; height: 120px; background: #f0f7f9; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                    <i class='bx bx-user' style="font-size: 50px; color: #3e8da8;"></i>
+                </div>
+                <h3 style="font-family: 'Poppins', sans-serif; margin-bottom: 5px;">Martin Luther King</h3>
+                <p style="color: #3e8da8; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 15px;">Baptisme</p>
+                <p style="font-size: 0.95rem; color: #555; line-height: 1.5;">Pasteur et leader des droits civiques, dont la foi a guidé la lutte pour l'égalité et la justice.</p>
             </div>
+
+            <div class="container" style="background: white; text-align: center; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s;">
+                <div style="width: 120px; height: 120px; background: #f0f7f9; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                    <i class='bx bx-user' style="font-size: 50px; color: #3e8da8;"></i>
+                </div>
+                <h3 style="font-family: 'Poppins', sans-serif; margin-bottom: 5px;">Blaise Pascal</h3>
+                <p style="color: #3e8da8; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 15px;">Catholicisme (Jansénisme)</p>
+                <p style="font-size: 0.95rem; color: #555; line-height: 1.5;">Mathématicien et philosophe, auteur des "Pensées", défenseur d'une foi vécue par le cœur.</p>
+            </div>
+
         </div>
     </main>
+
     <script src="script.js"></script>
+    <style>
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
+        }
+    </style>
 </body>
 </html>

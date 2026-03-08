@@ -4,26 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lexique & Fiches Doctrinales | Ginoskis</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <header>
+    <header class="main-header">
         <nav>
             <div class="navbar">
                 <i class='bx bx-menu'></i>
-                <div class="logo"><a href="index.html">Ginoskis</a></div>
+                
+                <div class="logo">
+                    <a href="index.html">Ginoskis</a>
+                </div>
+                
                 <div class="nav-links">
+                    <div class="sidebar-logo">
+                        <span class="logo-name">Ginoskis</span>
+                        <i class='bx bx-x'></i>
+                    </div>
+                    
                     <ul class="links">
                         <li><a href="index.html">ACCUEIL</a></li>
+                        
                         <li>
-                            <a href="#">VOTRE FOI</a>
+                            <a href="votre-foi-main.html">VOTRE FOI</a>
                             <i class='bx bxs-chevron-down arrow'></i>
                             <ul class="sub-menu">
                                 <li><a href="kyf-hub.html">Nos questionnaires KYF</a></li>
-                                <li><a href="quizz-bibliques.html">Quizz bibliques</a></li>
+                                <li><a href="profil-apprenant.html">Votre profil apprenant</a></li>
+                                <li><a href="trouver-eglise.html">Trouver une église</a></li>
+                                <li><a href="edification.html">Édification personnelle</a></li>
                             </ul>
                         </li>
+
                         <li>
                             <a href="#">CHRÉTIENS EN FRANCE</a>
                             <i class='bx bxs-chevron-down arrow'></i>
@@ -34,10 +50,12 @@
                                 <li><a href="interviews.html">Interviews "A la source"</a></li>
                             </ul>
                         </li>
+
                         <li>
                             <a href="#">RESSOURCES</a>
                             <i class='bx bxs-chevron-down arrow'></i>
                             <ul class="sub-menu">
+                                <li><a href="quizz-bibliques.html">Quizz bibliques</a></li>
                                 <li><a href="quizz-autres.html">En quoi croient-ils ?</a></li>
                                 <li><a href="personnalites.html">Personnalités & Croyances</a></li>
                                 <li><a href="monde.html">Le christianisme dans le monde</a></li>
@@ -45,6 +63,7 @@
                                 <li><a href="peres-eglise.html">Les Pères de l'Église</a></li>
                             </ul>
                         </li>
+
                         <li>
                             <a href="#">À PROPOS & CONTACT</a>
                             <i class='bx bxs-chevron-down arrow'></i>
@@ -60,27 +79,54 @@
                 </div>
             </div>
         </nav>
-        <section class="hero">
+
+        <div class="hero-container">
             <h1 class="titres">Lexique & Doctrines</h1>
             <h2 class="subtitle">Comprendre les termes techniques et les piliers théologiques qui définissent chaque courant.</h2>
-        </section>
+        </div>
     </header>
 
-    <main style="padding: 40px 20px; max-width: 1200px; margin: auto;">
-        <div class="container" style="background: white; padding: 30px;">
-            <h3 style="color: #3e8da8; margin-bottom: 20px;">Dictionnaire Théologique</h3>
-            <div style="display: grid; gap: 20px;">
-                <details style="border-bottom: 1px solid #eee; padding: 10px;">
-                    <summary style="font-weight: 600; cursor: pointer;">Sola Scriptura (L'Écriture seule)</summary>
-                    <p style="padding-top: 10px;">Principe protestant affirmant que la Bible est la seule autorité ultime en matière de foi et de pratique.</p>
+    <main style="padding: 60px 20px; max-width: 900px; margin: auto;">
+        <div class="container" style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <i class='bx bx-book-open' style="font-size: 50px; color: #3e8da8;"></i>
+                <h3 style="font-family: 'Poppins', sans-serif; color: #333; margin-top: 10px;">Dictionnaire Théologique</h3>
+            </div>
+
+            <div style="display: grid; gap: 15px;">
+                <details style="background: #f8fbfe; border-radius: 8px; padding: 15px; border-left: 4px solid #3e8da8; transition: 0.3s;">
+                    <summary style="font-weight: 600; cursor: pointer; color: #3e8da8; list-style: none; display: flex; align-items: center; justify-content: space-between;">
+                        Sola Scriptura (L'Écriture seule)
+                        <i class='bx bx-chevron-down' style="font-size: 1.5rem;"></i>
+                    </summary>
+                    <div style="padding-top: 15px; color: #555; line-height: 1.6;">
+                        Principe fondamental de la Réforme protestante affirmant que la Bible est la seule autorité ultime et infaillible en matière de foi et de vie chrétienne.
+                    </div>
                 </details>
-                <details style="border-bottom: 1px solid #eee; padding: 10px;">
-                    <summary style="font-weight: 600; cursor: pointer;">Théose (Divinisation)</summary>
-                    <p style="padding-top: 10px;">Concept central dans l'Orthodoxie désignant le processus de transformation de l'humain vers la ressemblance à Dieu.</p>
+
+                <details style="background: #f8fbfe; border-radius: 8px; padding: 15px; border-left: 4px solid #3e8da8; transition: 0.3s;">
+                    <summary style="font-weight: 600; cursor: pointer; color: #3e8da8; list-style: none; display: flex; align-items: center; justify-content: space-between;">
+                        Théose (Divinisation)
+                        <i class='bx bx-chevron-down' style="font-size: 1.5rem;"></i>
+                    </summary>
+                    <div style="padding-top: 15px; color: #555; line-height: 1.6;">
+                        Concept central dans la théologie orthodoxe désignant le processus de transformation de l'humain qui, par la grâce de Dieu, est appelé à participer à la vie divine et à retrouver la ressemblance avec son Créateur.
+                    </div>
+                </details>
+
+                <details style="background: #f8fbfe; border-radius: 8px; padding: 15px; border-left: 4px solid #3e8da8; transition: 0.3s;">
+                    <summary style="font-weight: 600; cursor: pointer; color: #3e8da8; list-style: none; display: flex; align-items: center; justify-content: space-between;">
+                        Magistère
+                        <i class='bx bx-chevron-down' style="font-size: 1.5rem;"></i>
+                    </summary>
+                    <div style="padding-top: 15px; color: #555; line-height: 1.6;">
+                        Dans l'Église catholique, autorité d'enseignement exercée par le Pape et les évêques pour interpréter authentiquement la Parole de Dieu, écrite ou transmise (Tradition).
+                    </div>
                 </details>
             </div>
         </div>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>

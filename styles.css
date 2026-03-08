@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. POLICES ET RÉGLAGES DE BASE (CHARTE INSTAGRAM)
+   1. POLICES ET RÉGLAGES DE BASE
    ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap');
 
@@ -12,17 +12,16 @@
 body {
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
-    background-color: #f5f5dc; /* Beige dominant Instagram */
-    color: #37352f; /* Anthracite texte Instagram */
+    background-color: #f5f5dc; /* Beige Instagram */
+    color: #37352f;
 }
 
-/* Police Antique pour le Logo et les Titres Hero */
-.logo a, .hero .titres {
+.logo a, .titres {
     font-family: 'Caesar Dressing', cursive !important;
 }
 
 /* ==========================================================================
-   2. NAVIGATION (NAVBAR BEIGE)
+   2. NAVIGATION
    ========================================================================== */
 nav {
     position: fixed;
@@ -46,14 +45,12 @@ nav .navbar {
     padding: 0 30px;
 }
 
-/* Logo Anthracite */
 .navbar .logo a {
     font-size: 35px;
     color: #37352f; 
     text-decoration: none;
 }
 
-/* Liens principaux */
 nav .navbar .links {
     display: flex;
     list-style: none;
@@ -73,25 +70,18 @@ nav .navbar .links li a {
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
-    transition: color 0.3s;
 }
 
-/* --- INTERACTION CHEVRON (Arrow) --- */
 .arrow { 
-    cursor: pointer; 
-    color: #3e8da8; /* Bleu Ginoskis */
+    color: #3e8da8; 
     margin-left: 5px; 
     font-size: 18px;
-    transition: transform 0.4s ease; 
+    transition: 0.4s; 
 }
 
-/* Rotation au survol du parent li */
-nav .navbar .links li:hover .arrow {
-    transform: rotate(180deg);
-}
+nav .navbar .links li:hover .arrow { transform: rotate(180deg); }
 
-/* --- SOUS-MENUS (Dropdown) --- */
-nav .navbar .links li .sub-menu {
+.sub-menu {
     position: absolute;
     top: 70px;
     left: 0;
@@ -104,167 +94,109 @@ nav .navbar .links li .sub-menu {
     border-top: 3px solid #3e8da8;
 }
 
-/* Affichage au survol sur PC */
-nav .navbar .links li:hover .sub-menu,
-nav .navbar .links li.showMenu .sub-menu {
-    display: block;
-}
+nav .navbar .links li:hover .sub-menu { display: block; }
 
-.navbar .links li .sub-menu a {
+.sub-menu a {
     color: #37352f !important;
     padding: 12px 20px;
     display: block;
     font-size: 13px;
-    text-transform: none;
-    width: 100%;
-    transition: all 0.3s ease;
+    text-decoration: none;
 }
 
-/* HOVER BLEU : Sous-onglets */
-.navbar .links li .sub-menu a:hover {
+.sub-menu a:hover {
     background-color: rgba(62, 141, 168, 0.05);
     color: #3e8da8 !important;
-    padding-left: 25px; 
 }
 
 /* ==========================================================================
-   3. TABLEAUX GINOSKIS (DÉFINITIF & QUADRILLÉ)
+   3. HEADER / HERO (CENTRAGE SUR IMAGE CIEL)
    ========================================================================== */
-.table-container {
-    overflow-x: auto;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+.main-header {
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('Capture d’écran 2026-03-08 à 20.41.52.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centre verticalement */
+    align-items: center;     /* Centre horizontalement */
 }
 
+.hero-container {
+    text-align: center;
+    padding: 0 20px;
+}
+
+.titres { 
+    color: #ffffff; 
+    font-size: 4.5rem; 
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.4); 
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #ffffff;
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.subtitle span {
+    color: #3e8da8;
+    font-weight: bold;
+}
+
+.hero-btn-wrapper {
+    margin-top: 35px;
+}
+
+.btn-hero-final {
+    display: inline-block;
+    padding: 12px 35px;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-hero-final:hover {
+    background: #ffffff;
+    color: #3e8da8;
+}
+
+/* ==========================================================================
+   4. TABLEAUX (QUADRILLAGE GINOSKIS)
+   ========================================================================== */
 table {
     width: 100%;
-    border-collapse: collapse !important; /* Force la fusion des bordures pour le quadrillage */
+    border-collapse: collapse !important;
     background-color: #ffffff;
-    font-size: 0.95rem;
-    border: 1px solid #dee2e6 !important; /* Bordure extérieure */
-    margin-bottom: 20px;
+    border: 1px solid #dee2e6 !important;
 }
 
-/* En-tête bleu Ginoskis */
 table th {
     background-color: #3e8da8 !important; 
     color: #ffffff !important;
     padding: 15px !important;
-    text-align: center !important;
-    font-weight: 600;
-    text-transform: uppercase;
-    border: 1px solid #ffffff !important; /* Quadrillage blanc dans l'en-tête */
+    border: 1px solid #ffffff !important;
 }
 
-/* Cellules du corps */
 table td {
     padding: 12px 15px !important;
-    border: 1px solid #dee2e6 !important; /* Quadrillage gris clair visible */
-    color: #37352f;
-    vertical-align: middle;
-    text-align: left;
-}
-
-/* Lignes alternées */
-table tbody tr:nth-child(even) {
-    background-color: #fcfcf5; 
-}
-
-/* Hover sur les lignes du tableau */
-table tbody tr:hover {
-    background-color: #f0f7f9;
-}
-
-/* Style de la première colonne (Souvent thématiques ou noms) */
-table td:first-child {
-    font-weight: 600;
-    background-color: #f8f9fa;
+    border: 1px solid #dee2e6 !important;
 }
 
 /* ==========================================================================
-   4. HEADER / HERO
+   5. RESPONSIVE MOBILE
    ========================================================================== */
-header {
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('image ciel ginoskis.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 480px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-top: 70px;
-}
-
-.hero .titres { 
-    color: #ffffff; 
-    font-size: 4.5rem; 
-    text-shadow: 2px 2px 15px rgba(0,0,0,0.4); 
-}
-
-.hero .subtitle {
-    color: #ffffff;
-    font-size: 1.2rem;
-    max-width: 800px;
-    margin: 10px auto;
-}
-
-/* ==========================================================================
-   5. RESPONSIVE & MOBILE
-   ========================================================================== */
-/* Masquer les icônes inutiles sur PC */
-.search-box, .navbar .bx-menu, .nav-links .sidebar-logo {
-    display: none !important;
-}
+.navbar .bx-menu, .nav-links .sidebar-logo { display: none; }
 
 @media (max-width: 800px) {
-    .navbar .bx-menu {
-        display: block !important;
-        color: #37352f;
-        font-size: 30px;
-        cursor: pointer;
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        height: 100%;
-        width: 280px;
-        background: #f5f5dc;
-        padding: 20px;
-        transition: all 0.4s ease;
-        z-index: 2000;
-        display: block;
-    }
-
-    .nav-links .sidebar-logo {
-        display: flex !important;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        color: #37352f;
-    }
-
-    nav .navbar .links {
-        display: block;
-    }
-
-    nav .navbar .links li {
-        display: block;
-        height: auto;
-        padding: 15px 0;
-    }
-
-    nav .navbar .links li .sub-menu {
-        position: static;
-        box-shadow: none;
-        display: none;
-        padding-left: 20px;
-    }
-
-    nav .navbar .links li.showMenu .sub-menu {
-        display: block;
-    }
+    .titres { font-size: 2.8rem; }
+    .navbar .bx-menu { display: block; font-size: 30px; cursor: pointer; }
+    /* La sidebar mobile utilise les styles existants dans ton script.js */
 }

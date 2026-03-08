@@ -4,26 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interviews à la source | Ginoskis</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <header>
+    <header class="main-header">
         <nav>
             <div class="navbar">
                 <i class='bx bx-menu'></i>
-                <div class="logo"><a href="index.html">Ginoskis</a></div>
+                
+                <div class="logo">
+                    <a href="index.html">Ginoskis</a>
+                </div>
+                
                 <div class="nav-links">
+                    <div class="sidebar-logo">
+                        <span class="logo-name">Ginoskis</span>
+                        <i class='bx bx-x'></i>
+                    </div>
+                    
                     <ul class="links">
                         <li><a href="index.html">ACCUEIL</a></li>
+                        
                         <li>
-                            <a href="#">VOTRE FOI</a>
+                            <a href="votre-foi-main.html">VOTRE FOI</a>
                             <i class='bx bxs-chevron-down arrow'></i>
                             <ul class="sub-menu">
                                 <li><a href="kyf-hub.html">Nos questionnaires KYF</a></li>
-                                <li><a href="quizz-bibliques.html">Quizz bibliques</a></li>
+                                <li><a href="profil-apprenant.html">Votre profil apprenant</a></li>
+                                <li><a href="trouver-eglise.html">Trouver une église</a></li>
+                                <li><a href="edification.html">Édification personnelle</a></li>
                             </ul>
                         </li>
+
                         <li>
                             <a href="#">CHRÉTIENS EN FRANCE</a>
                             <i class='bx bxs-chevron-down arrow'></i>
@@ -34,10 +50,12 @@
                                 <li><a href="interviews.html">Interviews "A la source"</a></li>
                             </ul>
                         </li>
+
                         <li>
                             <a href="#">RESSOURCES</a>
                             <i class='bx bxs-chevron-down arrow'></i>
                             <ul class="sub-menu">
+                                <li><a href="quizz-bibliques.html">Quizz bibliques</a></li>
                                 <li><a href="quizz-autres.html">En quoi croient-ils ?</a></li>
                                 <li><a href="personnalites.html">Personnalités & Croyances</a></li>
                                 <li><a href="monde.html">Le christianisme dans le monde</a></li>
@@ -45,6 +63,7 @@
                                 <li><a href="peres-eglise.html">Les Pères de l'Église</a></li>
                             </ul>
                         </li>
+
                         <li>
                             <a href="#">À PROPOS & CONTACT</a>
                             <i class='bx bxs-chevron-down arrow'></i>
@@ -60,26 +79,39 @@
                 </div>
             </div>
         </nav>
-        <section class="hero">
+
+        <div class="hero-container">
             <h1 class="titres">À la Source</h1>
             <h2 class="subtitle">Interviews et échanges directs avec des représentants de chaque dénomination.</h2>
-        </section>
+        </div>
     </header>
 
-    <main style="padding: 40px 20px; max-width: 1200px; margin: auto;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-            <div class="container" style="background: white; padding: 20px;">
-                <h3 style="color: #3e8da8;">Interview #1 : Le Catholicisme</h3>
-                <p>Rencontre avec le Père Jean-Marc sur la liturgie et les sacrements.</p>
-                <a href="#" style="color: #37352f; font-weight: bold; text-decoration: none;">Lire l'interview →</a>
+    <main style="padding: 60px 20px; max-width: 1200px; margin: auto;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+            
+            <div class="container" style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s;">
+                <h3 style="color: #3e8da8; font-family: 'Poppins', sans-serif; margin-bottom: 15px;">Interview #1 : Le Catholicisme</h3>
+                <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">Rencontre avec le Père Jean-Marc sur la place de la liturgie, la tradition et la compréhension des sacrements aujourd'hui.</p>
+                <a href="#" style="color: #3e8da8; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 5px;">
+                    Lire l'interview <i class='bx bx-right-arrow-alt'></i>
+                </a>
             </div>
-            <div class="container" style="background: white; padding: 20px;">
-                <h3 style="color: #3e8da8;">Interview #2 : Le Baptisme</h3>
-                <p>Échange avec un pasteur baptiste sur l'importance du baptême adulte.</p>
-                <a href="#" style="color: #37352f; font-weight: bold; text-decoration: none;">Lire l'interview →</a>
+
+            <div class="container" style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s;">
+                <h3 style="color: #3e8da8; font-family: 'Poppins', sans-serif; margin-bottom: 15px;">Interview #2 : Le Baptisme</h3>
+                <p style="color: #555; line-height: 1.6; margin-bottom: 20px;">Échange avec un pasteur baptiste sur la centralité de la Bible et l'importance du baptême du croyant par immersion.</p>
+                <a href="#" style="color: #3e8da8; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 5px;">
+                    Lire l'interview <i class='bx bx-right-arrow-alt'></i>
+                </a>
             </div>
+
+            <div class="container" style="background: white; padding: 30px; border-radius: 12px; border: 2px dashed #eee; display: flex; align-items: center; justify-content: center; text-align: center;">
+                <p style="color: #aaa; font-style: italic;">Prochainement : Interview avec un représentant de l'Église Orthodoxe.</p>
+            </div>
+
         </div>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>

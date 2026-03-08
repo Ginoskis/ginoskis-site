@@ -13,23 +13,16 @@ body {
     color: #333;
 }
 
-/* --- HEADER & NAVIGATION --- */
-.main-header {
-    background: linear-gradient(135deg, #3e8da8 0%, #2c667a 100%);
-    min-height: 300px;
-    color: white;
-    position: relative;
-}
-
+/* --- NAVIGATION FIXE --- */
 nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 70px;
-    background: #3e8da8;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    z-index: 999;
+    background: #3e8da8; /* Couleur solide pour la barre de nav */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
 nav .navbar {
@@ -48,46 +41,35 @@ nav .navbar {
     font-size: 30px;
     color: #fff;
     text-decoration: none;
-    font-weight: 600;
 }
 
-/* --- NAVIGATION LINKS (DESKTOP) --- */
-nav .nav-links {
-    line-height: 70px;
-    height: 100%;
-}
-
+/* --- LINKS (DESKTOP) --- */
 nav .nav-links .links {
     display: flex;
+    list-style: none;
 }
 
 nav .nav-links .links li {
     position: relative;
-    display: flex;
-    align-items: center;
-    list-style: none;
-    padding: 0 14px;
+    padding: 0 15px;
+    line-height: 70px;
 }
 
 nav .nav-links .links li a {
-    height: 100%;
-    text-decoration: none;
-    white-space: nowrap;
     color: #fff;
-    font-size: 15px;
+    text-decoration: none;
+    font-size: 14px;
     font-weight: 500;
+    text-transform: uppercase;
 }
 
-/* --- ANIMATION DES CHEVRONS --- */
+/* --- ANIMATION CHEVRONS --- */
 .nav-links .links li .arrow {
-    height: 100%;
-    width: 22px;
-    line-height: 70px;
-    text-align: center;
-    display: inline-block;
+    margin-left: 5px;
     color: #fff;
+    transition: transform 0.3s ease;
+    display: inline-block;
     cursor: pointer;
-    transition: transform 0.3s ease; /* Fluidité de la rotation */
 }
 
 /* Rotation au survol (Desktop) */
@@ -95,18 +77,18 @@ nav .nav-links .links li a {
     transform: rotate(180deg);
 }
 
-/* --- SOUS-MENUS & CENTRAGE --- */
+/* --- SOUS-MENUS --- */
 .nav-links .links li .sub-menu {
     position: absolute;
     top: 70px;
-    left: 0;
-    line-height: 40px;
+    left: 50%;
+    transform: translateX(-50%);
     background: #3e8da8;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 0 0 8px 8px;
-    display: none;
-    z-index: 2;
     min-width: 220px;
+    display: none;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    border-radius: 0 0 8px 8px;
+    z-index: 10;
 }
 
 .nav-links .links li:hover .sub-menu {
@@ -114,94 +96,78 @@ nav .nav-links .links li a {
 }
 
 .nav-links .links li .sub-menu li {
+    line-height: 1.2;
     padding: 0;
     width: 100%;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .nav-links .links li .sub-menu li a {
-    width: 100%;
+    padding: 12px 15px;
     display: block;
-    padding: 10px 15px;
-    text-align: center; /* Centre les textes comme "Diagramme" ou "FAQ" */
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.4;
-    white-space: normal; /* Autorise le retour à la ligne si texte long */
+    text-align: center; /* Centrage des textes longs (FAQ, Diagramme, etc.) */
+    font-size: 13px;
+    text-transform: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.nav-links .links li .sub-menu li:hover {
-    background-color: #347a91;
+.nav-links .links li .sub-menu li a:hover {
+    background: #347a91;
 }
 
-/* --- ICONES MENU (MOBILE UNIQUEMENT) --- */
+/* --- SECTION HERO (LE CIEL) --- */
+.main-header {
+    /* Le dégradé doit être ici et couvrir toute la zone hero */
+    background: linear-gradient(180deg, #3e8da8 0%, #5ba7bf 100%);
+    padding-top: 150px; /* Espace pour ne pas être sous la nav fixe */
+    padding-bottom: 80px;
+    text-align: center;
+    color: #fff;
+}
+
+.titres {
+    font-family: 'Caesar Dressing', cursive;
+    font-size: 4rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    font-weight: 300;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    line-height: 1.5;
+}
+
+/* --- ICONS MENU (MOBILE) --- */
 .navbar .bx-menu {
-    display: none; /* CACHÉ SUR DESKTOP (Règle le problème des 3 barres) */
+    display: none; /* Caché sur PC */
     color: #fff;
     font-size: 30px;
     cursor: pointer;
 }
 
-.nav-links .sidebar-logo {
-    display: none; /* CACHÉ SUR DESKTOP */
-}
-
-/* --- HERO SECTION --- */
-.hero-container {
-    padding-top: 120px;
-    text-align: center;
-    padding-bottom: 60px;
-    color: white;
-}
-
-.titres {
-    font-family: 'Caesar Dressing', cursive;
-    font-size: 3.5rem;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 300;
-    max-width: 850px;
-    margin: auto;
-    padding: 0 20px;
-    opacity: 0.95;
-}
-
-/* --- RESPONSIVE (MOBILE) --- */
+/* --- RESPONSIVE MOBILE --- */
 @media (max-width: 920px) {
-    nav .navbar {
-        padding: 0 20px;
-    }
-
-    nav .navbar .bx-menu {
-        display: block; /* APPARAIT SUR MOBILE */
-    }
-
-    nav .nav-links {
+    .navbar .bx-menu { display: block; }
+    
+    .nav-links {
         position: fixed;
         top: 0;
         left: -100%;
-        display: block;
-        max-width: 280px;
-        width: 100%;
+        width: 280px;
+        height: 100%;
         background: #3e8da8;
-        line-height: 50px;
+        transition: all 0.4s ease;
+        z-index: 1100;
         padding: 20px;
-        box-shadow: 5px 0 10px rgba(0, 0, 0, 0.2);
-        transition: all 0.5s ease;
-        z-index: 1000;
-        height: 100vh;
     }
 
-    /* Correction Ginoskis X */
     .nav-links .sidebar-logo {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
 
     .sidebar-logo .logo-name {
@@ -210,42 +176,23 @@ nav .nav-links .links li a {
         color: #fff;
     }
 
-    .sidebar-logo i {
-        font-size: 28px;
+    .sidebar-logo .bx-x {
+        font-size: 30px;
         color: #fff;
         cursor: pointer;
     }
 
-    nav .nav-links .links {
-        display: block;
-        margin-top: 10px;
-    }
-
-    nav .nav-links .links li {
-        display: block;
-        padding: 0;
-    }
-
-    nav .nav-links .links li a {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
+    .nav-links .links { display: block; }
+    .nav-links .links li { display: block; line-height: 50px; }
     .nav-links .links li .sub-menu {
         position: relative;
         top: 0;
+        left: 0;
+        transform: none;
+        display: none;
         background: #347a91;
-        box-shadow: none;
-        display: none; /* Masqué par défaut sur mobile */
     }
 
-    /* Classe activée par le clic en JS */
-    .nav-links .links li.show1 .sub-menu {
-        display: block;
-    }
-
-    .nav-links .links li.show1 .arrow {
-        transform: rotate(180deg);
-    }
+    .nav-links .links li.showMenu .sub-menu { display: block; }
+    .nav-links .links li.showMenu .arrow { transform: rotate(180deg); }
 }

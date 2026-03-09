@@ -1,166 +1,246 @@
+/* ==========================================================================
+   1. POLICES ET RÉGLAGES DE BASE
+   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap');
 
-/* --- CONFIGURATION GÉNÉRALE --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background-color: #f4f7f6;
-    color: #333;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5dc; /* Beige Instagram d'origine */
+    color: #37352f;
 }
 
-/* --- NAVIGATION FIXE --- */
+.logo a, .titres {
+    font-family: 'Caesar Dressing', cursive !important;
+}
+
+/* ==========================================================================
+   2. NAVIGATION (Fixe & Design Beige)
+   ========================================================================== */
 nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 70px;
-    background: #3e8da8; /* Couleur solide pour la barre de nav */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: #f5f5dc; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     z-index: 1000;
 }
 
 nav .navbar {
     height: 100%;
-    max-width: 1250px;
+    max-width: 1300px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: auto;
-    padding: 0 50px;
+    padding: 0 30px;
 }
 
 .navbar .logo a {
-    font-family: 'Caesar Dressing', cursive;
-    font-size: 30px;
-    color: #fff;
+    font-size: 35px;
+    color: #37352f; 
     text-decoration: none;
 }
 
-/* --- LINKS (DESKTOP) --- */
-nav .nav-links .links {
+/* Menu Desktop */
+nav .navbar .links {
     display: flex;
     list-style: none;
 }
 
-nav .nav-links .links li {
+nav .navbar .links li {
     position: relative;
     padding: 0 15px;
-    line-height: 70px;
+    height: 70px; 
+    display: flex;
+    align-items: center;
 }
 
-nav .nav-links .links li a {
-    color: #fff;
+nav .navbar .links li a {
     text-decoration: none;
+    color: #37352f; 
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
 }
 
-/* --- ANIMATION CHEVRONS --- */
-.nav-links .links li .arrow {
-    margin-left: 5px;
-    color: #fff;
-    transition: transform 0.3s ease;
+/* Animation des chevrons */
+.arrow { 
+    color: #3e8da8; 
+    margin-left: 5px; 
+    font-size: 18px;
+    transition: transform 0.4s ease; 
     display: inline-block;
-    cursor: pointer;
 }
 
-/* Rotation au survol (Desktop) */
-.nav-links .links li:hover .arrow {
-    transform: rotate(180deg);
+nav .navbar .links li:hover .arrow { 
+    transform: rotate(180deg); 
 }
 
-/* --- SOUS-MENUS --- */
-.nav-links .links li .sub-menu {
+/* Sous-menus (Correction du centrage texte) */
+.sub-menu {
     position: absolute;
     top: 70px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #3e8da8;
-    min-width: 220px;
-    display: none;
+    left: 0;
+    background: #f5f5dc; 
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-    border-radius: 0 0 8px 8px;
-    z-index: 10;
+    display: none; 
+    min-width: 250px;
+    list-style: none;
+    padding: 10px 0;
+    border-top: 3px solid #3e8da8;
 }
 
-.nav-links .links li:hover .sub-menu {
-    display: block;
+nav .navbar .links li:hover .sub-menu { 
+    display: block; 
 }
 
-.nav-links .links li .sub-menu li {
-    line-height: 1.2;
-    padding: 0;
+.sub-menu li {
     width: 100%;
 }
 
-.nav-links .links li .sub-menu li a {
-    padding: 12px 15px;
+.sub-menu a {
+    color: #37352f !important;
+    padding: 12px 20px;
     display: block;
-    text-align: center; /* Centrage des textes longs (FAQ, Diagramme, etc.) */
     font-size: 13px;
+    text-decoration: none;
+    text-align: center; /* Centrage parfait des textes longs */
     text-transform: none;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.nav-links .links li .sub-menu li a:hover {
-    background: #347a91;
+.sub-menu a:hover {
+    background-color: rgba(62, 141, 168, 0.05);
+    color: #3e8da8 !important;
 }
 
-/* --- SECTION HERO (LE CIEL) --- */
+/* ==========================================================================
+   3. HEADER / HERO (IMAGE CIEL & CENTRAGE ABSOLU)
+   ========================================================================== */
 .main-header {
-    /* Le dégradé doit être ici et couvrir toute la zone hero */
-    background: linear-gradient(180deg, #3e8da8 0%, #5ba7bf 100%);
-    padding-top: 150px; /* Espace pour ne pas être sous la nav fixe */
-    padding-bottom: 80px;
-    text-align: center;
-    color: #fff;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('image ciel ginoskis.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    margin-top: 70px; /* Évite de passer sous la nav fixe */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centre verticalement le contenu */
+    align-items: center;     /* Centre horizontalement le contenu */
+    color: #ffffff;
 }
 
-.titres {
-    font-family: 'Caesar Dressing', cursive;
-    font-size: 4rem;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+.hero-container {
+    text-align: center;
+    padding: 0 20px;
+}
+
+.titres { 
+    color: #ffffff; 
+    font-size: 4.5rem; 
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.4); 
+    margin-bottom: 10px;
 }
 
 .subtitle {
-    font-size: 1.3rem;
-    font-weight: 300;
+    color: #ffffff;
+    font-size: 1.2rem;
     max-width: 800px;
-    margin: 0 auto 30px auto;
-    line-height: 1.5;
+    margin: 0 auto;
+    line-height: 1.4;
 }
 
-/* --- ICONS MENU (MOBILE) --- */
+.subtitle span {
+    color: #3e8da8;
+    font-weight: bold;
+}
+
+.hero-btn-wrapper {
+    margin-top: 35px;
+}
+
+.btn-hero-final {
+    display: inline-block;
+    padding: 12px 35px;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-hero-final:hover {
+    background: #ffffff;
+    color: #3e8da8;
+}
+
+/* ==========================================================================
+   4. TABLEAUX (QUADRILLAGE GINOSKIS)
+   ========================================================================== */
+table {
+    width: 100%;
+    border-collapse: collapse !important;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6 !important;
+    margin: 20px 0;
+}
+
+table th {
+    background-color: #3e8da8 !important; 
+    color: #ffffff !important;
+    padding: 15px !important;
+    border: 1px solid #ffffff !important;
+    text-align: center;
+}
+
+table td {
+    padding: 12px 15px !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+/* ==========================================================================
+   5. RESPONSIVE MOBILE (Correctifs Barre de menu & Sidebar)
+   ========================================================================== */
 .navbar .bx-menu {
-    display: none; /* Caché sur PC */
-    color: #fff;
-    font-size: 30px;
+    display: none; /* Caché sur Desktop */
+    color: #37352f;
+    font-size: 32px;
     cursor: pointer;
 }
 
-/* --- RESPONSIVE MOBILE --- */
+.nav-links .sidebar-logo {
+    display: none; 
+}
+
 @media (max-width: 920px) {
-    .navbar .bx-menu { display: block; }
-    
+    .titres { font-size: 2.8rem; }
+
+    .navbar .bx-menu { 
+        display: block; 
+    }
+
+    /* Styles pour la sidebar mobile (interagit avec script.js) */
     .nav-links {
         position: fixed;
         top: 0;
-        left: -100%;
-        width: 280px;
+        left: -100%; /* Caché par défaut */
         height: 100%;
-        background: #3e8da8;
-        transition: all 0.4s ease;
+        width: 280px;
+        background: #f5f5dc;
         z-index: 1100;
+        transition: 0.4s;
         padding: 20px;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
     }
 
     .nav-links .sidebar-logo {
@@ -168,31 +248,39 @@ nav .nav-links .links li a {
         align-items: center;
         justify-content: space-between;
         margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
     }
 
     .sidebar-logo .logo-name {
         font-family: 'Caesar Dressing', cursive;
         font-size: 25px;
-        color: #fff;
     }
 
-    .sidebar-logo .bx-x {
-        font-size: 30px;
-        color: #fff;
-        cursor: pointer;
+    .nav-links .links {
+        display: block;
     }
 
-    .nav-links .links { display: block; }
-    .nav-links .links li { display: block; line-height: 50px; }
-    .nav-links .links li .sub-menu {
+    nav .navbar .links li {
+        display: block;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .sub-menu {
         position: relative;
         top: 0;
-        left: 0;
-        transform: none;
-        display: none;
-        background: #347a91;
+        box-shadow: none;
+        background: rgba(62, 141, 168, 0.05);
+        min-width: 100%;
     }
 
-    .nav-links .links li.showMenu .sub-menu { display: block; }
-    .nav-links .links li.showMenu .arrow { transform: rotate(180deg); }
+    /* Animation flèche au clic mobile (via classe showMenu ou show1 dans JS) */
+    .links li.showMenu .arrow, .links li.show1 .arrow {
+        transform: rotate(180deg);
+    }
+
+    .links li.showMenu .sub-menu, .links li.show1 .sub-menu {
+        display: block;
+    }
 }

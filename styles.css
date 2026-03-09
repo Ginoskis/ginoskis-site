@@ -12,7 +12,7 @@
 body {
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
-    background-color: #f5f5dc; /* Beige Instagram d'origine */
+    background-color: #f5f5dc; /* Beige Instagram */
     color: #37352f;
 }
 
@@ -86,11 +86,14 @@ nav .navbar .links li:hover .arrow {
     transform: rotate(180deg); 
 }
 
-/* Sous-menus (Correction du centrage texte) */
+/* ==========================================================================
+   SOUS-MENUS (CORRECTION DÉFINITIVE DU CENTRAGE)
+   ========================================================================== */
 .sub-menu {
     position: absolute;
     top: 70px;
-    left: 0;
+    left: 50%;           /* Positionnement par rapport au milieu du parent */
+    transform: translateX(-50%); /* Centrage parfait du bloc menu lui-même */
     background: #f5f5dc; 
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     display: none; 
@@ -104,18 +107,26 @@ nav .navbar .links li:hover .sub-menu {
     display: block; 
 }
 
+/* On force chaque élément de liste à occuper toute la largeur */
 .sub-menu li {
     width: 100%;
+    display: block;
+    height: auto;
+    padding: 0;
 }
 
+/* Centrage absolu du texte (FAQ, Déclaration, etc.) */
 .sub-menu a {
     color: #37352f !important;
     padding: 12px 20px;
     display: block;
+    width: 100%;         /* Utilise toute la largeur du menu */
+    text-align: center;   /* Centre horizontalement le texte */
     font-size: 13px;
     text-decoration: none;
-    text-align: center; /* Centrage parfait des textes longs */
+    line-height: 1.4;     /* Gère proprement les textes sur deux lignes */
     text-transform: none;
+    font-weight: 500;
 }
 
 .sub-menu a:hover {
@@ -131,11 +142,11 @@ nav .navbar .links li:hover .sub-menu {
     background-size: cover;
     background-position: center;
     height: 500px;
-    margin-top: 70px; /* Évite de passer sous la nav fixe */
+    margin-top: 70px; 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centre verticalement le contenu */
-    align-items: center;     /* Centre horizontalement le contenu */
+    justify-content: center; /* Centre verticalement */
+    align-items: center;     /* Centre horizontalement */
     color: #ffffff;
 }
 
@@ -156,7 +167,7 @@ nav .navbar .links li:hover .sub-menu {
     font-size: 1.2rem;
     max-width: 800px;
     margin: 0 auto;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 .subtitle span {
@@ -209,10 +220,10 @@ table td {
 }
 
 /* ==========================================================================
-   5. RESPONSIVE MOBILE (Correctifs Barre de menu & Sidebar)
+   5. RESPONSIVE MOBILE
    ========================================================================== */
 .navbar .bx-menu {
-    display: none; /* Caché sur Desktop */
+    display: none; 
     color: #37352f;
     font-size: 32px;
     cursor: pointer;
@@ -229,11 +240,10 @@ table td {
         display: block; 
     }
 
-    /* Styles pour la sidebar mobile (interagit avec script.js) */
     .nav-links {
         position: fixed;
         top: 0;
-        left: -100%; /* Caché par défaut */
+        left: -100%; 
         height: 100%;
         width: 280px;
         background: #f5f5dc;
@@ -270,12 +280,15 @@ table td {
     .sub-menu {
         position: relative;
         top: 0;
+        left: 0;
+        transform: none;
         box-shadow: none;
         background: rgba(62, 141, 168, 0.05);
         min-width: 100%;
+        display: none;
     }
 
-    /* Animation flèche au clic mobile (via classe showMenu ou show1 dans JS) */
+    /* Animation flèche au clic mobile via script.js */
     .links li.showMenu .arrow, .links li.show1 .arrow {
         transform: rotate(180deg);
     }

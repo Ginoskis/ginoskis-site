@@ -7,6 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* Style temporaire pour masquer les colonnes non sélectionnées au chargement */
+        /* Le script.js prendra le relais ensuite */
+        th, td { display: none; }
+        th:first-child, td:first-child,
+        .ortho, .cath-rom { display: table-cell; }
+    </style>
 </head>
 <body>
 
@@ -75,22 +82,22 @@
     <main style="padding: 40px 20px; max-width: 1400px; margin: auto;">
         
         <div id="denomination-filters" style="background:#fff; padding:25px; border-radius:8px; margin-bottom:20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
-            <h3 style="color:#3e8da8; margin-bottom:15px; font-size: 1.1rem; font-family: 'Poppins', sans-serif;">Sélectionnez les dénominations :</h3>
+            <h3 style="color:#3e8da8; margin-bottom:15px; font-size: 1.1rem; font-family: 'Poppins', sans-serif;">Sélectionnez les dénominations à comparer :</h3>
             <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
-                <label><input type="checkbox" value="ortho" checked> Église Orthodoxe</label>
-                <label><input type="checkbox" value="cath-rom" checked> Église Catholique Romaine</label>
-                <label><input type="checkbox" value="trois-conc" checked> Églises des trois conciles</label>
-                <label><input type="checkbox" value="luth" checked> Luthéranisme</label>
-                <label><input type="checkbox" value="calv" checked> Calvinisme</label>
-                <label><input type="checkbox" value="angli" checked> Anglicanisme</label>
-                <label><input type="checkbox" value="metho" checked> Méthodisme</label>
-                <label><input type="checkbox" value="bapt" checked> Églises évangéliques baptistes</label>
-                <label><input type="checkbox" value="advent" checked> Adventisme</label>
-                <label><input type="checkbox" value="temoins" checked> Témoins de Jéhovah</label>
-                <label><input type="checkbox" value="mormon" checked> Mormonisme</label>
-                <label><input type="checkbox" value="freres" checked> Assemblées de frères</label>
-                <label><input type="checkbox" value="pentec" checked> Assemblées de Dieu (Pentecôtistes)</label>
-                <label><input type="checkbox" value="charism" checked> Églises charismatiques / Néopentecôtistes</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="ortho" checked> Église Orthodoxe</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="cath-rom" checked> Église Catholique Romaine</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="trois-conc"> Églises des trois conciles</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="luth"> Luthéranisme</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="calv"> Calvinisme</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="angli"> Anglicanisme</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="metho"> Méthodisme</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="bapt"> Églises évangéliques baptistes</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="advent"> Adventisme</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="temoins"> Témoins de Jéhovah</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="mormon"> Mormonisme</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="freres"> Assemblées de frères</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="pentec"> Assemblées de Dieu (Pentecôtistes)</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="charism"> Églises charismatiques / Néopentecôtistes</label>
             </div>
             
             <div style="border-top: 1px solid #eee; padding-top: 15px;">
@@ -128,20 +135,20 @@
                 <tbody>
                     <tr class="doctrine">
                         <td style="font-weight: 600; color: #3e8da8;">Salut</td>
-                        <td class="ortho">...</td>
-                        <td class="cath-rom">...</td>
-                        <td class="trois-conc">...</td>
-                        <td class="luth">...</td>
-                        <td class="calv">...</td>
-                        <td class="angli">...</td>
-                        <td class="metho">...</td>
-                        <td class="bapt">...</td>
-                        <td class="advent">...</td>
-                        <td class="temoins">...</td>
-                        <td class="mormon">...</td>
-                        <td class="freres">...</td>
-                        <td class="pentec">...</td>
-                        <td class="charism">...</td>
+                        <td class="ortho">La Théose (processus de divinisation par la grâce).</td>
+                        <td class="cath-rom">La coopération de la foi et des œuvres via les sacrements.</td>
+                        <td class="trois-conc">Données à venir...</td>
+                        <td class="luth">Données à venir...</td>
+                        <td class="calv">Données à venir...</td>
+                        <td class="angli">Données à venir...</td>
+                        <td class="metho">Données à venir...</td>
+                        <td class="bapt">Données à venir...</td>
+                        <td class="advent">Données à venir...</td>
+                        <td class="temoins">Données à venir...</td>
+                        <td class="mormon">Données à venir...</td>
+                        <td class="freres">Données à venir...</td>
+                        <td class="pentec">Données à venir...</td>
+                        <td class="charism">Données à venir...</td>
                     </tr>
                 </tbody>
             </table>
@@ -149,5 +156,14 @@
     </main>
 
     <script src="script.js"></script>
+    <script>
+        // Initialisation immédiate pour masquer les colonnes non cochées au chargement
+        // Cela complète la logique du script.js externe
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof filterDenominations === "function") {
+                filterDenominations();
+            }
+        });
+    </script>
 </body>
 </html>

@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
         menuCloseBtn.onclick = () => { navLinks.style.left = "-100%"; }
     }
 
-    // Gestion des flèches sous-menus mobile
     const allArrows = document.querySelectorAll(".arrow");
     allArrows.forEach(arrow => {
         arrow.addEventListener("click", (e) => {
@@ -36,23 +35,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* --- 3. FILTRAGE "comparatif.html" --- */
     const denomFilters = document.querySelectorAll('#denomination-filters input[type="checkbox"]');
-    const themeFilter = document.getElementById('theme-filter');
+    const themeFilters = document.querySelectorAll('#theme-filters input[type="checkbox"]');
 
+    // Initialisation et écouteurs pour les dénominations (Colonnes)
     if (denomFilters.length > 0) {
         denomFilters.forEach(checkbox => {
             checkbox.addEventListener('change', filterDenominations);
         });
-        // Initialisation au chargement pour appliquer les 2 cases cochées par défaut
         filterDenominations(); 
     }
 
-    if (themeFilter) {
-        themeFilter.addEventListener('change', filterThemes);
+    // Initialisation et écouteurs pour les thématiques (Lignes)
+    if (themeFilters.length > 0) {
+        themeFilters.forEach(checkbox => {
+            checkbox.addEventListener('change', filterThemes);
+        });
+        filterThemes();
     }
 });
 
 /* --- FONCTIONS GLOBALES (Comparatif) --- */
 
+/**
+ * Gère l'affichage des colonnes (Dénominations)
+ */
 function filterDenominations() {
     const checkedBoxes = document.querySelectorAll('#denomination-filters input[type="checkbox"]:checked');
     const selectedDenoms = Array.from(checkedBoxes).map(cb => cb.value);
@@ -60,16 +66,15 @@ function filterDenominations() {
     
     if (!table) return;
 
-    const ths = table.querySelectorAll('th');
+    const ths = table.querySelectorAll('thead th');
 
     ths.forEach((th, index) => {
-        if (index === 0) return; // Ignore la colonne "Thématique"
+        if (index === 0) return; // Toujours afficher la colonne "Thématique"
         
-        // On récupère la classe de l'en-tête (ex: ortho, cath-rom...)
         const denomClass = th.classList[0];
         const show = selectedDenoms.includes(denomClass);
         
-        // Sélectionne l'en-tête et toutes les cellules de cette colonne
+        // Cible la cellule d'en-tête et toutes les cellules correspondantes dans le corps du tableau
         const cells = document.querySelectorAll(`#comparison-table th:nth-child(${index + 1}), #comparison-table td:nth-child(${index + 1})`);
         
         cells.forEach(cell => {
@@ -78,16 +83,19 @@ function filterDenominations() {
     });
 }
 
+/**
+ * Gère l'affichage des lignes (Thématiques) avec sélection multiple
+ */
 function filterThemes() {
-    const themeSelect = document.getElementById('theme-filter');
-    if (!themeSelect) return;
-
-    const selectedTheme = themeSelect.value;
+    const checkedThemes = document.querySelectorAll('#theme-filters input[type="checkbox"]:checked');
+    const selectedThemes = Array.from(checkedThemes).map(cb => cb.value);
     const rows = document.querySelectorAll('#comparison-table tbody tr');
     
+    if (rows.length === 0) return;
+
     rows.forEach(row => {
-        // Vérifie si la ligne contient la classe du thème sélectionné
-        const isMatch = selectedTheme === 'all' || row.classList.contains(selectedTheme);
-        row.style.display = isMatch ? 'table-row' : 'none';
+        // La ligne est affichée si au moins une de ses classes correspond à un thème coché
+        const isVisible = selectedThemes.some(theme => row.classList.contains(theme));
+        row.style.display = isVisible ? 'table-row' : 'none';
     });
 }

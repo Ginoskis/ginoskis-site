@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        /* Style temporaire pour masquer les colonnes non sélectionnées au chargement */
-        /* Le script.js prendra le relais ensuite */
+        /* Masquage initial pour éviter le flash de contenu non filtré */
         th, td { display: none; }
         th:first-child, td:first-child,
         .ortho, .cath-rom { display: table-cell; }
@@ -62,7 +61,7 @@
                         <i class='bx bxs-chevron-down arrow'></i>
                         <ul class="sub-menu">
                             <li><a href="histoire.html">NOTRE HISTOIRE</a></li>
-                            <li><a href="independance.html">DÉCLARATION D'INDÉPENDANCE</a></li>
+                            <li><a href="independance.html">DÉCLARATION d'INDÉPENDANCE</a></li>
                             <li><a href="faq.html">FAQ</a></li>
                             <li><a href="contact.html">CONTACTEZ-NOUS</a></li>
                         </ul>
@@ -81,9 +80,10 @@
 
     <main style="padding: 40px 20px; max-width: 1400px; margin: auto;">
         
-        <div id="denomination-filters" style="background:#fff; padding:25px; border-radius:8px; margin-bottom:20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
-            <h3 style="color:#3e8da8; margin-bottom:15px; font-size: 1.1rem; font-family: 'Poppins', sans-serif;">Sélectionnez les dénominations à comparer :</h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
+        <div id="filters-container" style="background:#fff; padding:25px; border-radius:8px; margin-bottom:20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+            
+            <h3 style="color:#3e8da8; margin-bottom:15px; font-size: 1.1rem; font-family: 'Poppins', sans-serif;">Sélectionnez les dénominations :</h3>
+            <div id="denomination-filters" style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
                 <label style="cursor: pointer;"><input type="checkbox" value="ortho" checked> Église Orthodoxe</label>
                 <label style="cursor: pointer;"><input type="checkbox" value="cath-rom" checked> Église Catholique Romaine</label>
                 <label style="cursor: pointer;"><input type="checkbox" value="trois-conc"> Églises des trois conciles</label>
@@ -96,18 +96,17 @@
                 <label style="cursor: pointer;"><input type="checkbox" value="temoins"> Témoins de Jéhovah</label>
                 <label style="cursor: pointer;"><input type="checkbox" value="mormon"> Mormonisme</label>
                 <label style="cursor: pointer;"><input type="checkbox" value="freres"> Assemblées de frères</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="pentec"> Assemblées de Dieu (Pentecôtistes)</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="charism"> Églises charismatiques / Néopentecôtistes</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="pentec"> Assemblées de Dieu</label>
+                <label style="cursor: pointer;"><input type="checkbox" value="charism"> Églises charismatiques</label>
             </div>
             
             <div style="border-top: 1px solid #eee; padding-top: 15px;">
-                <label for="theme-filter" style="font-weight: 600;">Filtrer par thématique :</label>
-                <select id="theme-filter" style="margin-left:10px; padding: 5px; border-radius: 4px; border: 1px solid #ccc;">
-                    <option value="all">Toutes les thématiques</option>
-                    <option value="doctrine">Doctrine & Théologie</option>
-                    <option value="sacrements">Sacrements & Rites</option>
-                    <option value="pratiques">Pratiques quotidiennes</option>
-                </select>
+                <p style="font-weight: 600; margin-bottom: 10px;">Filtrer par thématique(s) :</p>
+                <div id="theme-filters" style="display: flex; flex-wrap: wrap; gap: 15px;">
+                    <label style="cursor: pointer;"><input type="checkbox" value="doctrine" checked> Doctrine & Théologie</label>
+                    <label style="cursor: pointer;"><input type="checkbox" value="sacrements" checked> Sacrements & Rites</label>
+                    <label style="cursor: pointer;"><input type="checkbox" value="pratiques" checked> Pratiques quotidiennes</label>
+                </div>
             </div>
         </div>
 
@@ -137,6 +136,23 @@
                         <td style="font-weight: 600; color: #3e8da8;">Salut</td>
                         <td class="ortho">La Théose (processus de divinisation par la grâce).</td>
                         <td class="cath-rom">La coopération de la foi et des œuvres via les sacrements.</td>
+                        <td class="trois-conc">Données à venir...</td>
+                        <td class="luth">Données à venir...</td>
+                        <td class="calv">Données à venir...</td>
+                        <td class="angli">Données à venir...</td>
+                        <td class="metho">Données à venir...</td>
+                        <td class="bapt">Données à venir...</td>
+                        <td class="advent">Données à venir...</td>
+                        <td class="temoins">Données à venir...</td>
+                        <td class="mormon">Données à venir...</td>
+                        <td class="freres">Données à venir...</td>
+                        <td class="pentec">Données à venir...</td>
+                        <td class="charism">Données à venir...</td>
+                    </tr>
+                    <tr class="sacrements">
+                        <td style="font-weight: 600; color: #3e8da8;">Baptême</td>
+                        <td class="ortho">Immersion triple des enfants, régénération baptismale.</td>
+                        <td class="cath-rom">Efface le péché originel, généralement par infusion (eau versée).</td>
                         <td class="trois-conc">Données à venir...</td>
                         <td class="luth">Données à venir...</td>
                         <td class="calv">Données à venir...</td>

@@ -297,3 +297,533 @@ table td {
         display: block;
     }
 }
+
+/* ==========================================================================
+   6. FOOTER GINOSKIS
+   ========================================================================== */
+
+.ginoskis-footer {
+    background-color: #2c2b27;
+    color: #c8c5b8;
+    padding: 60px 30px 0;
+    margin-top: 80px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Colonne 1 — Marque */
+.footer-brand .footer-logo {
+    font-family: 'Caesar Dressing', cursive;
+    font-size: 28px;
+    color: #f5f5dc;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 14px;
+}
+
+.footer-brand .footer-logo span {
+    color: #3e8da8;
+}
+
+.footer-brand p {
+    font-size: 13px;
+    line-height: 1.75;
+    color: #9e9b8e;
+    max-width: 260px;
+    margin-bottom: 24px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #c8c5b8;
+    font-size: 18px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.footer-socials a:hover {
+    background: #3e8da8;
+    border-color: #3e8da8;
+    color: #fff;
+}
+
+/* Colonnes 2-4 — Liens */
+.footer-col h4 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #f5f5dc;
+    margin-bottom: 18px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    font-size: 13px;
+    color: #9e9b8e;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-col ul li a:hover {
+    color: #3e8da8;
+}
+
+/* Bandeau bas */
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 0;
+    font-size: 12px;
+    color: #6b6960;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.footer-bottom a {
+    color: #6b6960;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-bottom a:hover {
+    color: #3e8da8;
+}
+
+.footer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(62, 141, 168, 0.12);
+    border: 1px solid rgba(62, 141, 168, 0.25);
+    color: #3e8da8;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+}
+
+/* ==========================================================================
+   FOOTER RESPONSIVE
+   ========================================================================== */
+@media (max-width: 920px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-brand p {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 560px) {
+    .ginoskis-footer {
+        padding: 40px 20px 0;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+/* ==========================================================================
+   7. SECTIONS GÉNÉRALES (main, titres, layout)
+   ========================================================================== */
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.home-section {
+    padding: 70px 0;
+    border-bottom: 1px solid rgba(55, 53, 47, 0.08);
+}
+
+.home-section:last-child {
+    border-bottom: none;
+}
+
+.section-inner {
+    width: 100%;
+}
+
+.section-titre {
+    font-family: 'Caesar Dressing', cursive;
+    font-size: 2rem;
+    color: #37352f;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.section-sous-titre {
+    text-align: center;
+    color: #6b6960;
+    font-size: 1rem;
+    margin-bottom: 48px;
+}
+
+/* ==========================================================================
+   8. SECTION RUBRIQUES (3 cards)
+   ========================================================================== */
+
+.rubriques-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.rubrique-card {
+    background: #ffffff;
+    border: 1px solid rgba(55, 53, 47, 0.1);
+    border-radius: 12px;
+    padding: 32px 28px;
+    text-decoration: none;
+    color: #37352f;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: box-shadow 0.25s, transform 0.25s;
+}
+
+.rubrique-card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+}
+
+.rubrique-card--accent {
+    background: #3e8da8;
+    border-color: #3e8da8;
+    color: #ffffff;
+}
+
+.rubrique-card--accent p,
+.rubrique-card--accent .rubrique-lien {
+    color: rgba(255,255,255,0.85);
+}
+
+.rubrique-icon {
+    font-size: 32px;
+    color: #3e8da8;
+    line-height: 1;
+}
+
+.rubrique-card--accent .rubrique-icon {
+    color: #ffffff;
+}
+
+.rubrique-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.rubrique-card p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #6b6960;
+    flex: 1;
+}
+
+.rubrique-lien {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #3e8da8;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   9. SECTION KYF (appel à l'action)
+   ========================================================================== */
+
+.kyf-section {
+    background: #f0f7fa;
+    border-radius: 16px;
+    padding: 60px 48px !important;
+    border: none !important;
+}
+
+.kyf-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.kyf-label {
+    display: inline-block;
+    background: rgba(62, 141, 168, 0.12);
+    color: #3e8da8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+}
+
+.kyf-texte p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: #555;
+    margin-bottom: 28px;
+}
+
+.btn-kyf {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #3e8da8;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 14px 28px;
+    border-radius: 8px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-kyf:hover {
+    background: #2d7a94;
+    transform: translateY(-2px);
+}
+
+.kyf-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 20px;
+    border-left: 3px solid #3e8da8;
+}
+
+.stat-nombre {
+    font-family: 'Caesar Dressing', cursive;
+    font-size: 2.2rem;
+    color: #3e8da8;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #6b6960;
+}
+
+/* ==========================================================================
+   10. SECTION ACCÈS RAPIDE (grille 4×2)
+   ========================================================================== */
+
+.acces-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+}
+
+.acces-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: #ffffff;
+    border: 1px solid rgba(55, 53, 47, 0.1);
+    border-radius: 10px;
+    text-decoration: none;
+    color: #37352f;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.acces-item i {
+    font-size: 22px;
+    color: #3e8da8;
+    flex-shrink: 0;
+}
+
+.acces-item:hover {
+    border-color: #3e8da8;
+    color: #3e8da8;
+    background: #f0f7fa;
+}
+
+/* ==========================================================================
+   11. RESPONSIVE COMPLET — sections & contenu
+   ========================================================================== */
+
+@media (max-width: 920px) {
+
+    /* Main */
+    main {
+        padding: 0 20px;
+    }
+
+    .home-section {
+        padding: 50px 0;
+    }
+
+    .section-titre {
+        font-size: 1.65rem;
+    }
+
+    /* Rubriques : 1 colonne */
+    .rubriques-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .rubrique-card {
+        padding: 24px 20px;
+    }
+
+    /* KYF : empilé */
+    .kyf-section {
+        padding: 40px 28px !important;
+    }
+
+    .kyf-inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .kyf-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .stat-item {
+        flex: 1;
+        min-width: 120px;
+    }
+
+    /* Accès rapide : 2 colonnes */
+    .acces-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Tables */
+    table {
+        font-size: 13px;
+    }
+
+    table th,
+    table td {
+        padding: 10px 8px !important;
+    }
+}
+
+@media (max-width: 560px) {
+
+    main {
+        padding: 0 16px;
+    }
+
+    .home-section {
+        padding: 36px 0;
+    }
+
+    .section-titre {
+        font-size: 1.4rem;
+    }
+
+    .section-sous-titre {
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+    }
+
+    /* KYF */
+    .kyf-section {
+        padding: 28px 20px !important;
+        border-radius: 12px;
+    }
+
+    .kyf-stats {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .stat-nombre {
+        font-size: 1.8rem;
+    }
+
+    /* Accès rapide : 1 colonne */
+    .acces-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    /* Hero */
+    .titres {
+        font-size: 2.2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .btn-hero-final {
+        padding: 10px 24px;
+        font-size: 0.9rem;
+    }
+
+    /* Tables horizontalement scrollables sur mobile */
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}

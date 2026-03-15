@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Identifiez vos sensibilités théologiques et explorez la diversité des dénominations chrétiennes en France avec Ginoskis.">
     <title>Ginoskis | Comprendre le Christianisme</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="nav.js" defer></script>
 </head>
 <body>
     <header class="main-header">
@@ -89,6 +91,174 @@
         </div>
     </header>
 
+    <!-- =============================================
+         SECTION 1 : Les 3 grandes rubriques
+         ============================================= -->
+    <main>
+        <section class="home-section rubriques-section">
+            <div class="section-inner">
+                <h2 class="section-titre">Que souhaitez-vous explorer ?</h2>
+                <p class="section-sous-titre">Ginoskis est organisé en trois espaces complémentaires.</p>
+                <div class="rubriques-grid">
+                    <a href="votre-foi-main.html" class="rubrique-card">
+                        <div class="rubrique-icon"><i class='bx bx-user-circle'></i></div>
+                        <h3>Votre Foi</h3>
+                        <p>Identifiez vos sensibilités théologiques grâce à nos questionnaires KYF et trouvez une église proche de votre profil.</p>
+                        <span class="rubrique-lien">Découvrir <i class='bx bx-right-arrow-alt'></i></span>
+                    </a>
+                    <a href="liste-denominations.html" class="rubrique-card rubrique-card--accent">
+                        <div class="rubrique-icon"><i class='bx bx-church'></i></div>
+                        <h3>Chrétiens en France</h3>
+                        <p>Explorez la carte des dénominations, les chiffres clés, les tableaux comparatifs et les témoignages "À la source".</p>
+                        <span class="rubrique-lien">Explorer <i class='bx bx-right-arrow-alt'></i></span>
+                    </a>
+                    <a href="lexique.html" class="rubrique-card">
+                        <div class="rubrique-icon"><i class='bx bx-book-open'></i></div>
+                        <h3>Ressources</h3>
+                        <p>Quizz bibliques, fiches doctrinales, lexique, personnalités et histoire du christianisme dans le monde.</p>
+                        <span class="rubrique-lien">Accéder <i class='bx bx-right-arrow-alt'></i></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             SECTION 2 : Appel à l'action KYF
+             ============================================= -->
+        <section class="home-section kyf-section">
+            <div class="section-inner kyf-inner">
+                <div class="kyf-texte">
+                    <span class="kyf-label">Questionnaire KYF</span>
+                    <h2 class="section-titre" style="text-align:left; margin-bottom: 16px;">Know Your Faith</h2>
+                    <p>En quelques minutes, notre questionnaire vous aide à mieux comprendre vos convictions théologiques : eschatologie, ecclésiologie, sotériologie… et à les situer dans le paysage chrétien francophone.</p>
+                    <a href="kyf-hub.html" class="btn-kyf">Commencer le questionnaire <i class='bx bx-right-arrow-alt'></i></a>
+                </div>
+                <div class="kyf-stats">
+                    <div class="stat-item">
+                        <span class="stat-nombre">+200</span>
+                        <span class="stat-label">Dénominations référencées</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-nombre">5</span>
+                        <span class="stat-label">Questionnaires thématiques</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-nombre">100%</span>
+                        <span class="stat-label">Indépendant & sans pub</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             SECTION 3 : Accès rapide aux pages clés
+             ============================================= -->
+        <section class="home-section acces-section">
+            <div class="section-inner">
+                <h2 class="section-titre">Accès rapide</h2>
+                <div class="acces-grid">
+                    <a href="comparatif.html" class="acces-item">
+                        <i class='bx bx-table'></i>
+                        <span>Tableaux comparatifs</span>
+                    </a>
+                    <a href="diagramme.html" class="acces-item">
+                        <i class='bx bx-sitemap'></i>
+                        <span>Diagramme des dénominations</span>
+                    </a>
+                    <a href="quizz-bibliques.html" class="acces-item">
+                        <i class='bx bx-help-circle'></i>
+                        <span>Quizz bibliques</span>
+                    </a>
+                    <a href="personnalites.html" class="acces-item">
+                        <i class='bx bx-group'></i>
+                        <span>Personnalités & Croyances</span>
+                    </a>
+                    <a href="peres-eglise.html" class="acces-item">
+                        <i class='bx bx-history'></i>
+                        <span>Les Pères de l'Église</span>
+                    </a>
+                    <a href="monde.html" class="acces-item">
+                        <i class='bx bx-globe'></i>
+                        <span>Christianisme dans le monde</span>
+                    </a>
+                    <a href="lexique.html" class="acces-item">
+                        <i class='bx bx-list-ul'></i>
+                        <span>Lexique & Fiches doctrinales</span>
+                    </a>
+                    <a href="trouver-eglise.html" class="acces-item">
+                        <i class='bx bx-map-pin'></i>
+                        <span>Trouver une église</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <script src="script.js"></script>
+    <footer class="ginoskis-footer">
+        <div class="footer-grid">
+
+            <!-- Colonne 1 : Marque -->
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">Ginoski<span>s</span></a>
+                <p>Le site qui vous aide à y voir plus clair sur les dénominations chrétiennes et à identifier précisément vos sensibilités théologiques.</p>
+                <div class="footer-socials">
+                    <a href="#" title="Twitter / X"><i class='bx bxl-twitter'></i></a>
+                    <a href="#" title="Instagram"><i class='bx bxl-instagram'></i></a>
+                    <a href="#" title="Facebook"><i class='bx bxl-facebook'></i></a>
+                    <a href="#" title="YouTube"><i class='bx bxl-youtube'></i></a>
+                </div>
+            </div>
+
+            <!-- Colonne 2 : Votre Foi -->
+            <div class="footer-col">
+                <h4>Votre Foi</h4>
+                <ul>
+                    <li><a href="kyf-hub.html">Questionnaires KYF</a></li>
+                    <li><a href="profil-apprenant.html">Votre profil apprenant</a></li>
+                    <li><a href="trouver-eglise.html">Trouver une église</a></li>
+                    <li><a href="edification.html">Édification personnelle</a></li>
+                </ul>
+            </div>
+
+            <!-- Colonne 3 : Ressources -->
+            <div class="footer-col">
+                <h4>Ressources</h4>
+                <ul>
+                    <li><a href="liste-denominations.html">Liste & Chiffres clés</a></li>
+                    <li><a href="comparatif.html">Tableaux comparatifs</a></li>
+                    <li><a href="lexique.html">Lexique & Fiches doctrinales</a></li>
+                    <li><a href="quizz-bibliques.html">Quizz bibliques</a></li>
+                    <li><a href="monde.html">Le christianisme dans le monde</a></li>
+                    <li><a href="peres-eglise.html">Les Pères de l'Église</a></li>
+                </ul>
+            </div>
+
+            <!-- Colonne 4 : À propos -->
+            <div class="footer-col">
+                <h4>À propos</h4>
+                <ul>
+                    <li><a href="histoire.html">Notre histoire</a></li>
+                    <li><a href="independance.html">Déclaration d'indépendance</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contactez-nous</a></li>
+                    <li><a href="soutien.html">Soutenir Ginoskis</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Bas de page -->
+        <div class="footer-bottom">
+            <span>&copy; 2026 Ginoskis — Tous droits réservés</span>
+            <span class="footer-badge"><i class='bx bx-shield-quarter'></i> Indépendant & sans publicité</span>
+            <span>
+                <a href="independance.html">Déclaration d'indépendance</a>
+                &nbsp;·&nbsp;
+                <a href="contact.html">Contact</a>
+            </span>
+        </div>
+    </footer>
+
 </body>
 </html>

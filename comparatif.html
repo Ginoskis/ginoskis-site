@@ -843,7 +843,13 @@
         document.querySelectorAll('#denomination-filters input, .theme-group input').forEach(cb => {
             cb.addEventListener('change', applyFilters);
         });
-        applyFilters();
+
+        // Attendre que le DOM soit entièrement prêt avant le premier rendu
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', applyFilters);
+        } else {
+            applyFilters();
+        }
     })();
     </script>
 

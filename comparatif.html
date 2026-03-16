@@ -8,176 +8,790 @@
     <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        /* Masquage initial pour éviter le flash de contenu non filtré */
-        th, td { display: none; }
-        th:first-child, td:first-child,
-        .ortho, .cath-rom { display: table-cell; }
-    </style>
     <script src="nav.js" defer></script>
+    <style>
+        .comp-main { max-width: 1400px; margin: 0 auto; padding: 40px 24px 60px; }
+        .filters-panel { background: #fff; border: 1px solid rgba(55,53,47,0.1); border-radius: 12px; padding: 28px 28px 20px; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+        .filters-section-title { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #3e8da8; margin-bottom: 14px; }
+        .denom-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+        .chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; border: 1.5px solid #d0cec7; background: #f5f5dc; font-size: 12px; font-weight: 500; color: #37352f; cursor: pointer; transition: all 0.18s; user-select: none; }
+        .chip input[type="checkbox"] { display: none; }
+        .chip:has(input:checked) { background: #3e8da8; border-color: #3e8da8; color: #fff; }
+        .chip:hover { border-color: #3e8da8; }
+        .chip .chip-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: 0.6; }
+        .theme-groups { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding-top: 20px; border-top: 1px solid rgba(55,53,47,0.08); }
+        .theme-group h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #37352f; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px solid #3e8da8; }
+        .theme-group label { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #37352f; cursor: pointer; padding: 4px 0; transition: color 0.15s; }
+        .theme-group label:hover { color: #3e8da8; }
+        .theme-group input[type="checkbox"] { accent-color: #3e8da8; width: 14px; height: 14px; flex-shrink: 0; }
+        .filter-controls { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+        .btn-ctrl { font-size: 12px; font-weight: 600; padding: 7px 16px; border-radius: 6px; border: 1.5px solid #d0cec7; background: transparent; color: #37352f; cursor: pointer; font-family: 'Poppins', sans-serif; transition: all 0.15s; }
+        .btn-ctrl:hover { border-color: #3e8da8; color: #3e8da8; }
+        .btn-ctrl.btn-reset { border-color: #e8a87c; color: #c0622a; }
+        .btn-ctrl.btn-reset:hover { background: #fcebeb; }
+        .results-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; font-size: 13px; color: #6b6960; }
+        .results-count { font-weight: 600; color: #3e8da8; }
+        .table-wrapper { overflow-x: auto; border-radius: 10px; border: 1px solid rgba(55,53,47,0.1); box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+        #comparison-table { width: 100%; border-collapse: collapse; background: #fff; margin: 0; font-size: 13px; }
+        #comparison-table th:first-child, #comparison-table td:first-child { position: sticky; left: 0; background: #fff; z-index: 2; min-width: 160px; max-width: 180px; }
+        #comparison-table th:first-child { background: #3e8da8; }
+        #comparison-table thead th { background: #3e8da8; color: #fff; padding: 14px 16px; text-align: center; font-size: 12px; font-weight: 600; white-space: nowrap; border: 1px solid rgba(255,255,255,0.15); }
+        #comparison-table tr.group-header td { background: #f0f7fa; color: #2d7a94; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 16px; border-top: 2px solid #3e8da8; border-bottom: 1px solid rgba(62,141,168,0.15); }
+        #comparison-table tr.group-header td:first-child { background: #f0f7fa; }
+        #comparison-table tbody td { padding: 13px 16px; border: 1px solid rgba(55,53,47,0.07); vertical-align: top; line-height: 1.55; color: #37352f; min-width: 200px; max-width: 280px; }
+        #comparison-table tbody td:first-child { font-weight: 600; font-size: 12.5px; color: #37352f; background: #fafaf7; border-right: 2px solid rgba(62,141,168,0.2); min-width: 160px; max-width: 180px; }
+        #comparison-table tbody tr:not(.group-header):nth-child(even) td:not(:first-child) { background: #fafaf7; }
+        #comparison-table tbody tr:not(.group-header):hover td { background: #f0f7fa; }
+        .pos { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-bottom: 3px; }
+        .pos-oui { background:#EAF3DE; color:#3B6D11; }
+        .pos-non { background:#FCEBEB; color:#A32D2D; }
+        .pos-var { background:#FAEEDA; color:#854F0B; }
+        .pos-info { background:#E6F1FB; color:#185FA5; }
+        .todo { color: #9e9b8e; font-style: italic; font-size: 12px; }
+        @media (max-width: 920px) { .theme-groups { grid-template-columns: repeat(2, 1fr); } .comp-main { padding: 24px 16px 40px; } }
+        @media (max-width: 560px) { .theme-groups { grid-template-columns: 1fr; } .filters-panel { padding: 18px 16px; } }
+    </style>
 </head>
 <body>
-
-    <nav>
-        <div class="navbar">
-            <i class='bx bx-menu'></i>
-            <div class="logo"><a href="index.html">Ginoskis</a></div>
-            <div class="nav-links">
-                <div class="sidebar-logo">
-                    <span class="logo-name">Ginoskis</span>
-                    <i class='bx bx-x'></i>
-                </div>
-                <ul class="links">
-                    <li><a href="index.html">ACCUEIL</a></li>
-                    <li>
-                        <a href="#">VOTRE FOI</a>
-                        <i class='bx bxs-chevron-down arrow'></i>
-                        <ul class="sub-menu">
-                            <li><a href="kyf-hub.html">NOS QUESTIONNAIRES KYF</a></li>
-                            <li><a href="profil-apprenant.html">VOTRE PROFIL APPRENANT</a></li>
-                            <li><a href="trouver-eglise.html">TROUVER UNE ÉGLISE</a></li>
-                            <li><a href="edification.html">ÉDIFICATION PERSONNELLE</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">CHRÉTIENS EN FRANCE</a>
-                        <i class='bx bxs-chevron-down arrow'></i>
-                        <ul class="sub-menu">
-                            <li><a href="liste-denominations.html">LISTE & CHIFFRES CLÉS</a></li>
-                            <li><a href="comparatif.html">TABLEAUX COMPARATIFS</a></li>
-                            <li><a href="diagramme.html">DIAGRAMME</a></li>
-                            <li><a href="interviews.html">INTERVIEWS "A LA SOURCE"</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">RESSOURCES</a>
-                        <i class='bx bxs-chevron-down arrow'></i>
-                        <ul class="sub-menu">
-                            <li><a href="quizz-bibliques.html">QUIZZ BIBLIQUES</a></li>
-                            <li><a href="quizz-autres.html">EN QUOI CROIENT-ILS ?</a></li>
-                            <li><a href="lexique.html">LEXIQUE & FICHES DOCTRINALES</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">À PROPOS & CONTACT</a>
-                        <i class='bx bxs-chevron-down arrow'></i>
-                        <ul class="sub-menu">
-                            <li><a href="histoire.html">NOTRE HISTOIRE</a></li>
-                            <li><a href="independance.html">DÉCLARATION d'INDÉPENDANCE</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="contact.html">CONTACTEZ-NOUS</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <header class="main-header">
+        <nav><!-- injecté par nav.js --></nav>
         <div class="hero-container">
-            <h1 class="titres">TABLEAU COMPARATIF</h1>
-            <p class="subtitle">Analysez les différences doctrinales et pratiques entre les grandes familles chrétiennes.</p>
+            <h1 class="titres">Tableau Comparatif</h1>
+            <p class="subtitle">Sélectionnez des <span>dénominations</span> et des <span>thématiques</span> pour comparer leurs positions doctrinales et pratiques.</p>
         </div>
     </header>
 
-    <main style="padding: 40px 20px; max-width: 1400px; margin: auto;">
-        
-        <div id="filters-container" style="background:#fff; padding:25px; border-radius:8px; margin-bottom:20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
-            
-            <h3 style="color:#3e8da8; margin-bottom:15px; font-size: 1.1rem; font-family: 'Poppins', sans-serif;">Sélectionnez les dénominations :</h3>
-            <div id="denomination-filters" style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
-                <label style="cursor: pointer;"><input type="checkbox" value="ortho" checked> Église Orthodoxe</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="cath-rom" checked> Église Catholique Romaine</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="trois-conc"> Églises des trois conciles</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="luth"> Luthéranisme</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="calv"> Calvinisme</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="angli"> Anglicanisme</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="metho"> Méthodisme</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="bapt"> Églises évangéliques baptistes</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="advent"> Adventisme</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="temoins"> Témoins de Jéhovah</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="mormon"> Mormonisme</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="freres"> Assemblées de frères</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="pentec"> Assemblées de Dieu</label>
-                <label style="cursor: pointer;"><input type="checkbox" value="charism"> Églises charismatiques</label>
+    <main class="comp-main">
+        <div class="filters-panel">
+            <p class="filters-section-title">Dénominations</p>
+            <div class="denom-chips" id="denomination-filters">
+                <label class="chip"><input type="checkbox" value="ortho" checked><span class="chip-dot"></span>Église Orthodoxe</label>
+                <label class="chip"><input type="checkbox" value="cath-rom" checked><span class="chip-dot"></span>Catholique Romaine</label>
+                <label class="chip"><input type="checkbox" value="trois-conc"><span class="chip-dot"></span>Églises des 3 conciles</label>
+                <label class="chip"><input type="checkbox" value="epudf"><span class="chip-dot"></span>EPUdF <small>(Calvinistes &amp; Luthériens)</small></label>
+                <label class="chip"><input type="checkbox" value="unepref"><span class="chip-dot"></span>UNEPREF <small>(Calvinistes évangéliques)</small></label>
+                <label class="chip"><input type="checkbox" value="angli"><span class="chip-dot"></span>Anglicanisme</label>
+                <label class="chip"><input type="checkbox" value="metho"><span class="chip-dot"></span>Méthodisme</label>
+                <label class="chip"><input type="checkbox" value="bapt"><span class="chip-dot"></span>Baptistes évangéliques</label>
+                <label class="chip"><input type="checkbox" value="advent"><span class="chip-dot"></span>Adventisme</label>
+                <label class="chip"><input type="checkbox" value="pentec"><span class="chip-dot"></span>Assemblées de Dieu</label>
+                <label class="chip"><input type="checkbox" value="charism"><span class="chip-dot"></span>Charismatiques</label>
+                <label class="chip"><input type="checkbox" value="freres"><span class="chip-dot"></span>Assemblées de frères</label>
+                <label class="chip"><input type="checkbox" value="temoins"><span class="chip-dot"></span>Témoins de Jéhovah</label>
+                <label class="chip"><input type="checkbox" value="mormon"><span class="chip-dot"></span>Mormonisme</label>
             </div>
-            
-            <div style="border-top: 1px solid #eee; padding-top: 15px;">
-                <p style="font-weight: 600; margin-bottom: 10px;">Filtrer par thématique(s) :</p>
-                <div id="theme-filters" style="display: flex; flex-wrap: wrap; gap: 15px;">
-                    <label style="cursor: pointer;"><input type="checkbox" value="doctrine" checked> Doctrine & Théologie</label>
-                    <label style="cursor: pointer;"><input type="checkbox" value="sacrements" checked> Sacrements & Rites</label>
-                    <label style="cursor: pointer;"><input type="checkbox" value="pratiques" checked> Pratiques quotidiennes</label>
+
+            <p class="filters-section-title">Thématiques</p>
+            <div class="theme-groups">
+                <div class="theme-group">
+                    <h4>1 · Fondements &amp; Autorité</h4>
+                    <label><input type="checkbox" value="autorite" checked> Sources d'autorité</label>
+                    <label><input type="checkbox" value="bible" checked> Rapport à la Bible</label>
+                    <label><input type="checkbox" value="trinite" checked> Dieu (Trinité)</label>
+                    <label><input type="checkbox" value="jesus" checked> Jésus-Christ</label>
+                    <label><input type="checkbox" value="salut"> Le Salut</label>
+                    <label><input type="checkbox" value="fin-temps"> La fin des temps</label>
+                    <label><input type="checkbox" value="israel"> Rapport à Israël</label>
                 </div>
+                <div class="theme-group">
+                    <h4>2 · Spiritualité &amp; Figures</h4>
+                    <label><input type="checkbox" value="marie"> Marie, mère de Jésus-Christ</label>
+                    <label><input type="checkbox" value="saints"> Vénération des Saints</label>
+                    <label><input type="checkbox" value="intercession"> Intercession</label>
+                    <label><input type="checkbox" value="anges"> Anges &amp; Démons</label>
+                    <label><input type="checkbox" value="dons"> Dons spirituels</label>
+                    <label><input type="checkbox" value="au-dela"> L'au-delà</label>
+                    <label><input type="checkbox" value="priere"> La prière</label>
+                </div>
+                <div class="theme-group">
+                    <h4>3 · Culte &amp; Vie de l'Église</h4>
+                    <label><input type="checkbox" value="bapteme"> Baptême</label>
+                    <label><input type="checkbox" value="cene"> Sainte-Cène (Eucharistie)</label>
+                    <label><input type="checkbox" value="sacrements"> Sacrements &amp; Confession</label>
+                    <label><input type="checkbox" value="dime"> La dîme</label>
+                    <label><input type="checkbox" value="ministeres"> Ministères &amp; Vocations</label>
+                    <label><input type="checkbox" value="femmes"> Rôle des femmes</label>
+                    <label><input type="checkbox" value="enfants"> Place des enfants</label>
+                    <label><input type="checkbox" value="liturgie"> Liturgie &amp; ordre du culte</label>
+                </div>
+                <div class="theme-group">
+                    <h4>4 · Éthique, Mariage &amp; Société</h4>
+                    <label><input type="checkbox" value="mariage"> Mariage &amp; Divorce</label>
+                    <label><input type="checkbox" value="contraception"> Contraception</label>
+                    <label><input type="checkbox" value="avortement"> Avortement</label>
+                    <label><input type="checkbox" value="gpa"> GPA</label>
+                    <label><input type="checkbox" value="homosexualite"> Homosexualité</label>
+                    <label><input type="checkbox" value="euthanasie"> Euthanasie</label>
+                    <label><input type="checkbox" value="peine-mort"> Peine de mort</label>
+                    <label><input type="checkbox" value="militaire"> Service militaire &amp; Civique</label>
+                </div>
+            </div>
+
+            <div class="filter-controls">
+                <button class="btn-ctrl" onclick="selectAllDenoms()">Toutes les dénominations</button>
+                <button class="btn-ctrl" onclick="selectAllThemes()">Tous les thèmes</button>
+                <button class="btn-ctrl btn-reset" onclick="resetFilters()">Réinitialiser</button>
             </div>
         </div>
 
-        <div class="table-container" style="overflow-x: auto;">
+        <div class="results-bar">
+            <span><span class="results-count" id="visible-count">0</span> thématiques affichées</span>
+            <span id="denom-count">0 dénominations</span>
+        </div>
+
+        <div class="table-wrapper">
             <table id="comparison-table">
                 <thead>
                     <tr>
                         <th>Thématique</th>
-                        <th class="ortho">Église Orthodoxe</th>
-                        <th class="cath-rom">Église Catholique Romaine</th>
-                        <th class="trois-conc">Églises des trois conciles</th>
-                        <th class="luth">Luthéranisme</th>
-                        <th class="calv">Calvinisme</th>
-                        <th class="angli">Anglicanisme</th>
-                        <th class="metho">Méthodisme</th>
-                        <th class="bapt">Églises évangéliques baptistes</th>
-                        <th class="advent">Adventisme</th>
-                        <th class="temoins">Témoins de Jéhovah</th>
-                        <th class="mormon">Mormonisme</th>
-                        <th class="freres">Assemblées de frères</th>
-                        <th class="pentec">Assemblées de Dieu</th>
-                        <th class="charism">Églises charismatiques</th>
+                        <th class="col-ortho">Orthodoxe</th>
+                        <th class="col-cath-rom">Catholique</th>
+                        <th class="col-trois-conc">3 Conciles</th>
+                        <th class="col-epudf">EPUdF</th>
+                        <th class="col-unepref">UNEPREF</th>
+                        <th class="col-angli">Anglican</th>
+                        <th class="col-metho">Méthodiste</th>
+                        <th class="col-bapt">Baptiste évang.</th>
+                        <th class="col-advent">Adventiste</th>
+                        <th class="col-pentec">Ass. de Dieu</th>
+                        <th class="col-charism">Charismatique</th>
+                        <th class="col-freres">Ass. de frères</th>
+                        <th class="col-temoins">Témoins J.</th>
+                        <th class="col-mormon">Mormon</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="doctrine">
-                        <td style="font-weight: 600; color: #3e8da8;">Salut</td>
-                        <td class="ortho">La Théose (processus de divinisation par la grâce).</td>
-                        <td class="cath-rom">La coopération de la foi et des œuvres via les sacrements.</td>
-                        <td class="trois-conc">Données à venir...</td>
-                        <td class="luth">Données à venir...</td>
-                        <td class="calv">Données à venir...</td>
-                        <td class="angli">Données à venir...</td>
-                        <td class="metho">Données à venir...</td>
-                        <td class="bapt">Données à venir...</td>
-                        <td class="advent">Données à venir...</td>
-                        <td class="temoins">Données à venir...</td>
-                        <td class="mormon">Données à venir...</td>
-                        <td class="freres">Données à venir...</td>
-                        <td class="pentec">Données à venir...</td>
-                        <td class="charism">Données à venir...</td>
+
+                    <!-- ══ GROUPE 1 ══ -->
+                    <tr class="group-header row-group-1"><td colspan="15">1 · Fondements &amp; Autorité</td></tr>
+
+                    <tr class="row-autorite">
+                        <td>Sources d'autorité</td>
+                        <td class="col-ortho">La Révélation divine se transmet par deux modes indissociables : la Tradition sacrée (transmission vivante dans l'Église) et la Sainte Écriture (livres inspirés). L'Église en est le dépositaire et l'interprète, gardée par les 7 Conciles œcuméniques et les Pères.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-mormon"><span class="todo">En cours de rédaction…</span></td>
                     </tr>
-                    <tr class="sacrements">
-                        <td style="font-weight: 600; color: #3e8da8;">Baptême</td>
-                        <td class="ortho">Immersion triple des enfants, régénération baptismale.</td>
-                        <td class="cath-rom">Efface le péché originel, généralement par infusion (eau versée).</td>
-                        <td class="trois-conc">Données à venir...</td>
-                        <td class="luth">Données à venir...</td>
-                        <td class="calv">Données à venir...</td>
-                        <td class="angli">Données à venir...</td>
-                        <td class="metho">Données à venir...</td>
-                        <td class="bapt">Données à venir...</td>
-                        <td class="advent">Données à venir...</td>
-                        <td class="temoins">Données à venir...</td>
-                        <td class="mormon">Données à venir...</td>
-                        <td class="freres">Données à venir...</td>
-                        <td class="pentec">Données à venir...</td>
-                        <td class="charism">Données à venir...</td>
+
+                    <tr class="row-bible">
+                        <td>Rapport à la Bible</td>
+                        <td class="col-ortho">La Bible est Parole de Dieu inspirée, lue et interprétée au sein de la Tradition vivante de l'Église et des saints Pères — non comme source auto-suffisante. Canon : 49 livres de l'AT (LXX, deutérocanoniques inclus) + 27 du NT.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-mormon"><span class="todo">En cours de rédaction…</span></td>
                     </tr>
+
+                    <tr class="row-trinite">
+                        <td>Dieu (Trinité)</td>
+                        <td class="col-ortho">Dieu unique, immatériel, éternel, omniscient, tout-puissant, juste et miséricordieux. Trinité : Père non engendré, Fils engendré du Père, Saint-Esprit procédant du Père seul — rejet du Filioque romain. Trois Hypostases égales, une seule essence divine.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins"><span class="pos pos-non">Non-trinitaire</span> Jéhovah seul est Dieu. Jésus = première créature (l'archange Michel)</td>
+                        <td class="col-mormon"><span class="pos pos-non">Non-trinitaire</span> Trois êtres distincts. Dieu le Père a un corps physique glorifié</td>
+                    </tr>
+
+                    <tr class="row-jesus">
+                        <td>Jésus-Christ</td>
+                        <td class="col-ortho">Vrai Dieu et vrai homme, consubstantiel au Père, incarné de l'Esprit Saint et de la Vierge Marie. Mort, ressuscité, monté au ciel — reviendra juger les vivants et les morts. Deux natures en une seule personne (Concile de Chalcédoine, 451).</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins">Fils de Dieu, première créature, ni Dieu ni égal à Dieu</td>
+                        <td class="col-mormon">Fils de Dieu, être distinct, frère spirituel de l'humanité, Dieu en devenir</td>
+                    </tr>
+
+                    <tr class="row-salut">
+                        <td>Le Salut</td>
+                        <td class="col-ortho">Le salut est l'œuvre du Christ ressuscité, reçu par la foi et actualisé dans les sacrements, vécu dans l'Église comme <strong>un chemin continu vers la théosis</strong> : la participation réelle de l'homme à la nature divine (2 Pi 1,4), par la grâce et la liberté agissant ensemble.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins">Obéissance à Jéhovah + foi. 144 000 au ciel, reste sur une nouvelle terre</td>
+                        <td class="col-mormon">Grâce + obéissance aux ordonnances + exaltation dans les royaumes de gloire</td>
+                    </tr>
+
+                    <tr class="row-fin-temps">
+                        <td>La fin des temps</td>
+                        <td class="col-ortho">Parousie du Christ, résurrection générale des corps, Jugement dernier selon les œuvres. Séparation définitive entre bienheureux (Paradis) et damnés (Enfer), règne éternel du Christ. Pas de millénium littéral ni de purgatoire — l'état intermédiaire est confié à la miséricorde de Dieu.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins">Armageddon imminent, règne millénaire de Christ, résurrection des morts</td>
+                        <td class="col-mormon">Retour du Christ à Sion (Amérique). Millénium littéral</td>
+                    </tr>
+
+                    <tr class="row-israel">
+                        <td>Rapport à Israël</td>
+                        <td class="col-ortho">Israël, peuple élu et dépositaire des promesses messianiques, accomplies en Jésus-Christ. L'Église, accomplissement des promesses d'Israël (Ga 3,28-29), est "l'Israël de Dieu" (Ga 6,16), déjà présent dans l'Ancien Testament, réunissant Juifs et nations dans la Nouvelle Alliance.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-mormon"><span class="todo">En cours de rédaction…</span></td>
+                    </tr>
+
+                    <!-- ══ GROUPE 2 ══ -->
+                    <tr class="group-header row-group-2"><td colspan="15">2 · Spiritualité &amp; Figures</td></tr>
+
+                    <tr class="row-marie">
+                        <td>Marie, mère de Jésus-Christ</td>
+                        <td class="col-ortho">Théotokos (Mère de Dieu, Concile d'Éphèse 431, III<sup>e</sup> concile œcuménique), toujours Vierge (avant, pendant et après la naissance), sanctifiée par le Saint-Esprit — mais pas d'Immaculée Conception. Dormition et élévation glorieuse célébrées liturgiquement, sans définition dogmatique formelle contrairement à Rome. Intercesseuse privilégiée auprès de son Fils.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins">Femme pieuse, mère terrestre de Jésus uniquement</td>
+                        <td class="col-mormon">Respectée comme mère de Jésus. Pas de vénération</td>
+                    </tr>
+
+                    <tr class="row-saints">
+                        <td>Vénération des Saints</td>
+                        <td class="col-ortho">Les saints, témoins vivants de la victoire du Christ, sont vénérés (doulia) — non adorés (latrie, réservée à Dieu seul, Mt 4,10). L'Église réunit vivants et défunts dans la communion des saints : icônes, reliques, diptyques et hymnes litaniques unissent l'Église militante à l'Église triomphante.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="pos pos-non">Non</span></td>
+                        <td class="col-advent"><span class="pos pos-non">Non</span></td>
+                        <td class="col-pentec"><span class="pos pos-non">Non</span></td>
+                        <td class="col-charism"><span class="pos pos-non">Non</span></td>
+                        <td class="col-freres"><span class="pos pos-non">Non</span></td>
+                        <td class="col-temoins"><span class="pos pos-non">Non</span></td>
+                        <td class="col-mormon"><span class="pos pos-non">Non</span> Respect des anciens prophètes</td>
+                    </tr>
+
+                    <tr class="row-intercession">
+                        <td>Intercession</td>
+                        <td class="col-ortho">Les saints et la Théotokos intercèdent pour les vivants auprès du Christ. L'Église prie aussi pour les défunts (diptyques, pannychides) dont l'état est confié à la miséricorde de Dieu. L'Orthodoxie rejette le purgatoire. Communion vivante entre l'Église militante et l'Église triomphante.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins">Prière directe à Jéhovah. Pas d'intercession des saints</td>
+                        <td class="col-mormon">Prière au Père au nom du Christ. Travail des morts (baptême par procuration)</td>
+                    </tr>
+
+                    <tr class="row-anges">
+                        <td>Anges &amp; Démons</td>
+                        <td class="col-ortho">Anges : esprits purs créés avant le monde visible, organisés en 9 chœurs hiérarchiques (Séraphins, Chérubins, Trônes, Archanges…), messagers de Dieu. Chaque baptisé reçoit un ange gardien (Hé 1,14). Démons : anges rebelles conduits par Satan, tentateurs réels — combattus par la prière, les sacrements et l'exorcisme liturgique.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins">Satan = Lucifer, esprit créé rebelle. Démons = anges déchus</td>
+                        <td class="col-mormon">Anges = esprits pré-mortels ou hommes ressuscités. Diables = esprits de Lucifer</td>
+                    </tr>
+
+                    <tr class="row-dons">
+                        <td>Dons spirituels</td>
+                        <td class="col-ortho">Les charismes (1 Co 12) et les dons de l'Esprit (Is 11) sont reconnus et distribués selon la volonté de Dieu pour l'édification de l'Église — non comme signes d'élection individuelle. La Chrismation confère les dons de l'Esprit à chaque fidèle ; le ministère ordonné (épiscopat, presbytérat, diaconat) est lui-même un charisme. Dons discernés par l'Église et les staretz. Pas de glossolalie publique.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="pos pos-oui">Central</span> Parler en langues = signe du baptême du Saint-Esprit</td>
+                        <td class="col-charism"><span class="pos pos-oui">Central</span> Langues, prophéties, guérisons, signes</td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins">Pas de dons charismatiques. Les miracles ont cessé avec les apôtres</td>
+                        <td class="col-mormon">Dons reconnus. Parler en langues, guérisons par imposition des mains</td>
+                    </tr>
+
+                    <tr class="row-au-dela">
+                        <td>L'au-delà</td>
+                        <td class="col-ortho">Après la mort : jugement particulier immédiat (paroles, actes, pensées révélés), âme en état de joie ou souffrance anticipée. Résurrection générale et Jugement dernier définitif (1 Co 4,5) — ciel et enfer vécus comme expérience de la présence divine selon l'orientation éternelle du cœur. Pas de purgatoire, mais prières pour les défunts confiés à la miséricorde de Dieu.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins">144 000 au ciel. Les autres ressusciteront sur une terre paradisiaque. Pas d'enfer de feu</td>
+                        <td class="col-mormon">Trois royaumes de gloire (céleste, terrestre, télestiel) + ténèbres extérieures</td>
+                    </tr>
+
+                    <tr class="row-priere">
+                        <td>La prière</td>
+                        <td class="col-ortho">Accompagnée de gestes issus de la Tradition apostolique non écrite (saint Basile — signe de croix, inclinaisons, prosternations), la prière est communion vitale avec Dieu. Elle est liturgique (Divine Liturgie, Heures canoniales, Vêpres, litanies) et personnelle (Prière de Jésus, prière du cœur).</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-mormon"><span class="todo">En cours de rédaction…</span></td>
+                    </tr>
+
+                    <!-- ══ GROUPE 3 ══ -->
+                    <tr class="group-header row-group-3"><td colspan="15">3 · Culte &amp; Vie de l'Église</td></tr>
+
+                    <tr class="row-bapteme">
+                        <td>Baptême</td>
+                        <td class="col-ortho">Baptême unique par triple immersion (mort et résurrection avec le Christ, Rm 6,3-4), pour enfants et adultes, au nom de la Trinité. Libère des conséquences du péché originel (mort, corruption) — non d'une culpabilité héritée. Nouvelle naissance spirituelle, entrée dans l'Église. Immédiatement suivi de la Chrismation et de la première Communion (Ac 8,14-17 ; Ac 19,6).</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt">Immersion des croyants adultes uniquement (baptême du croyant)</td>
+                        <td class="col-advent">Immersion des adultes croyants uniquement</td>
+                        <td class="col-pentec">Immersion des adultes croyants. "Au nom de Jésus" pour certains</td>
+                        <td class="col-charism">Immersion des croyants. Suivi du baptême du Saint-Esprit</td>
+                        <td class="col-freres">Immersion des croyants adultes uniquement</td>
+                        <td class="col-temoins">Immersion des adultes. Symbole de consécration, pas de régénération</td>
+                        <td class="col-mormon">Immersion à 8 ans minimum. Indispensable au salut. Baptême pour les morts par procuration</td>
+                    </tr>
+
+                    <tr class="row-cene">
+                        <td>Sainte-Cène (Eucharistie)</td>
+                        <td class="col-ortho">Présence réelle et mystique du Corps et du Sang du Christ sous les espèces du pain et du vin. Transformation opérée par l'épiclèse du Saint-Esprit. Communion sous les deux espèces, réservée aux orthodoxes en communion avec leur évêque, y compris les enfants.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt">Mémorial uniquement (Zwingli). Symbolique</td>
+                        <td class="col-advent">Mémorial trimestriel. Lavage des pieds inclus</td>
+                        <td class="col-pentec">Mémorial symbolique</td>
+                        <td class="col-charism">Mémorial symbolique. Accent sur l'adoration</td>
+                        <td class="col-freres">Fraction du pain hebdomadaire. Pas de clergé officiant</td>
+                        <td class="col-temoins">Mémorial annuel (Pâque). Seuls les 144 000 communient</td>
+                        <td class="col-mormon">Sacrement hebdomadaire (pain et eau). Renouvellement des alliances</td>
+                    </tr>
+
+                    <tr class="row-sacrements">
+                        <td>Sacrements &amp; Confession</td>
+                        <td class="col-ortho">Sept sacrements (ou Mystères) transmis par la Tradition apostolique (Baptême, Chrismation, Eucharistie, Pénitence, Mariage, Ordination, Onction des malades) — moyens de grâce visibles pour la sanctification invisible. La pénitence (ou Confession) devant le père spirituel, témoin et intercesseur auprès de Dieu, non juge et dispensateur.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-mormon"><span class="todo">En cours de rédaction…</span></td>
+                    </tr>
+
+                    <tr class="row-dime">
+                        <td>La dîme</td>
+                        <td class="col-ortho">Pas de dîme obligatoire formalisée. L'Écriture encourage le soutien des ministres (1 Co 9,13-14 ; Ga 6,6) et les fidèles soutiennent l'Église par des offrandes volontaires (bougies, pain d'offrande, contributions paroissiales). La générosité relève de la <strong>conscience personnelle</strong>, non d'une prescription canonique. Les monastères jouent un rôle économique important dans la vie de l'Église.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="pos pos-oui">Oui</span> Dîme obligatoire (10%). Envoyée au trésor de la conférence</td>
+                        <td class="col-pentec">Dîme souvent enseignée comme principe biblique. Encouragée</td>
+                        <td class="col-charism">Dîme souvent enseignée. Théologie de la prospérité dans certains courants</td>
+                        <td class="col-freres">Offrandes volontaires. Pas de salaires pastoraux</td>
+                        <td class="col-temoins">Dons volontaires. Pas de dîme formelle</td>
+                        <td class="col-mormon"><span class="pos pos-oui">Oui</span> Dîme obligatoire (10% du revenu). Condition d'accès au Temple</td>
+                    </tr>
+
+                    <tr class="row-ministeres">
+                        <td>Ministères &amp; Vocations</td>
+                        <td class="col-ortho">Monoépiscopat depuis le II<sup>e</sup> siècle (Ignace d'Antioche). Trois ordres sacrés par succession apostolique (diacre, prêtre, évêque) et ordres mineurs (lecteur, sous-diacre). Clergé "blanc" (prêtres mariés, paroissiaux) et clergé "noir" (moines célibataires, dont sont issus tous les évêques). Le Patriarche de Constantinople, "premier entre égaux", sans autorité universelle contrairement au pape. Le prêtre est appelé avec le consentement de la communauté locale.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres">Pas de clergé professionnel. Anciens et diacres reconnus par l'assemblée</td>
+                        <td class="col-temoins">Pas de clergé rémunéré. Anciens et diacres (hommes uniquement)</td>
+                        <td class="col-mormon">Prêtrise d'Aaron et de Melchisédech. Hommes uniquement. Tous les hommes dignes ont la prêtrise</td>
+                    </tr>
+
+                    <tr class="row-femmes">
+                        <td>Rôle des femmes</td>
+                        <td class="col-ortho">L'ordination sacerdotale et les ordres mineurs sont réservés aux hommes par Tradition apostolique. La Theotokos, "plus vénérable que les chérubins", est le sommet de la vocation humaine et modèle du féminin. Rôles actifs sans ordination : chantres liturgiques, catéchistes, iconographes, moniales. Le diaconat féminin, présent dans l'Église ancienne (II<sup>e</sup>–XI<sup>e</sup> s.), a disparu avec le déclin du baptême des adultes. La "maternité spirituelle" est reconnue comme vocation propre, égale en dignité au sacerdoce.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="pos pos-oui">Oui</span> Depuis 1965, pleinement accepté</td>
+                        <td class="col-unepref"><span class="pos pos-oui">Oui</span> Accepté</td>
+                        <td class="col-angli"><span class="pos pos-oui">Oui</span> Dans la majorité des provinces (depuis les années 1990)</td>
+                        <td class="col-metho"><span class="pos pos-oui">Oui</span> Depuis les origines (prédicatrices de Wesley)</td>
+                        <td class="col-bapt"><span class="pos pos-var">Variable</span> Selon les conventions et Églises locales</td>
+                        <td class="col-advent"><span class="pos pos-var">Variable</span> Selon les divisions mondiales</td>
+                        <td class="col-pentec"><span class="pos pos-var">Variable</span> Souvent accepté, parfois limité</td>
+                        <td class="col-charism"><span class="pos pos-oui">Oui</span> Souvent encouragé</td>
+                        <td class="col-freres"><span class="pos pos-non">Non</span> Rôle public limité aux hommes</td>
+                        <td class="col-temoins"><span class="pos pos-non">Non</span> Rôles séparés</td>
+                        <td class="col-mormon"><span class="pos pos-non">Non</span> Prêtrise réservée aux hommes</td>
+                    </tr>
+
+                    <tr class="row-enfants">
+                        <td>Place des enfants</td>
+                        <td class="col-ortho">L'enfant reçoit son nom au 8<sup>e</sup> jour dans le vestibule de l'église. Au 40<sup>e</sup> jour : baptême par triple immersion, chrismation immédiate et première communion. Il est membre à part entière de l'Église dès ce jour, sans âge minimum pour la communion. Parrains obligatoirement orthodoxes, garants de l'éducation dans la foi. Les garçons peuvent servir à l'autel comme acolytes.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt">Pas de baptême des enfants. Dédicace. Décision personnelle de foi</td>
+                        <td class="col-advent">Pas de baptême des enfants. Éducation sabbatique forte</td>
+                        <td class="col-pentec">Pas de baptême des enfants. Dédicace. École du dimanche</td>
+                        <td class="col-charism">Pas de baptême des enfants. Dédicace. Intégration active des jeunes</td>
+                        <td class="col-freres">Pas de baptême des enfants. Dédicace ou présentation</td>
+                        <td class="col-temoins">Pas de baptême jusqu'à la maturité spirituelle. Éducation théocratique très encadrée</td>
+                        <td class="col-mormon">Baptisé à 8 ans. Prêtrise d'Aaron à 12 ans (garçons). Éducation familiale centrale</td>
+                    </tr>
+
+                    <tr class="row-liturgie">
+                        <td>Liturgie &amp; ordre du culte</td>
+                        <td class="col-ortho">La Divine Liturgie (saint Jean Chrysostome ou saint Basile) est célébrée chaque dimanche et jours de fête — centre absolu de la vie paroissiale. Offices quotidiens : Vêpres, Matines, Heures canoniales. Chant a cappella, pas d'instruments. Iconostase séparant le sanctuaire de la nef. Fidèles debout. Jeûnes liturgiques stricts (mercredis, vendredis, quatre grandes périodes). L'ordre du culte est régi par le Typikon — règle liturgique dont il existe plusieurs variantes selon les Patriarcats et traditions monastiques.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-mormon"><span class="todo">En cours de rédaction…</span></td>
+                    </tr>
+
+                    <!-- ══ GROUPE 4 ══ -->
+                    <tr class="group-header row-group-4"><td colspan="15">4 · Éthique, Mariage &amp; Société</td></tr>
+
+                    <tr class="row-mariage">
+                        <td>Mariage &amp; Divorce</td>
+                        <td class="col-ortho">Le mariage est un Mystère (sacrement) entre un homme et une femme, image de l'union du Christ et de son Église (Ep 5,32). Célébré par la couronne (stéphanoma), il est en principe indissoluble — <strong>mariés pour l'éternité</strong>. Le divorce est cependant possible par économie pastorale (oikonomia), principalement pour adultère (Mt 19,9). Un 2<sup>e</sup> mariage est liturgiquement permis avec une cérémonie pénitentielle ; un 3<sup>e</sup> est toléré exceptionnellement. Pas de 4<sup>e</sup> mariage.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins">Engagement solennel. Divorce accepté uniquement pour fornication</td>
+                        <td class="col-mormon">Ordonnance éternelle (scellement au Temple). Divorce possible mais déconseillé</td>
+                    </tr>
+
+                    <tr class="row-contraception">
+                        <td>Contraception</td>
+                        <td class="col-ortho">La contraception non-abortive est laissée au discernement pastoral du couple avec son père spirituel. Les méthodes abortives sont condamnées (pilule du lendemain, stérilet abortif). Stérilisation perpétuelle refusée (ex. vasectomie).</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-mormon"><span class="todo">En cours de rédaction…</span></td>
+                    </tr>
+
+                    <tr class="row-avortement">
+                        <td>Avortement</td>
+                        <td class="col-ortho">L'avortement est condamné comme <em>un meurtre dès la conception</em>. Le Canon 91 du Concile de Trullo (692) soumet les femmes qui avortent à la peine canonique du meurtrier, confirmé par saint Basile le Grand. Les orthodoxes n'excommunient pas formellement la femme qui a avorté, mais celle-ci doit confesser sa faute et accomplir une période de repentir. Accompagnement pastoral et soutien matériel aux femmes en situation difficile. L'avortement thérapeutique pour sauver la vie de la mère peut être toléré comme "moindre mal", en pleine conscience de la gravité de l'acte.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-mormon"><span class="todo">En cours de rédaction…</span></td>
+                    </tr>
+
+                    <tr class="row-gpa">
+                        <td>GPA</td>
+                        <td class="col-ortho">La GPA est condamnée comme contraire à la dignité de la femme, de l'enfant et à l'ordre familial naturel. Interdite strictement, même sur base altruiste — l'enfant né par GPA est cependant baptisé, car non responsable des actes de ses parents. La PMA homologue (FIV entre époux mariés) est tolérée dans certains Patriarcats. Tout don de gamètes est exclu — il rompt la filiation naturelle. L'adoption est proposée comme voie privilégiée.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-mormon"><span class="todo">En cours de rédaction…</span></td>
+                    </tr>
+
+                    <tr class="row-homosexualite">
+                        <td>Homosexualité</td>
+                        <td class="col-ortho">L'acte homosexuel est considéré comme contraire à la loi naturelle et à l'Écriture. Les personnes homosexuelles doivent être traitées avec compréhension, amour et miséricorde — mais celles qui justifient leur mode de vie ne peuvent participer aux sacrements. Aucune bénédiction d'union homosexuelle n'est possible sous quelque forme que ce soit. La voie proposée : écoute pastorale, abstinence et ascèse. Distinction entre l'orientation (portée avec miséricorde) et l'acte (condamné).</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-mormon"><span class="todo">En cours de rédaction…</span></td>
+                    </tr>
+
+                    <tr class="row-euthanasie">
+                        <td>Euthanasie</td>
+                        <td class="col-ortho"><em>"On ne peut interrompre la vie avant terme par euthanasie pas plus qu'on ne peut la prolonger artificiellement par acharnement thérapeutique."</em> L'euthanasie est assimilée au suicide (pour le patient) et à l'homicide (pour le médecin) — condamnée par le commandement "Tu ne tueras pas". La mort est un <em>passage</em> vers la vie éternelle à la lumière de la Résurrection du Christ, non une fin à administrer. Soins palliatifs, accompagnement spirituel et communautaire promus comme voie de dignité.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-mormon"><span class="todo">En cours de rédaction…</span></td>
+                    </tr>
+
+                    <tr class="row-peine-mort">
+                        <td>Peine de mort</td>
+                        <td class="col-ortho">Pas de condamnation dogmatique formelle. Historiquement tolérée dans le cadre de la symphonie Église/État byzantine (Rm 13,4). L'Orthodoxie prône la miséricorde (pečalovanie) et laisse à la société civile la liberté de décider de son abolition. Tendance contemporaine vers l'abolitionnisme dans plusieurs Patriarcats. La peine de mort témoigne de la perte des valeurs religieuses dans la société — signe d'échec, non de justice accomplie.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-mormon"><span class="todo">En cours de rédaction…</span></td>
+                    </tr>
+
+                    <tr class="row-militaire">
+                        <td>Service militaire &amp; Civique</td>
+                        <td class="col-ortho">Service militaire accepté et valorisé dans la tradition byzantine — saints soldats (saint Georges, saint Démétrius), symphonie Église/État. Théorie de la guerre juste reconnue (Rm 13,4). Aumônerie militaire active dans tous les Patriarcats. L'objection de conscience n'est pas institutionnellement reconnue. Rapport Église/État : modèle de symphonie (collaboration harmonieuse, non fusion) — l'Église n'est pas apolitique mais évite les partis. Les fidèles sont encouragés à voter et s'engager civilement comme témoignage chrétien. La guerre en Ukraine a révélé des tensions profondes entre Patriarcats sur ces questions.</td>
+                        <td class="col-cath-rom"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-trois-conc"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-epudf"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-unepref"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-angli"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-metho"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-bapt"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-advent"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-pentec"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-charism"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-freres"><span class="todo">En cours de rédaction…</span></td>
+                        <td class="col-temoins"><span class="pos pos-non">Non</span> Neutralité politique et militaire absolue</td>
+                        <td class="col-mormon"><span class="pos pos-oui">Oui</span> Service militaire accepté. Citoyenneté active encouragée</td>
+                    </tr>
+
                 </tbody>
             </table>
         </div>
     </main>
 
     <script src="script.js"></script>
+    <script>
+    (function () {
+        const DENOMS = ['ortho','cath-rom','trois-conc','epudf','unepref','angli','metho','bapt','advent','pentec','charism','freres','temoins','mormon'];
+        const THEMES = ['autorite','bible','trinite','jesus','salut','fin-temps','israel','marie','saints','intercession','anges','dons','au-dela','priere','bapteme','cene','sacrements','dime','ministeres','femmes','enfants','liturgie','mariage','contraception','avortement','gpa','homosexualite','euthanasie','peine-mort','militaire'];
+        const GROUPS = {
+            1: ['autorite','bible','trinite','jesus','salut','fin-temps','israel'],
+            2: ['marie','saints','intercession','anges','dons','au-dela','priere'],
+            3: ['bapteme','cene','sacrements','dime','ministeres','femmes','enfants','liturgie'],
+            4: ['mariage','contraception','avortement','gpa','homosexualite','euthanasie','peine-mort','militaire']
+        };
+
+        function getCheckedDenoms() {
+            return Array.from(document.querySelectorAll('#denomination-filters input:checked')).map(cb => cb.value);
+        }
+        function getCheckedThemes() {
+            return Array.from(document.querySelectorAll('.theme-group input:checked')).map(cb => cb.value);
+        }
+
+        function applyFilters() {
+            const selDenoms = getCheckedDenoms();
+            const selThemes = getCheckedThemes();
+            DENOMS.forEach(d => {
+                const show = selDenoms.includes(d);
+                document.querySelectorAll('.col-' + d).forEach(el => { el.style.display = show ? '' : 'none'; });
+            });
+            let visibleRows = 0;
+            THEMES.forEach(t => {
+                const show = selThemes.includes(t);
+                document.querySelectorAll('.row-' + t).forEach(el => {
+                    el.style.display = show ? '' : 'none';
+                    if (show) visibleRows++;
+                });
+            });
+            for (let g = 1; g <= 4; g++) {
+                const anyVisible = GROUPS[g].some(t => selThemes.includes(t));
+                document.querySelectorAll('.row-group-' + g).forEach(el => el.style.display = anyVisible ? '' : 'none');
+            }
+            document.getElementById('visible-count').textContent = visibleRows;
+            document.getElementById('denom-count').textContent = selDenoms.length + ' dénomination' + (selDenoms.length > 1 ? 's' : '');
+        }
+
+        function selectAllDenoms() {
+            document.querySelectorAll('#denomination-filters input').forEach(cb => cb.checked = true);
+            applyFilters();
+        }
+        function selectAllThemes() {
+            document.querySelectorAll('.theme-group input').forEach(cb => cb.checked = true);
+            applyFilters();
+        }
+        function resetFilters() {
+            document.querySelectorAll('#denomination-filters input').forEach(cb => {
+                cb.checked = ['ortho','cath-rom'].includes(cb.value);
+            });
+            document.querySelectorAll('.theme-group input').forEach(cb => {
+                cb.checked = ['autorite','bible','trinite','jesus'].includes(cb.value);
+            });
+            applyFilters();
+        }
+
+        window.selectAllDenoms = selectAllDenoms;
+        window.selectAllThemes = selectAllThemes;
+        window.resetFilters = resetFilters;
+
+        document.querySelectorAll('#denomination-filters input, .theme-group input').forEach(cb => {
+            cb.addEventListener('change', applyFilters);
+        });
+        applyFilters();
+    })();
+    </script>
+
     <footer class="ginoskis-footer">
         <div class="footer-grid">
-
-            <!-- Colonne 1 : Marque -->
             <div class="footer-brand">
                 <a href="index.html" class="footer-logo">Ginoski<span>s</span></a>
                 <p>Le site qui vous aide à y voir plus clair sur les dénominations chrétiennes et à identifier précisément vos sensibilités théologiques.</p>
@@ -188,8 +802,6 @@
                     <a href="#" title="YouTube"><i class='bx bxl-youtube'></i></a>
                 </div>
             </div>
-
-            <!-- Colonne 2 : Votre Foi -->
             <div class="footer-col">
                 <h4>Votre Foi</h4>
                 <ul>
@@ -199,21 +811,17 @@
                     <li><a href="edification.html">Édification personnelle</a></li>
                 </ul>
             </div>
-
-            <!-- Colonne 3 : Ressources -->
             <div class="footer-col">
                 <h4>Ressources</h4>
                 <ul>
-                    <li><a href="liste-denominations.html">Liste & Chiffres clés</a></li>
+                    <li><a href="liste-denominations.html">Liste &amp; Chiffres clés</a></li>
                     <li><a href="comparatif.html">Tableaux comparatifs</a></li>
-                    <li><a href="lexique.html">Lexique & Fiches doctrinales</a></li>
+                    <li><a href="lexique.html">Lexique &amp; Fiches doctrinales</a></li>
                     <li><a href="quizz-bibliques.html">Quizz bibliques</a></li>
                     <li><a href="monde.html">Le christianisme dans le monde</a></li>
                     <li><a href="peres-eglise.html">Les Pères de l'Église</a></li>
                 </ul>
             </div>
-
-            <!-- Colonne 4 : À propos -->
             <div class="footer-col">
                 <h4>À propos</h4>
                 <ul>
@@ -224,13 +832,10 @@
                     <li><a href="soutien.html">Soutenir Ginoskis</a></li>
                 </ul>
             </div>
-
         </div>
-
-        <!-- Bas de page -->
         <div class="footer-bottom">
             <span>&copy; 2026 Ginoskis — Tous droits réservés</span>
-            <span class="footer-badge"><i class='bx bx-shield-quarter'></i> Indépendant & sans publicité</span>
+            <span class="footer-badge"><i class='bx bx-shield-quarter'></i> Indépendant &amp; sans publicité</span>
             <span>
                 <a href="independance.html">Déclaration d'indépendance</a>
                 &nbsp;·&nbsp;
@@ -238,6 +843,5 @@
             </span>
         </div>
     </footer>
-
 </body>
 </html>

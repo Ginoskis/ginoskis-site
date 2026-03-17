@@ -789,10 +789,14 @@
         };
 
         function getCheckedDenoms() {
-            return Array.from(document.querySelectorAll('#denomination-filters input:checked')).map(cb => cb.value);
+            return Array.from(document.querySelectorAll('#denomination-filters input[type="checkbox"]'))
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
         }
         function getCheckedThemes() {
-            return Array.from(document.querySelectorAll('.theme-group input:checked')).map(cb => cb.value);
+            return Array.from(document.querySelectorAll('.theme-group input[type="checkbox"]'))
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
         }
 
         function applyFilters() {
@@ -840,6 +844,15 @@
         window.selectAllThemes = selectAllThemes;
         window.resetFilters = resetFilters;
 
+        // Écouter les clics sur les chips — setTimeout(0) garantit que
+        // l'état checked est mis à jour AVANT qu'on lise les valeurs
+        document.querySelectorAll('#denomination-filters .chip, .theme-group label').forEach(label => {
+            label.addEventListener('click', function() {
+                setTimeout(applyFilters, 0);
+            });
+        });
+
+        // Fallback : écouter aussi change directement sur les inputs
         document.querySelectorAll('#denomination-filters input, .theme-group input').forEach(cb => {
             cb.addEventListener('change', applyFilters);
         });

@@ -154,7 +154,7 @@
             <p class="filters-section-title">Thématiques</p>
             <div class="theme-groups">
                 <div class="theme-group">
-                    <h4><label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:#37352f;"><input type="checkbox" id="group-check-1" style="accent-color:#3e8da8;width:14px;height:14px;" onchange="toggleGroup(1, this.checked)"> 1 · Fondements &amp; Autorité</label></h4>
+                    <h4 style="display:flex;align-items:center;gap:6px;">1 · Fondements &amp; Autorité <input type="checkbox" id="group-check-1" title="Tout sélectionner / désélectionner" style="accent-color:#3e8da8;width:14px;height:14px;cursor:pointer;flex-shrink:0;"></h4>
                     <label><input type="checkbox" value="autorite" checked> Sources d'autorité</label>
                     <label><input type="checkbox" value="bible" checked> Rapport à la Bible</label>
                     <label><input type="checkbox" value="trinite" checked> Dieu</label>
@@ -164,7 +164,7 @@
                     <label><input type="checkbox" value="israel"> Rapport à Israël</label>
                 </div>
                 <div class="theme-group">
-                    <h4><label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:#37352f;"><input type="checkbox" id="group-check-2" style="accent-color:#3e8da8;width:14px;height:14px;" onchange="toggleGroup(2, this.checked)"> 2 · Spiritualité &amp; Figures</label></h4>
+                    <h4 style="display:flex;align-items:center;gap:6px;">2 · Spiritualité &amp; Figures <input type="checkbox" id="group-check-2" title="Tout sélectionner / désélectionner" style="accent-color:#3e8da8;width:14px;height:14px;cursor:pointer;flex-shrink:0;"></h4>
                     <label><input type="checkbox" value="marie"> Marie, mère de Jésus-Christ</label>
                     <label><input type="checkbox" value="saints"> Vénération des Saints</label>
                     <label><input type="checkbox" value="intercession"> Intercession</label>
@@ -174,7 +174,7 @@
                     <label><input type="checkbox" value="priere"> La prière</label>
                 </div>
                 <div class="theme-group">
-                    <h4><label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:#37352f;"><input type="checkbox" id="group-check-3" style="accent-color:#3e8da8;width:14px;height:14px;" onchange="toggleGroup(3, this.checked)"> 3 · Culte &amp; Vie de l'Église</label></h4>
+                    <h4 style="display:flex;align-items:center;gap:6px;">3 · Culte &amp; Vie de l'Église <input type="checkbox" id="group-check-3" title="Tout sélectionner / désélectionner" style="accent-color:#3e8da8;width:14px;height:14px;cursor:pointer;flex-shrink:0;"></h4>
                     <label><input type="checkbox" value="bapteme"> Baptême</label>
                     <label><input type="checkbox" value="cene"> Sainte-Cène (Eucharistie)</label>
                     <label><input type="checkbox" value="sacrements"> Sacrements &amp; Confession</label>
@@ -185,7 +185,7 @@
                     <label><input type="checkbox" value="liturgie"> Liturgie &amp; ordre du culte</label>
                 </div>
                 <div class="theme-group">
-                    <h4><label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:#37352f;"><input type="checkbox" id="group-check-4" style="accent-color:#3e8da8;width:14px;height:14px;" onchange="toggleGroup(4, this.checked)"> 4 · Éthique, Mariage &amp; Société</label></h4>
+                    <h4 style="display:flex;align-items:center;gap:6px;">4 · Éthique, Mariage &amp; Société <input type="checkbox" id="group-check-4" title="Tout sélectionner / désélectionner" style="accent-color:#3e8da8;width:14px;height:14px;cursor:pointer;flex-shrink:0;"></h4>
                     <label><input type="checkbox" value="mariage"> Mariage &amp; Divorce</label>
                     <label><input type="checkbox" value="contraception"> Contraception</label>
                     <label><input type="checkbox" value="avortement"> Avortement</label>
@@ -854,13 +854,14 @@
             applyFilters();
         }
 
+        var groupThemes = {
+            1: ['autorite','bible','trinite','jesus','salut','fin-temps','israel'],
+            2: ['marie','saints','intercession','anges','dons','au-dela','priere'],
+            3: ['bapteme','cene','sacrements','dime','ministeres','femmes','enfants','liturgie'],
+            4: ['mariage','contraception','avortement','gpa','homosexualite','euthanasie','peine-mort','militaire']
+        };
+
         function toggleGroup(groupNum, checked) {
-            var groupThemes = {
-                1: ['autorite','bible','trinite','jesus','salut','fin-temps','israel'],
-                2: ['marie','saints','intercession','anges','dons','au-dela','priere'],
-                3: ['bapteme','cene','sacrements','dime','ministeres','femmes','enfants','liturgie'],
-                4: ['mariage','contraception','avortement','gpa','homosexualite','euthanasie','peine-mort','militaire']
-            };
             groupThemes[groupNum].forEach(function(theme) {
                 var cb = document.querySelector('.theme-group input[value="' + theme + '"]');
                 if (cb) { cb.checked = checked; }
@@ -889,6 +890,18 @@
         window.selectAllDenoms = selectAllDenoms;
         window.selectAllThemes = selectAllThemes;
         window.resetFilters = resetFilters;
+
+        // Cases de groupe
+        for (var g = 1; g <= 4; g++) {
+            (function(gNum) {
+                var groupCb = document.getElementById('group-check-' + gNum);
+                if (groupCb) {
+                    groupCb.addEventListener('change', function() {
+                        toggleGroup(gNum, this.checked);
+                    });
+                }
+            })(g);
+        }
 
         // Écouter les clics sur les chips — setTimeout(0) garantit que
         // l'état checked est mis à jour AVANT qu'on lise les valeurs

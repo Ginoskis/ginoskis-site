@@ -72,7 +72,7 @@ function filterDenominations() {
         if (index === 0) return; // Toujours afficher la colonne "Thématique"
         
         const denomClass = th.classList[0];
-        const show = selectedDenoms.includes(denomClass);
+        const show = selectedDenoms.some(v => denomClass === 'col-' + v || denomClass === v);
         
         // Cible la cellule d'en-tête et toutes les cellules correspondantes dans le corps du tableau
         const cells = document.querySelectorAll(`#comparison-table th:nth-child(${index + 1}), #comparison-table td:nth-child(${index + 1})`);
